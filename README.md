@@ -1,4 +1,4 @@
-# 易简商城 Flutter 版
+# 大地京东商城 Flutter 版
 
 ##  screen shot for iOS
 
