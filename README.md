@@ -73,6 +73,7 @@ $ flutter run
 | fluttertoast: ^3.1.3         |       提示框       |
 | city_pickers: ^0.1.30        | 三级城市联动选择器 |
 | crypto: ^2.1.3               |       加密库       |
+| flutter_slidable: ^0.5.4     |       侧滑删除       |
 
 
 
