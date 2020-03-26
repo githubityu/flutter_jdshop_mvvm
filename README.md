@@ -1,20 +1,5 @@
 # 易简商城 Flutter 版
 
-A new Flutter application.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
 ##  screen shot for iOS
 
 ![IMG_0703](https://github.com/qpc2015/flutter_shop/blob/master/screenshot/001.png)
@@ -29,8 +14,8 @@ samples, guidance on mobile development, and a full API reference.
 1. **Clone the repo**
 
 ```
-$ git clone https://github.com/qpc2015/flutter_shop.git
-$ cd flutter_shop
+$ git clone https://github.com/githubityu/flutter_jdshop_mvvm.git
+$ cd flutter_jdshop_mvvm
 ```
 
 2. **Running:**
@@ -49,16 +34,16 @@ $ flutter run
 ###  武功太差，努力练习，减少代码的重复和便于维护
 ###  学好武功，迎娶白富美
 
-#### 该项目使用mvvm
-#### 自定义BasePageState 提取公共方法例如需要初始化的ScreenUtil,showToast,显示隐藏进度弹框，点击外部是否隐藏软键盘等
-#### 自定义BaseDialog 提醒弹框(例如确定要退出登陆吗)
-#### 自定义AppBar,CommonBackTopBar(可以设置左组件和点击事件默认返回图标返回事件，中间文字，右边组件右边点击默认为Container())
-#### 定义BaseResponse，统一处理返回结果，根据code做不同的处理。例如状态码是-1,，就跳转到登录页面
-#### 统一Button，方便后面使用
-#### 加载组件（加载中，加载成功，加载失败（点击重新加载））
-#### 自定义输入框(包含清除按钮，是否显示密码按钮，发送验证码按钮)，方便后面使用
-#### 封装LoadImage组件，可以加载本地资源或者网路图片
-#### 定义UserInfoData 存储用户信息,方便app使用获取用户相关信息
+* 该项目使用mvvm
+* 自定义BasePageState 提取公共方法例如需要初始化的ScreenUtil,showToast,显示隐藏进度弹框，点击外部是否隐藏软键盘等
+* 自定义BaseDialog 提醒弹框(例如确定要退出登陆吗)
+* 自定义AppBar,CommonBackTopBar(可以设置左组件和点击事件默认返回图标返回事件，中间文字，右边组件右边点击默认为Container())
+* 定义BaseResponse，统一处理返回结果，根据code做不同的处理。例如状态码是-1,，就跳转到登录页面
+* 统一Button，方便后面使用
+* 加载组件（加载中，加载成功，加载失败（点击重新加载））
+* 自定义输入框(包含清除按钮，是否显示密码按钮，发送验证码按钮)，方便后面使用
+* 封装LoadImage组件，可以加载本地资源或者网路图片
+* 定义UserInfoData 存储用户信息,方便app使用获取用户相关信息
 
 
 。
