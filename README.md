@@ -1,4 +1,5 @@
 # 大地京东商城 Flutter 版
+## 代码还在完善中，敬请期待！！
 
 ##  screen shot for iOS
 
