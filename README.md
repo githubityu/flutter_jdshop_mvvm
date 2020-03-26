@@ -91,7 +91,7 @@ MIT
 如果你喜欢这个项目，欢迎给我一个star。里面可能还有许多需要修改的bug,欢迎大家提出来,我将持续更新这个项目)
 
 
-## 感谢qpc2015 复制了Read.md
+## 感谢qpc2015 复制了README.md
 [qpc2015](https://github.com/qpc2015/flutter_shop)
 
 
