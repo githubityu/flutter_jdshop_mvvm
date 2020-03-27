@@ -79,6 +79,7 @@ $ flutter run
 | flutter_statusbarcolor: ^0.2.3|设置状态栏文字图标颜色 |
 | cached_network_image: ^2.0.0|      加载图片         |
 | flutter_html: ^0.11.1       |      加载网页         |
+| barcode_scan: any           |      识别二维码         |
 
 
 
