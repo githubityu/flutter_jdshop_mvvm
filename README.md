@@ -5,7 +5,7 @@
 
 ![IMG_0703](https://img-blog.csdnimg.cn/20200325230359296.gif)
 
-![IMG_0704](https://github.com/qpc2015/flutter_shop/blob/master/screenshot/002.png)
+![IMG_0704](https://github.com/githubityu/flutter_jdshop_mvvm/blob/master/1585319654(1).png)
 
 ![IMG_0705](https://github.com/qpc2015/flutter_shop/blob/master/screenshot/003.png)
 
