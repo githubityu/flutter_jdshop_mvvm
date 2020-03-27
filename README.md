@@ -74,6 +74,12 @@ $ flutter run
 | city_pickers: ^0.1.30        | 三级城市联动选择器 |
 | crypto: ^2.1.3               |       加密库       |
 | flutter_slidable: ^0.5.4     |       侧滑删除       |
+| fluro: ^1.5.1                |       路由跳转       |
+| flutter_statusbarcolor: ^0.2.3|设置状态栏文字图标颜色 |
+| cached_network_image: ^2.0.0|      加载图片         |
+| flutter_html: ^0.11.1       |      加载网页         |
+
+
 
 
 
