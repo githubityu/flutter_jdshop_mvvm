@@ -3,7 +3,7 @@
 
 ##  screen shot for iOS
 
-![IMG_0703](https://github.com/qpc2015/flutter_shop/blob/master/screenshot/001.png)
+![IMG_0703](https://img-blog.csdnimg.cn/20200325230359296.gif)
 
 ![IMG_0704](https://github.com/qpc2015/flutter_shop/blob/master/screenshot/002.png)
 
