@@ -49,6 +49,20 @@ class _DemoListPageState extends BasePageState<DemoListPage> {
           onTap: (){
             NavigatorUtils.push(context, ShopRouter.PRODUCT_CONTENT_2);
           },
+        ),
+        ListTile(
+          title: Text("小demo"),
+          subtitle: Text("不需要单独页面的demo"),
+          onTap: (){
+            NavigatorUtils.push(context, DemoRouter.DEMOSIMPLE);
+          },
+        ),
+        ListTile(
+          title: Text("监听隐藏显示键盘"),
+          subtitle: Text("MediaQuery.of(context).viewInsets.bottom > 0"),
+          onTap: (){
+            NavigatorUtils.push(context, DemoRouter.DEMOKEYWORD);
+          },
         )
       ],
     );

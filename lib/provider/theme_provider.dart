@@ -41,6 +41,8 @@ class ThemeProvider extends ChangeNotifier {
 
   getTheme({bool isDarkMode: false}) {
     return ThemeData(
+      ///指定平台
+      ///platform: TargetPlatform.android,
       errorColor: isDarkMode ? Colours.dark_red : Colours.red,
       brightness: isDarkMode ? Brightness.dark : Brightness.light,
       primaryColor: isDarkMode ? Colours.dark_app_main : Colours.app_main,

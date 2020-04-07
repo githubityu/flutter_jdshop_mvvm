@@ -12,13 +12,26 @@ String getSafeData(String data) {
 
 Widget hideKeyword(Widget child, BuildContext context) {
   return GestureDetector(
-
       ///透明也响应处理
       behavior: HitTestBehavior.opaque,
       child: child,
       onTap: () {
         FocusScope.of(context).unfocus();
       });
+}
+
+//显示键盘
+void showKeyword(BuildContext context, FocusNode _focusNode) {
+  if (MediaQuery.of(context).viewInsets.bottom == 0) {
+    final focusScope = FocusScope.of(context);
+    focusScope.requestFocus(FocusNode());
+    Future.delayed(Duration.zero, () => focusScope.requestFocus(_focusNode));
+  }
+}
+
+//隐藏键盘
+void hideKeyword2(BuildContext context){
+  FocusScope.of(context).unfocus();
 }
 
 String getFullPath(String path) {
