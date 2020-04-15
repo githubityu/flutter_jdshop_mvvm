@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:typed_data';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutterjdshop/common/shared_util.dart';
@@ -12,6 +14,7 @@ String getSafeData(String data) {
 
 Widget hideKeyword(Widget child, BuildContext context) {
   return GestureDetector(
+
       ///透明也响应处理
       behavior: HitTestBehavior.opaque,
       child: child,
@@ -30,7 +33,7 @@ void showKeyword(BuildContext context, FocusNode _focusNode) {
 }
 
 //隐藏键盘
-void hideKeyword2(BuildContext context){
+void hideKeyword2(BuildContext context) {
   FocusScope.of(context).unfocus();
 }
 
@@ -63,3 +66,10 @@ double getY(BuildContext buildContext) {
   final topLeftPosition = box.localToGlobal(Offset.zero);
   return topLeftPosition.dy;
 }
+
+
+void get(){
+//  FileImage(file).resolve(config)
+}
+
+

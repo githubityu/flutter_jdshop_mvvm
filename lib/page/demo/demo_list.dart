@@ -63,6 +63,20 @@ class _DemoListPageState extends BasePageState<DemoListPage> {
           onTap: (){
             NavigatorUtils.push(context, DemoRouter.DEMOKEYWORD);
           },
+        ),
+        ListTile(
+          title: Text("CanvasPaintStudy"),
+          subtitle: Text("画布api学习"),
+          onTap: (){
+            NavigatorUtils.push(context, DemoRouter.DEMOPAINTERSTUDY);
+          },
+        ),
+        ListTile(
+          title: Text("PATH学习"),
+          subtitle: Text("PATHapi学习"),
+          onTap: (){
+            NavigatorUtils.push(context, DemoRouter.DEMOPATHSTUDY);
+          },
         )
       ],
     );

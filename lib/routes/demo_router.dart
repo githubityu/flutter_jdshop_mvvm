@@ -1,8 +1,10 @@
 import 'package:fluro/fluro.dart';
+import 'package:flutterjdshop/page/demo/canvas_paint.dart';
 import 'package:flutterjdshop/page/demo/demo_list.dart';
 import 'package:flutterjdshop/page/demo/flutter_barcode.dart';
 import 'package:flutterjdshop/page/demo/flutter_simple.dart';
 import 'package:flutterjdshop/page/demo/keyboard_demo_page.dart';
+import 'package:flutterjdshop/page/demo/path_study.dart';
 import 'package:flutterjdshop/page/guide_page.dart';
 import 'package:flutterjdshop/page/home/ProductList.dart';
 import 'package:flutterjdshop/page/home/product_detail.dart';
@@ -28,6 +30,8 @@ class DemoRouter implements IRouterProvider {
   static const DEMOLIST = '/demo_list';
   static const DEMOSIMPLE = '/demo_simple';
   static const DEMOKEYWORD = '/demo_keyword';
+  static const DEMOPAINTERSTUDY = '/demo_painter_study';
+  static const DEMOPATHSTUDY = '/demo_path_study';
 
   @override
   void initRouter(Router router) {
@@ -39,5 +43,9 @@ class DemoRouter implements IRouterProvider {
         handler: Handler(handlerFunc: (context, params) => SimpleDemoPage()));
     router.define(DEMOKEYWORD,
         handler: Handler(handlerFunc: (context, params) => KeyBoardDemoPage()));
+    router.define(DEMOPAINTERSTUDY,
+        handler: Handler(handlerFunc: (context, params) => CanvasPaintStudy()));
+    router.define(DEMOPATHSTUDY,
+        handler: Handler(handlerFunc: (context, params) => PathStudy()));
   }
 }
