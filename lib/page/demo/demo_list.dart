@@ -77,6 +77,20 @@ class _DemoListPageState extends BasePageState<DemoListPage> {
           onTap: (){
             NavigatorUtils.push(context, DemoRouter.DEMOPATHSTUDY);
           },
+        ),
+        ListTile(
+          title: Text("动画学习"),
+          subtitle: Text("Tween AnimatedSwitcher ScaleTransition AnimationImage"),
+          onTap: (){
+            NavigatorUtils.push(context, DemoRouter.DEMO_ANIMATION);
+          },
+        ),
+        ListTile(
+          title: Text("动画学习2"),
+          subtitle: Text("Tween ColorTween CurvedAnimation"),
+          onTap: (){
+            NavigatorUtils.push(context, DemoRouter.DEMO_ANIMATION_TWO);
+          },
         )
       ],
     );

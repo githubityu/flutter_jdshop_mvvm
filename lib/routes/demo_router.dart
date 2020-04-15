@@ -1,4 +1,6 @@
 import 'package:fluro/fluro.dart';
+import 'package:flutterjdshop/page/demo/animation_page.dart';
+import 'package:flutterjdshop/page/demo/animation_two.dart';
 import 'package:flutterjdshop/page/demo/canvas_paint.dart';
 import 'package:flutterjdshop/page/demo/demo_list.dart';
 import 'package:flutterjdshop/page/demo/flutter_barcode.dart';
@@ -32,6 +34,8 @@ class DemoRouter implements IRouterProvider {
   static const DEMOKEYWORD = '/demo_keyword';
   static const DEMOPAINTERSTUDY = '/demo_painter_study';
   static const DEMOPATHSTUDY = '/demo_path_study';
+  static const DEMO_ANIMATION = '/demo_animation';
+  static const DEMO_ANIMATION_TWO = '/demo_animation_two';
 
   @override
   void initRouter(Router router) {
@@ -47,5 +51,9 @@ class DemoRouter implements IRouterProvider {
         handler: Handler(handlerFunc: (context, params) => CanvasPaintStudy()));
     router.define(DEMOPATHSTUDY,
         handler: Handler(handlerFunc: (context, params) => PathStudy()));
+    router.define(DEMO_ANIMATION,
+        handler: Handler(handlerFunc: (context, params) => AnimationPage()));
+    router.define(DEMO_ANIMATION_TWO,
+        handler: Handler(handlerFunc: (context, params) => AnimationTwo()));
   }
 }

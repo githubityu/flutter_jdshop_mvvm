@@ -162,7 +162,7 @@ class MyCustomPainter2 extends CustomPainter {
     canvas.drawDRRect(rr4, rr5, paint2);
 
     ///画文字
-    for (int i = 0; i < 3; i++) {
+    List.generate(2, (i){
       // 新建一个段落建造器，然后将文字基本信息填入;
       ui.ParagraphBuilder pb = ui.ParagraphBuilder(ui.ParagraphStyle(
         textAlign: TextAlign.left,
@@ -171,7 +171,7 @@ class MyCustomPainter2 extends CustomPainter {
         fontSize: 15.0 + i,
       ));
       pb.pushStyle(ui.TextStyle(color: Colors.white));
-      pb.addText('Flutter一统移动端');
+      pb.addText('有美女卖没有呢 AaBb 68');
       // 设置文本的宽度约束
       ui.ParagraphConstraints pc = ui.ParagraphConstraints(width: 300);
       // 这里需要先layout,将宽度约束填入，否则无法绘制
@@ -179,7 +179,7 @@ class MyCustomPainter2 extends CustomPainter {
       // 文字左上角起始点of.dx + 10, of.dy + 50
       Offset offset = Offset(of.dx + 10, of.dy + 100 + i * 40.0);
       canvas.drawParagraph(paragraph, offset);
-    }
+    });
   }
 
   ///尽可能的利用好shouldRepaint返回值；在UI树重新build时，
