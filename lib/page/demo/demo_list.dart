@@ -80,7 +80,7 @@ class _DemoListPageState extends BasePageState<DemoListPage> {
         ),
         ListTile(
           title: Text("动画学习"),
-          subtitle: Text("Tween AnimatedSwitcher ScaleTransition AnimationImage"),
+          subtitle: Text("Tween AnimatedSwitcher ScaleTransition"),
           onTap: (){
             NavigatorUtils.push(context, DemoRouter.DEMO_ANIMATION);
           },

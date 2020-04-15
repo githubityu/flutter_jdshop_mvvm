@@ -1,5 +1,4 @@
 # 大地京东商城 Flutter 版
-## 代码还在完善中，敬请期待！！
 
 ##  screen shot for iOS
 
@@ -49,6 +48,9 @@ $ flutter run
 ### Demo文件夹下的功能
 * Tab和滚动同步变化
 * 扫描二维码功能测试
+* Paint和Canvas学习
+* Animation学习
+* 软键盘监听
 
 
 。
