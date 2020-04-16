@@ -91,6 +91,13 @@ class _DemoListPageState extends BasePageState<DemoListPage> {
           onTap: (){
             NavigatorUtils.push(context, DemoRouter.DEMO_ANIMATION_TWO);
           },
+        ),
+        ListTile(
+          title: Text("动画学习3"),
+          subtitle: Text("AnimatedBuilder AnimatedWidget"),
+          onTap: (){
+            NavigatorUtils.push(context, DemoRouter.DEMO_ANIMATION_THREE);
+          },
         )
       ],
     );
