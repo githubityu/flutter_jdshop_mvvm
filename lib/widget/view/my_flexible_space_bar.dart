@@ -119,6 +119,9 @@ class _FlexibleSpaceBarState extends State<MyFlexibleSpaceBar> {
         return false;
       case TargetPlatform.iOS:
         return true;
+      case TargetPlatform.macOS:
+        // TODO: Handle this case.
+        break;
     }
     return null;
   }
@@ -204,12 +207,16 @@ class _FlexibleSpaceBarState extends State<MyFlexibleSpaceBar> {
         case TargetPlatform.iOS:
           title = widget.title;
           break;
+        case TargetPlatform.macOS:
+        // TODO: Handle this case.
+          break;
         case TargetPlatform.fuchsia:
         case TargetPlatform.android:
           title = Semantics(
             namesRoute: true,
             child: widget.title,
           );
+
       }
 
       title = Container(

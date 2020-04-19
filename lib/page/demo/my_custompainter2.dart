@@ -122,9 +122,12 @@ class MyCustomPainter2 extends CustomPainter {
     ///中心水平右侧为0
     ///sweepAngle  弧度大小
     ///useCenter 是否和中心连一起  PaintingStyle.fill 可以填充
-
-    paint2..style = PaintingStyle.fill;
-    canvas.drawArc(rect2, 0.1, 0.8, false, paint2);
+    /// ..strokeJoin = StrokeJoin.round
+    paint2
+      ..style = PaintingStyle.fill
+      ..strokeJoin = StrokeJoin.round
+      ..strokeWidth = 10;
+    canvas.drawArc(rect2, 0.1, 0.8, true, paint2);
 
     paint2
       ..style = PaintingStyle.stroke
@@ -162,7 +165,7 @@ class MyCustomPainter2 extends CustomPainter {
     canvas.drawDRRect(rr4, rr5, paint2);
 
     ///画文字
-    List.generate(2, (i){
+    List.generate(2, (i) {
       // 新建一个段落建造器，然后将文字基本信息填入;
       ui.ParagraphBuilder pb = ui.ParagraphBuilder(ui.ParagraphStyle(
         textAlign: TextAlign.left,

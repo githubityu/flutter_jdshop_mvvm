@@ -30,9 +30,13 @@ Future<T> showPopupWindow<T>({
     case TargetPlatform.iOS:
       label = semanticLabel;
       break;
+    case TargetPlatform.macOS:
+    // TODO: Handle this case.
+      break;
     case TargetPlatform.android:
     case TargetPlatform.fuchsia:
       label = semanticLabel ?? MaterialLocalizations.of(context)?.popupMenuLabel;
+
   }
 
   return Navigator.push(context,

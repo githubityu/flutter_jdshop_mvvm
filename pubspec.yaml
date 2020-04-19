@@ -55,6 +55,7 @@ dependencies:
   sprintf: ^4.0.2
   provider: ^4.0.4
   barcode_scan: any
+  path_drawing: ^0.4.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

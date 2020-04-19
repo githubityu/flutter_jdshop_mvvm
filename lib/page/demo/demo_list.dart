@@ -63,6 +63,15 @@ class _DemoListPageState extends BasePageState<DemoListPage> {
           onTap: (){
             NavigatorUtils.push(context, DemoRouter.DEMOKEYWORD);
           },
+
+        ),
+        ListTile(
+          title: Text("分隔符学习"),
+          subtitle: Text("Divider"),
+          onTap: (){
+            NavigatorUtils.push(context, DemoRouter.DEMODIVIDER);
+          },
+
         ),
         ListTile(
           title: Text("CanvasPaintStudy"),
@@ -97,6 +106,12 @@ class _DemoListPageState extends BasePageState<DemoListPage> {
           subtitle: Text("AnimatedBuilder AnimatedWidget"),
           onTap: (){
             NavigatorUtils.push(context, DemoRouter.DEMO_ANIMATION_THREE);
+          },
+        ),ListTile(
+          title: Text("ai_progress学习"),
+          subtitle: Text("AnimatedBuilder AnimatedWidget"),
+          onTap: (){
+            NavigatorUtils.push(context, DemoRouter.DEMO_AI_PROGRESS);
           },
         )
       ],

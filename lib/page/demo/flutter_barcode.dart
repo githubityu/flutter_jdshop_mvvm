@@ -50,10 +50,10 @@ class _BracodePageState extends BasePageState<BracodePage> {
 
   Future scan() async {
     try {
-      String barcode = await BarcodeScanner.scan();
-      setState(() => this.barcode = barcode);
+      ScanResult barcode = await BarcodeScanner.scan();
+      setState(() => this.barcode = barcode.rawContent);
     } on PlatformException catch (e) {
-      if (e.code == BarcodeScanner.CameraAccessDenied) {
+      if (e.code == BarcodeScanner.cameraAccessDenied) {
         setState(() {
           this.barcode = 'The user did not grant the camera permission!';
         });

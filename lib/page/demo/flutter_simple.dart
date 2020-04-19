@@ -132,7 +132,17 @@ class _SimpleDemoPageState extends BasePageState<SimpleDemoPage> {
               ),
             )
             ,
+          ),
+          IgnorePointer(
+            ignoring:true,
+            child: RaisedButton(
+              onPressed: (){
+
+              },
+              child: Text("测试IgnorePointer"),
+            ),
           )
+
         ],
       ),
     );

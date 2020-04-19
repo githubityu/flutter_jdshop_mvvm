@@ -8,4 +8,11 @@ class OptionBean {
 
   OptionBean(
       {this.first, this.second, this.third, this.four, this.five, this.isx});
+
+  @override
+  String toString() {
+    return 'OptionBean{first: $first, second: $second, third: $third}';
+  }
+
+
 }

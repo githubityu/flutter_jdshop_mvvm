@@ -7,6 +7,7 @@ import 'dart:math' as math;
 /// 他们都需要 AnimationController 动画控制器
 /// AnimatedBuilder 估值器和插值器组合A以后 交给AnimationController 然后，组件里面的属性值可以根据A.value来改变组件的属性
 /// AnimatedWidget 估值器和插值器组合A以后放到组件对应的属性值上面(Animation<double>)
+/// Tween 范围  Curves快慢，  最后直接或者间接调用transform设置值来改变属性
 
 class AnimationThree extends StatefulWidget {
   @override
