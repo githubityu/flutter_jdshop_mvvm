@@ -7,6 +7,8 @@ class RefreshAddressEvent {
 }
 class ProductContentEvent{
 }
+class MineChangeEvent{
+}
 class CheckOutEvent{
 }
 class OrderInEvent {

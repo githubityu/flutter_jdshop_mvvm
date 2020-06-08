@@ -1,6 +1,7 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterjdshop/config/user_info_data.dart';
+import 'package:flutterjdshop/routes/my_navigator_observer.dart';
 import 'package:flutterjdshop/routes/shop_router.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -15,13 +16,12 @@ class NavigatorUtils {
     Application.router = router;
   }
 
-
-
-  static pops(BuildContext context,List<String> names){
-    names.forEach((f){
+  static pops(BuildContext context, List<String> names) {
+    names.forEach((f) {
       Navigator.of(context).popUntil(ModalRoute.withName(f));
     });
   }
+
   static push(BuildContext context, String path,
       {bool replace = false,
       bool clearStack = false,
@@ -98,6 +98,22 @@ class NavigatorUtils {
       return false;
     }
     return true;
+  }
+
+  ///Route<dynamic> route
+  static removeRouteByName(context, String routeName) {
+    var route = getRouteByName(routeName);
+    if (route != null) {
+      Navigator.removeRoute(context, route);
+      MyNavigatorObserver.getInstance().list.remove(route);
+    }
+  }
+
+  static Route<dynamic> getRouteByName(String routeName) {
+    var firstWhere = MyNavigatorObserver.getInstance()
+        .list
+        .firstWhere((element) => element.settings.name == routeName);
+    return firstWhere;
   }
 
   static String navigateToReplace(String path, {Map<String, dynamic> params}) {

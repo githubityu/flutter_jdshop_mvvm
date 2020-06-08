@@ -29,7 +29,7 @@ class _OneCircleState extends State<OneCircle> {
       child: RepaintBoundary(
         child: CustomPaint(
           size: Size(100, 100),
-          painter: B._(widget.colors, widget.values, true, true,widget.index),
+          painter: B._(widget.colors, widget.values, true, true, widget.index),
         ),
       ),
     );
@@ -68,6 +68,7 @@ class B extends CustomPainter {
         canvas.drawArc(of, d.first, d.second, _useCenter, _valuePaint);
       }).toList();
     } else {
+      //新创建一个图层
        _getSweepAngle.sublist(0,index).map((d){
          _valuePaint..color = d.third;
          canvas.drawArc(of, d.first, d.second, _useCenter, _valuePaint);

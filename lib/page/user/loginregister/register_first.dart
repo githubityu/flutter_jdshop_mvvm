@@ -4,8 +4,11 @@ import 'package:flutterjdshop/api/model/void_view_model.dart';
 import 'package:flutterjdshop/base/base_page_state.dart';
 import 'package:flutterjdshop/res/gaps.dart';
 import 'package:flutterjdshop/routes/fluro_navigator.dart';
+import 'package:flutterjdshop/routes/my_navigator_observer.dart';
+import 'package:flutterjdshop/routes/routers.dart';
 import 'package:flutterjdshop/routes/shop_router.dart';
 import 'package:flutterjdshop/utils/app_size.dart';
+import 'package:flutterjdshop/utils/log_utils.dart';
 import 'package:flutterjdshop/view/app_topbar.dart';
 import 'package:flutterjdshop/widget/view/my_button.dart';
 import 'package:flutterjdshop/widget/view/text_field.dart';
@@ -49,6 +52,7 @@ class _RegisterFirstState extends BasePageState<RegisterFirst> {
                 });
               } else {
                 showToast("手机号格式不对");
+                NavigatorUtils.removeRouteByName(context,ShopRouter.LOGIN);
               }
             },
           )

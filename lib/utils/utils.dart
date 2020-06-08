@@ -60,9 +60,11 @@ Future saveStrByKey(String key, String data) async {
   await SharedUtil.instance.saveString(key, data);
 }
 
+
 double getY(BuildContext buildContext) {
   final RenderBox box = buildContext.findRenderObject();
-  //final size = box.size;
+  final size = box.size;
+  ////代表的意思是说 button 组件中（0，0）点转换成全屏幕上的点的坐标值
   final topLeftPosition = box.localToGlobal(Offset.zero);
   return topLeftPosition.dy;
 }

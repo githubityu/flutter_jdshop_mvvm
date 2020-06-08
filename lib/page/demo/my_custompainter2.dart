@@ -94,7 +94,8 @@ class MyCustomPainter2 extends CustomPainter {
 
     ///绘制圆形
     canvas.drawCircle(Offset(gap, gap * 9), gap / 2, paint2);
-    paint2..style = PaintingStyle.stroke;
+    //半径==中心点-画笔的一半宽度
+    paint2..style = PaintingStyle.stroke..strokeWidth = gap/4;
     canvas.drawCircle(Offset(gap, gap * 11), gap / 2, paint2);
 
     ///绘制椭圆
@@ -126,8 +127,8 @@ class MyCustomPainter2 extends CustomPainter {
     paint2
       ..style = PaintingStyle.fill
       ..strokeJoin = StrokeJoin.round
-      ..strokeWidth = 10;
-    canvas.drawArc(rect2, 0.1, 0.8, true, paint2);
+      ..strokeWidth = 5;
+    canvas.drawArc(rect2, 0.1, 0.8, false, paint2);
 
     paint2
       ..style = PaintingStyle.stroke

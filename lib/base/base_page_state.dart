@@ -4,6 +4,7 @@ import 'package:flutterjdshop/http/mvvms.dart';
 import 'package:flutterjdshop/routes/fluro_navigator.dart';
 import 'package:flutterjdshop/utils/app_size.dart';
 import 'package:flutterjdshop/utils/dialog_utils.dart';
+import 'package:flutterjdshop/utils/log_utils.dart';
 import 'package:flutterjdshop/utils/utils.dart';
 import 'package:flutterjdshop/view/custom_view.dart';
 import 'package:flutterjdshop/view/customize_appbar.dart';
@@ -22,6 +23,7 @@ abstract class BasePageState<T extends StatefulWidget> extends State<T>
 
   @override
   void initState() {
+    Log.e("initState");
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((callback) {
       subInitState();
@@ -32,6 +34,7 @@ abstract class BasePageState<T extends StatefulWidget> extends State<T>
 
   @override
   Widget build(BuildContext context) {
+    Log.e("build");
     AppSize.init(context);
     return getScaffold();
   }
@@ -98,6 +101,7 @@ abstract class BasePageState<T extends StatefulWidget> extends State<T>
 
   @override
   void didChangeDependencies() {
+    Log.e("didChangeDependencies");
     super.didChangeDependencies();
   }
 
@@ -107,6 +111,7 @@ abstract class BasePageState<T extends StatefulWidget> extends State<T>
 
   @override
   void dispose() {
+    Log.e("dispose");
     super.dispose();
     if (_cancelToken != null && !_cancelToken.isCancelled) {
       _cancelToken.cancel();
@@ -115,11 +120,13 @@ abstract class BasePageState<T extends StatefulWidget> extends State<T>
 
   @override
   void deactivate() {
+    Log.e("deactivate");
     super.deactivate();
   }
 
   @override
   void didUpdateWidget(T oldWidget) {
+    Log.e("didUpdateWidget");
     super.didUpdateWidget(oldWidget);
     didUpdateWidgets<T>(oldWidget);
   }

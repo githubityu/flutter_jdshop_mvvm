@@ -4,6 +4,7 @@ import 'package:flutterjdshop/api/model/void_modle.dart';
 import 'package:flutterjdshop/api/model/void_view_model.dart';
 import 'package:flutterjdshop/base/base_page_state.dart';
 import 'package:flutterjdshop/config/user_info_data.dart';
+import 'package:flutterjdshop/receiver/event_bus.dart';
 import 'package:flutterjdshop/res/gaps.dart';
 import 'package:flutterjdshop/routes/fluro_navigator.dart';
 import 'package:flutterjdshop/routes/shop_router.dart';
@@ -11,6 +12,8 @@ import 'package:flutterjdshop/utils/app_size.dart';
 import 'package:flutterjdshop/view/app_topbar.dart';
 import 'package:flutterjdshop/widget/view/my_button.dart';
 import 'package:flutterjdshop/widget/view/text_field.dart';
+import 'package:flutterjdshop/utils/log_utils.dart';
+import 'package:rxdart/rxdart.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -84,6 +87,7 @@ class _LoginPageState extends BasePageState<LoginPage> {
           ),
           MyButton(
             text: "登录",
+            key: Key("login"),
             onPressed: _isClick
                 ? () {
                     VoidViewModel.get(this, getCancelToken())
@@ -94,7 +98,11 @@ class _LoginPageState extends BasePageState<LoginPage> {
                       var map =
                           (onValue as Map<String, dynamic>)["userinfo"][0];
                       UserInfoData.instance.userInfo = map;
-                      NavigatorUtils.pop(context);
+                      Future.delayed(Duration(milliseconds:  200), () {
+                        eventBus.fire(MineChangeEvent());
+                        NavigatorUtils.pop(context);
+                        Log.e("销毁页面");
+                      });
                     });
                   }
                 : null,

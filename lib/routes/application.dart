@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutterjdshop/config/api.dart';
 import 'package:flutterjdshop/http/intercept.dart';
 
+import 'my_navigator_observer.dart';
+
 class Application {
   static Router router;
   static GlobalKey<NavigatorState> navKey;

@@ -44,6 +44,7 @@ $ flutter run
 * 自定义输入框(包含清除按钮，是否显示密码按钮，发送验证码按钮)，方便后面使用
 * 封装LoadImage组件，可以加载本地资源或者网路图片
 * 定义UserInfoData 存储用户信息,方便app使用获取用户相关信息
+* 关闭指定页面或者关闭指定某些页面
 
 ### Demo文件夹下的功能
 * Tab和滚动同步变化
@@ -51,9 +52,14 @@ $ flutter run
 * Paint和Canvas学习
 * Animation学习
 * 软键盘监听
+* Overlay悬浮层的使用 点击显示，点击外部隐藏
+* Selector局部共享数据刷新使用
+* localToGlobal的组件坐标和屏幕坐标的转换
+* InheritedWidget组件的学习和使用（共享数据）
+* 自定义checkbox的学习和使用
 
 
-。
+
 
 主要实现的功能有：
 * 框架：App常用的Tab框架，UI根据screenutil按750*1334等比例适配；

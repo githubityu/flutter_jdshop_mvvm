@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterjdshop/base/base_page_state.dart';
 import 'package:flutterjdshop/bean/option_bean.dart';
 import 'package:flutterjdshop/config/user_info_data.dart';
+import 'package:flutterjdshop/receiver/event_bus.dart';
 import 'package:flutterjdshop/res/gaps.dart';
 import 'package:flutterjdshop/res/styles.dart';
 import 'package:flutterjdshop/routes/demo_router.dart';
@@ -55,7 +56,7 @@ class _UserPageState extends BasePageState<UserPage>
         ),
         third: ShopRouter.ORDER),
     OptionBean(
-        first: "在线客服",
+        first: "demo列表",
         second: Icon(
           Icons.people,
           color: Colors.black54,
@@ -142,7 +143,7 @@ class _UserPageState extends BasePageState<UserPage>
         barrierDismissible: true,
         builder: (_) => RemindDialog(
               content: "确定要退出登录",
-              confirmFunc: (){
+              confirmFunc: () {
                 setState(() {
                   NavigatorUtils.pop(context);
                   UserInfoData.instance.setAccount("");
@@ -184,4 +185,11 @@ class _UserPageState extends BasePageState<UserPage>
   @override
   // TODO: implement wantKeepAlive
   bool get wantKeepAlive => true;
+
+  @override
+  void subInitState() {
+    eventBus.on<MineChangeEvent>().listen((event) {
+      setState(() {});
+    });
+  }
 }

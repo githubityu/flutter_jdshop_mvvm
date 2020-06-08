@@ -6,28 +6,14 @@ import 'package:flutterjdshop/page/demo/animation_two.dart';
 import 'package:flutterjdshop/page/demo/canvas_paint.dart';
 import 'package:flutterjdshop/page/demo/demo_list.dart';
 import 'package:flutterjdshop/page/demo/divider_study.dart';
+import 'package:flutterjdshop/page/demo/flutter_Inheritedwidget.dart';
 import 'package:flutterjdshop/page/demo/flutter_barcode.dart';
+import 'package:flutterjdshop/page/demo/flutter_locatal_global.dart';
 import 'package:flutterjdshop/page/demo/flutter_simple.dart';
 import 'package:flutterjdshop/page/demo/keyboard_demo_page.dart';
 import 'package:flutterjdshop/page/demo/path_study.dart';
-import 'package:flutterjdshop/page/guide_page.dart';
-import 'package:flutterjdshop/page/home/ProductList.dart';
-import 'package:flutterjdshop/page/home/product_detail.dart';
-import 'package:flutterjdshop/page/home/product_detail2.dart';
-import 'package:flutterjdshop/page/home/product_detail3.dart';
-import 'package:flutterjdshop/page/root/root_page.dart';
-import 'package:flutterjdshop/page/user/address/address_add_edit.dart';
-import 'package:flutterjdshop/page/user/address/address_list.dart';
-import 'package:flutterjdshop/page/user/loginregister/login.dart';
-import 'package:flutterjdshop/page/user/loginregister/register_first.dart';
-import 'package:flutterjdshop/page/user/loginregister/register_second.dart';
-import 'package:flutterjdshop/page/user/loginregister/register_third.dart';
-import 'package:flutterjdshop/page/user/order/CheckOut.dart';
-import 'package:flutterjdshop/page/user/order/Order.dart';
-import 'package:flutterjdshop/page/user/order/OrderInfo.dart';
-import 'package:flutterjdshop/page/user/order/Pay.dart';
-import 'package:flutterjdshop/page/user/order/Search.dart';
-
+import 'package:flutterjdshop/page/demo/flutter_overlay.dart';
+import 'package:flutterjdshop/page/demo/flutter_selector.dart';
 import 'package:flutterjdshop/routes/router_init.dart';
 
 class DemoRouter implements IRouterProvider {
@@ -43,6 +29,10 @@ class DemoRouter implements IRouterProvider {
   static const DEMO_ANIMATION_TWO = '/demo_animation_two';
   static const DEMO_ANIMATION_THREE = '/demo_animation_three';
   static const DEMO_AI_PROGRESS = '/demo_ai_progress';
+  static const DEMO_OVERLAY = '/demo_overlay';
+  static const DEMO_SELECTOR = '/demo_selector';
+  static const DEMO_LOCALTOGLOBAL = '/demo_localToGlobal';
+  static const DEMO_INHERITEDWIDGET = '/demo_InheritedWidget';
 
   @override
   void initRouter(Router router) {
@@ -68,5 +58,13 @@ class DemoRouter implements IRouterProvider {
         handler: Handler(handlerFunc: (context, params) => AnimationThree()));
     router.define(DEMO_AI_PROGRESS,
         handler: Handler(handlerFunc: (context, params) => AiProgressDemo()));
+    router.define(DEMO_OVERLAY,
+        handler: Handler(handlerFunc: (context, params) => OverlayPage()));
+    router.define(DEMO_SELECTOR,
+        handler: Handler(handlerFunc: (context, params) => SelectorPage()));
+    router.define(DEMO_LOCALTOGLOBAL,
+        handler: Handler(handlerFunc: (context, params) => LocalToGlobalPage()));
+    router.define(DEMO_INHERITEDWIDGET,
+        handler: Handler(handlerFunc: (context, params) => InheritedWidgetPage()));
   }
 }

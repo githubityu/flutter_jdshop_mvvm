@@ -99,7 +99,7 @@ class _AiProgressDemoState extends BasePageState<AiProgressDemo>
               return OneCircle(
                 colors: colors,
                 values:  values,
-//                index: _valueTween2==null?-1:_valueTween2.value,
+                index: _valueTween2==null?-1:_valueTween2.value,
               );
             },
           ),

@@ -2,6 +2,10 @@ import 'dart:math';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 
+///restore() 合并
+///save() 操作会保存此前的所有绘制内容和 Canvas状态(坐标)。
+///saveLayer() 会创建一个新的图层
+
 //画进度条
 class TwoCircle extends StatefulWidget {
   //环形底部颜色
@@ -56,6 +60,7 @@ class C extends CustomPainter {
   C._(this.backgroundColor, this.progressColor, this.paintWidth, this.progress,
       this._shouldRepaint, this._useCenter);
 
+
   @override
   void paint(Canvas canvas, Size size) {
     // TODO: implement paint
@@ -106,11 +111,8 @@ class C extends CustomPainter {
     canvas.save();
     canvas.translate(radius, radius);
     List.generate(12, (i){
-      canvas.save();
-      drawText(canvas, -5, -size.width / 2+20,"${(i/5+1).toInt()}");
       canvas.rotate(pi / 6);
-
-
+      drawText(canvas, -5, -size.width / 2+20,"${(i+1).toInt()}");
     });
 
   }
