@@ -192,7 +192,7 @@ class _ProductDetail3State extends BasePageState<ProductDetail3>
     return <Widget>[
       SliverOverlapAbsorber(
         handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-        child: SliverAppBar(
+        sliver: SliverAppBar(
           bottom: PreferredSize(
             child: Container(),
             preferredSize: Size.fromHeight(0),

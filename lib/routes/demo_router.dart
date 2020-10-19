@@ -14,6 +14,7 @@ import 'package:flutterjdshop/page/demo/keyboard_demo_page.dart';
 import 'package:flutterjdshop/page/demo/path_study.dart';
 import 'package:flutterjdshop/page/demo/flutter_overlay.dart';
 import 'package:flutterjdshop/page/demo/flutter_selector.dart';
+import 'package:flutterjdshop/page/demo/sliver_tabs/page2.dart';
 import 'package:flutterjdshop/routes/router_init.dart';
 
 class DemoRouter implements IRouterProvider {
@@ -29,13 +30,14 @@ class DemoRouter implements IRouterProvider {
   static const DEMO_ANIMATION_TWO = '/demo_animation_two';
   static const DEMO_ANIMATION_THREE = '/demo_animation_three';
   static const DEMO_AI_PROGRESS = '/demo_ai_progress';
+  static const DEMO_SLIVER_TABS = '/demo_sliver_tabs';
   static const DEMO_OVERLAY = '/demo_overlay';
   static const DEMO_SELECTOR = '/demo_selector';
   static const DEMO_LOCALTOGLOBAL = '/demo_localToGlobal';
   static const DEMO_INHERITEDWIDGET = '/demo_InheritedWidget';
 
   @override
-  void initRouter(Router router) {
+  void initRouter(FluroRouter router) {
     router.define(BARCODE,
         handler: Handler(handlerFunc: (context, params) => BracodePage()));
     router.define(DEMOLIST,
@@ -66,5 +68,7 @@ class DemoRouter implements IRouterProvider {
         handler: Handler(handlerFunc: (context, params) => LocalToGlobalPage()));
     router.define(DEMO_INHERITEDWIDGET,
         handler: Handler(handlerFunc: (context, params) => InheritedWidgetPage()));
+    router.define(DEMO_SLIVER_TABS,
+        handler: Handler(handlerFunc: (context, params) => DemoPage()));
   }
 }

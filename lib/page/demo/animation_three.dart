@@ -128,6 +128,20 @@ class _AnimationThreeState extends BasePageState<AnimationThree>
           ),
           MyStatefulWidget(
             controller: _controller,
+          ),
+          Row(
+            children: <Widget>[
+              SizeTransition(
+                sizeFactor: _animationController,
+                child: Container(
+                  width: 100,
+                  height: 50,
+                  color: Colors.blue,
+                  alignment: Alignment.center,
+                  child: Text("宽度"),
+                ),
+              ),
+            ],
           )
         ],
       ),

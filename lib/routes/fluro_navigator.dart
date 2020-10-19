@@ -11,7 +11,7 @@ import 'routers.dart';
 /// fluro的路由跳转工具类
 class NavigatorUtils {
   static initRouter() {
-    final router = Router();
+    final router = FluroRouter();
     Routes.configureRoutes(router);
     Application.router = router;
   }

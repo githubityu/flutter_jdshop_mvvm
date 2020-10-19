@@ -141,6 +141,13 @@ class _DemoListPageState extends BasePageState<DemoListPage> {
             NavigatorUtils.push(context, DemoRouter.DEMO_INHERITEDWIDGET);
           },
         ),
+        ListTile(
+          title: Text("Sliver Tabs"),
+          subtitle: Text("Sliver"),
+          onTap: () {
+            NavigatorUtils.push(context, DemoRouter.DEMO_SLIVER_TABS);
+          },
+        ),
       ],
     );
   }

@@ -39,7 +39,7 @@ class ShopRouter implements IRouterProvider {
   static const PRODUCTLIST = '/productList';
 
   @override
-  void initRouter(Router router) {
+  void initRouter(FluroRouter router) {
     router.define(ROOT_PAGE,
         handler: Handler(handlerFunc: (context, params) => RootPage()));
     router.define(GUIDE_PAGE,
