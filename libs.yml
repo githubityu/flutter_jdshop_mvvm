@@ -10,6 +10,9 @@ dependencies:
   google_fonts: ^1.1.1
   #GetX是Flutter的轻便而强大的解决方案。它以快速实用的方式结合了高性能状态管理，智能依赖性注入和路由管理
   get: ^3.24.0
+
+
+
   #视频播放
   video_player: ^1.0.1
   #能够比较对象Dart通常涉及到必须覆盖==运算符以及hashCode
