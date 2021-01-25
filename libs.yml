@@ -1,0 +1,64 @@
+dependencies:
+  http: ^0.12.2
+  #提供者不仅可以公开值，还可以创建/收听/处置它。
+  provider: ^4.3.3
+  #用于在移动平台中启动URL。支持iOS，Android，Web，Windows，macOS和Linux
+  url_launcher: ^5.7.10
+  #适用于Dart的全面的跨平台路径处理库。
+  path: ^1.7.0
+  #google_fontsFlutter的软件包可让您轻松地在Flutter应用中使用fonts.google.com中的977种字体（及其变体）
+  google_fonts: ^1.1.1
+  #GetX是Flutter的轻便而强大的解决方案。它以快速实用的方式结合了高性能状态管理，智能依赖性注入和路由管理
+  get: ^3.24.0
+  #视频播放
+  video_player: ^1.0.1
+  #能够比较对象Dart通常涉及到必须覆盖==运算符以及hashCode
+  equatable: ^1.2.5
+  #在纯Dart中实现的一组加密哈希函数
+  crypto: ^2.1.5
+  #轮播滑块控件
+  carousel_slider: ^2.3.1
+  #可以 处理在Android和iOS上的位置。当位置改变时，它也提供回调
+  location: ^3.2.4
+  #可自动调整文本大小以使其完全适合其边界
+  auto_size_text: ^2.1.0
+  #可滑动列表项，具有可被取消的定向滑动动作
+  flutter_slidable: ^0.5.7
+  #一个软件包，可让您使用本机文件浏览器来选择单个或多个文件，并具有扩展名过滤支持
+  file_picker: ^2.1.5+1
+  #提供了一种在Flutter项目中添加闪烁效果的简便方法
+  shimmer: ^1.1.2
+  #最好的颤振刷头，具有多种布局，无限循环。与Android和iOS兼容。
+  flutter_swiper: ^1.1.6
+  #用于显示占位符，错误小部件和转换图像的图像库。
+  octo_image: ^0.3.0
+  #可让您保持设备屏幕清醒，即防止屏幕在Android，iOS和Web上休眠
+  wakelock: ^0.2.1+1
+  #提供给flutter滚动组件的小部件可下拉刷新并拉起load.support android和ios。如果您是中国人，请单击此处
+  pull_to_refresh: ^1.6.4
+  #Flutter的视频播放器，拥有金子般的心
+  chewie: ^0.12.2
+  modal_bottom_sheet: ^1.0.0+1
+  #简单动画是一个功能强大的软件包，可立即创建漂亮的自定义动画
+  simple_animations: ^2.5.0
+  animations: ^1.1.2
+  #小型，易于使用且可扩展的记录器，可打印精美的日志
+  logger: ^0.9.4
+  #Supercharged将所有舒适的功能（如Kotlin等语言）带给所有Flutter开发人员
+  supercharged: ^1.12.0
+  #一个用于调整屏幕和字体大小的flutter插件。让您的UI在不同的屏幕大小上显示合理的布局！
+  flutter_screenutil: ^4.0.2+5
+  #lutter的TypeAhead（自动完成）小部件，您可以在用户键入内容时向他们显示建议
+  flutter_typeahead: ^2.0.0
+  #一个简单但可完全自定义的抖动等级栏，其中还包括一个等级栏指示器，支持任何等级的等级
+  flutter_rating_bar: ^3.2.0+1
+  #将帮助您生成具有精美设计和动画的PIN码字段。可以用于OTP或密码输入
+  pin_code_fields: ^6.1.0
+  #用于通过Widget或自定义画图器简单，快速地渲染QR代码
+  qr_flutter: ^3.2.0
+  #其中包含一些很棒的超酷文本动画
+  animated_text_kit: ^3.1.0
+  #高度可定制的功能丰富的Flutter日历，具有手势，动画和多种格式
+  table_calendar: ^2.3.3
+  #Flutter应用程序的便捷国际化
+  easy_localization: ^2.3.3+1
