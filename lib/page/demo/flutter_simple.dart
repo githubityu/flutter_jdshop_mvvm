@@ -106,7 +106,7 @@ class _SimpleDemoPageState extends BasePageState<SimpleDemoPage> {
           TextField(
             maxLength: 20,
             keyboardType:TextInputType.text,
-            inputFormatters: [BlacklistingTextInputFormatter(RegExp("[\u4e00-\u9fa5]"))],
+            inputFormatters: [FilteringTextInputFormatter.deny(RegExp("[\u4e00-\u9fa5]"))],
             decoration: InputDecoration(
                 hintText: "请输入非中文",
                 counterText: "",
