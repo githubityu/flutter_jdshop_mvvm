@@ -62,3 +62,12 @@ dependencies:
   table_calendar: ^2.3.3
   #Flutter应用程序的便捷国际化
   easy_localization: ^2.3.3+1
+  #Dart常用工具类库。包含日期，正则，倒计时，时间轴等工具类
+  common_utils: ^1.2.4
+  flustars: ^ 0.3.3
+  #此Toast库支持两种Toast消息，其中一种需要BuildContextNoBuildContext
+  fluttertoast: ^7.1.6
+  #一个小工具，可简化深度嵌套的wodget树的语法
+  nested: ^0.0.4
+  #网络状态
+  connectivity: ^2.0.2
