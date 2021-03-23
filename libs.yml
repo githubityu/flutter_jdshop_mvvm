@@ -1,3 +1,4 @@
+#如果你用到好用的库可以添加进来
 dependencies:
   http: ^0.12.2
   #提供者不仅可以公开值，还可以创建/收听/处置它。
@@ -71,3 +72,5 @@ dependencies:
   nested: ^0.0.4
   #网络状态
   connectivity: ^2.0.2
+  #
+  data_classes: ^3.0.0
