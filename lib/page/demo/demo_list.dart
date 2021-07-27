@@ -33,7 +33,7 @@ class _DemoListPageState extends BasePageState<DemoListPage> {
     return ListView(
       children: <Widget>[
         ListTile(
-          title: Text("barcode_scan",style: ,),
+          title: Text("barcode_scan"),
           subtitle: Text("扫描二维码功能测试"),
           onTap: () {
             NavigatorUtils.push(context, DemoRouter.BARCODE);
