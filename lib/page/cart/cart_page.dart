@@ -56,14 +56,14 @@ class _CartPageState extends BasePageState<CartPage>
         //重新加载当前数据
       },
       successWidget: Consumer<Cart>(
-        builder: (BuildContext context, cartProvider, Widget child) {
-          return cartProvider.cartList.length > 0
+        builder: (BuildContext context, cartProvider, Widget? child) {
+          return cartProvider.cartList!.length > 0
               ? Stack(
                   children: <Widget>[
                     ListView(
                       children: <Widget>[
                         Column(
-                            children: cartProvider.cartList.map((value) {
+                            children: cartProvider.cartList!.map((value) {
                           return CartItem(value);
                         }).toList()),
                         SizedBox(height: AppSize.height(100))
@@ -162,7 +162,7 @@ class _CartPageState extends BasePageState<CartPage>
     //3、购物车有没有选中的数据
     if (checkOutData.length > 0) {
       //4、判断用户有没有登录
-      var loginState = UserInfoData.instance.isLogin;
+      var loginState = UserInfoData.instance!.isLogin;
       if (loginState) {
         Navigator.pushNamed(context, '/checkOut');
       } else {

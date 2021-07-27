@@ -20,10 +20,10 @@ class VoidModel extends ReqModel {
   static const ORDERLIST = 12;
   static const PLIST = 13;
 
-  int type;
-  Map<String, dynamic> params2;
+  int? type;
+  Map<String, dynamic>? params2;
 
-  VoidModel(CancelToken cancelToken, IMvvmView view) {
+  VoidModel(CancelToken? cancelToken, IMvvmView? view) {
     this.view = view;
     this.cancelToken = cancelToken;
   }
@@ -34,13 +34,13 @@ class VoidModel extends ReqModel {
 
   ///后台正常接收参数 用的是RequestParam
   @override
-  Map<String, dynamic> params() {
+  Map<String, dynamic>? params() {
     return isNotEncode ? params2 : null;
   }
 
   ///后台用RequestBody接收参数需要传入json
   @override
-  String encodeData() {
+  String? encodeData() {
     return isNotEncode ? null : json.encode(params2);
   }
 
@@ -91,7 +91,7 @@ class VoidModel extends ReqModel {
     return url;
   }
 
-  Future data(type, Map<String, dynamic> params2) {
+  Future data(type, Map<String, dynamic>? params2) {
     this.type = type;
     this.params2 = params2;
     switch (type) {

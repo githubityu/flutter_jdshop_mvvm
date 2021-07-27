@@ -5,9 +5,9 @@ import 'package:flutterjdshop/base/base_page_state.dart';
 import 'package:flutterjdshop/view/app_topbar.dart';
 
 class SimpleDemoPage extends StatefulWidget {
-  final Map<String, List<String>> address;
+  final Map<String, List<String>>? address;
 
-  const SimpleDemoPage({Key key, this.address}) : super(key: key);
+  const SimpleDemoPage({Key? key, this.address}) : super(key: key);
 
   @override
   _SimpleDemoPageState createState() => _SimpleDemoPageState();

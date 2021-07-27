@@ -19,8 +19,8 @@ class _CategoryPageState extends BasePageState<CategoryPage>
     with AutomaticKeepAliveClientMixin {
   LoadState _layoutState = LoadState.State_Loading;
   int _selectIndex = 0;
-  List<CateItemModel> _leftCateList = [];
-  List _rightCateList = [];
+  List<CateItemModel>? _leftCateList = [];
+  List? _rightCateList = [];
 
   @override
   void subInitState() {
@@ -41,8 +41,8 @@ class _CategoryPageState extends BasePageState<CategoryPage>
         this._leftCateList = onValue.result;
         _layoutState = LoadState.State_Success;
       });
-      if (_leftCateList != null && _leftCateList.isNotEmpty) {
-        _rightData(onValue.result[0].sId);
+      if (_leftCateList != null && _leftCateList!.isNotEmpty) {
+        _rightData(onValue.result![0].sId);
       }
     });
   }
@@ -93,7 +93,7 @@ class _CategoryPageState extends BasePageState<CategoryPage>
         padding: EdgeInsets.all(10),
         color: Color.fromRGBO(240, 246, 246, 0.9),
         child: GridView.builder(
-            itemCount: _rightCateList.length,
+            itemCount: _rightCateList!.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
                 childAspectRatio: rightItemWidth / rightItemHeight,
@@ -109,13 +109,13 @@ class _CategoryPageState extends BasePageState<CategoryPage>
                           aspectRatio: 1 / 1,
                           child: ExcludeSemantics(
                             child: LoadImage(
-                                getFullPath(_rightCateList[index].pic),
+                                getFullPath(_rightCateList![index].pic),
                                 width: AppSize.width(rightItemWidth),
                                 height: AppSize.width(rightItemWidth)),
                           )),
                       Container(
                         height: AppSize.height(28),
-                        child: Text("${this._rightCateList[index].title}"),
+                        child: Text("${this._rightCateList![index].title}"),
                       )
                     ],
                   ),
@@ -138,7 +138,7 @@ class _CategoryPageState extends BasePageState<CategoryPage>
                   setState(() {
                     _selectIndex = index;
                   });
-                  _rightData(_leftCateList[_selectIndex].sId);
+                  _rightData(_leftCateList![_selectIndex].sId);
                 },
                 child: Container(
                   width: double.infinity,
@@ -154,7 +154,7 @@ class _CategoryPageState extends BasePageState<CategoryPage>
                   height: AppSize.height(84),
                   padding: EdgeInsets.only(top: AppSize.height(24)),
                   child: Text(
-                    "${this._leftCateList[index].title}",
+                    "${this._leftCateList![index].title}",
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -163,7 +163,7 @@ class _CategoryPageState extends BasePageState<CategoryPage>
             ],
           );
         },
-        itemCount: _leftCateList.length,
+        itemCount: _leftCateList!.length,
       ),
     );
   }

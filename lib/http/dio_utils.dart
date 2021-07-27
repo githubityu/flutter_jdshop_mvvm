@@ -13,9 +13,9 @@ class DioUtils {
     return _singleton;
   }
 
-  static Dio _dio;
+  static Dio? _dio;
 
-  Dio getDio() {
+  Dio? getDio() {
     return _dio;
   }
 
@@ -35,7 +35,7 @@ class DioUtils {
 //      contentType: ContentType('application', 'x-www-form-urlencoded', charset: 'utf-8'),
     );
     _dio = new Dio(options);
-    _dio.interceptors.add(AuthInterceptor());
+    _dio!.interceptors.add(AuthInterceptor());
     /// Fiddler抓包代理配置 https://www.jianshu.com/p/d831b1f7c45b
   }
 }

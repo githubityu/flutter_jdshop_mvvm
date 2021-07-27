@@ -19,7 +19,7 @@ class AnimationTwo extends StatefulWidget {
 
 class _AnimationTwoState extends State<AnimationTwo>
     with TickerProviderStateMixin {
-  AnimationController _animationController;
+  AnimationController? _animationController;
 
   @override
   void initState() {
@@ -50,9 +50,9 @@ class _AnimationTwoState extends State<AnimationTwo>
   Future<Null> _playAnimation() async {
     try {
       //先正向执行动画
-      await _animationController.forward().orCancel;
+      await _animationController!.forward().orCancel;
       //再执行反向动画
-      await _animationController.reverse().orCancel;
+      await _animationController!.reverse().orCancel;
     } on TickerCanceled {
       // the animation got canceled, probably because we were disposed
       print(' cancel');
@@ -61,37 +61,37 @@ class _AnimationTwoState extends State<AnimationTwo>
 }
 
 class StaggerAnimation extends StatelessWidget {
-  final AnimationController controller;
-  Animation<double> height;
-  Animation<EdgeInsets> padding;
-  Animation<Color> color;
+  final AnimationController? controller;
+  late Animation<double> height;
+  late Animation<EdgeInsets> padding;
+  late Animation<Color?> color;
 
-  StaggerAnimation({this.controller, Key key}) : super(key: key) {
+  StaggerAnimation({this.controller, Key? key}) : super(key: key) {
     //高度动画
     height = Tween(begin: 0.0, end: 300.0).animate(CurvedAnimation(
-        parent: controller, curve: Interval(0.0, 0.6, curve: Curves.ease)));
+        parent: controller!, curve: Interval(0.0, 0.6, curve: Curves.ease)));
 
     //颜色
     color = ColorTween(begin: Colors.red, end: Colors.green).animate(
         CurvedAnimation(
-            parent: controller, curve: Interval(0.0, 0.6, curve: Curves.ease)));
+            parent: controller!, curve: Interval(0.0, 0.6, curve: Curves.ease)));
 
     //左侧间距
     padding = Tween(
         begin: EdgeInsets.only(left: 0.0), end: EdgeInsets.only(left: 300))
         .animate(CurvedAnimation(
-        parent: controller, curve: Interval(0.6, 1.0, curve: Curves.ease)));
+        parent: controller!, curve: Interval(0.6, 1.0, curve: Curves.ease)));
   }
 
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-      animation: controller,
+      animation: controller!,
       builder: _buildAni,
     );
   }
 
-  Widget _buildAni(BuildContext context, Widget child) {
+  Widget _buildAni(BuildContext context, Widget? child) {
     return Container(
       alignment: Alignment.bottomLeft,
       child: Container(

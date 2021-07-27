@@ -11,10 +11,10 @@ import 'package:flutterjdshop/widget/view/LoadingWidget.dart';
 import 'package:flutterjdshop/widget/view/load_image.dart';
 
 class ProductListPage extends StatefulWidget {
-  final String cid;
-  final String keywords;
+  final String? cid;
+  final String? keywords;
 
-  const ProductListPage({Key key, this.cid, this.keywords}) : super(key: key);
+  const ProductListPage({Key? key, this.cid, this.keywords}) : super(key: key);
 
   _ProductListPageState createState() => _ProductListPageState();
 }
@@ -64,7 +64,7 @@ class _ProductListPageState extends BasePageState<ProductListPage> {
   ];
 
   //二级导航选中判断
-  int _selectHeaderId = 1;
+  int? _selectHeaderId = 1;
 
   //配置search搜索框的值
 
@@ -111,7 +111,7 @@ class _ProductListPageState extends BasePageState<ProductListPage> {
       "pageSize": _pageSize,
       "page": _page,
     }).then((result) {
-      var list = ProductModel.fromJson(result).result;
+      var list = ProductModel.fromJson(result).result!;
       //判断是否有搜索数据
       if (list.length == 0 && this._page == 1) {
         setState(() {
@@ -240,7 +240,7 @@ class _ProductListPageState extends BasePageState<ProductListPage> {
   //导航改变的时候触发
   _subHeaderChange(id) {
     if (id == 4) {
-      _scaffoldKey.currentState.openEndDrawer();
+      _scaffoldKey.currentState!.openEndDrawer();
       setState(() {
         this._selectHeaderId = id;
       });
@@ -383,7 +383,7 @@ class _ProductListPageState extends BasePageState<ProductListPage> {
   }
 
   @override
-  Widget getBody(BuildContext context) {
+  Widget? getBody(BuildContext context) {
     // TODO: implement getBody
     return null;
   }

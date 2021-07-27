@@ -7,8 +7,8 @@ import 'package:flutterjdshop/http/intercept.dart';
 import 'my_navigator_observer.dart';
 
 class Application {
-  static FluroRouter router;
-  static GlobalKey<NavigatorState> navKey;
+  static late FluroRouter router;
+  static GlobalKey<NavigatorState>? navKey;
   final dio = Dio()
     ..options = BaseOptions(baseUrl: API.reqUrl, connectTimeout: 30, receiveTimeout: 30)
     ..interceptors.add(AuthInterceptor())

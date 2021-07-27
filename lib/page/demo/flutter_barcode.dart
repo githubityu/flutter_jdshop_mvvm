@@ -7,9 +7,9 @@ import 'package:flutter/services.dart';
 import 'package:flutterjdshop/base/base_page_state.dart';
 import 'package:flutterjdshop/view/app_topbar.dart';
 class BracodePage extends StatefulWidget {
-  final Map<String, List<String>> address;
+  final Map<String, List<String>>? address;
 
-  const BracodePage({Key key, this.address}) : super(key: key);
+  const BracodePage({Key? key, this.address}) : super(key: key);
 
   @override
   _BracodePageState createState() => _BracodePageState();
@@ -64,7 +64,7 @@ class _BracodePageState extends BasePageState<BracodePage> {
 
 
   Future<String> loadString() async {
-    final ByteData data = null;
+    final ByteData data = ByteData(10);
     if (data.lengthInBytes < 10 * 1024) {
       return utf8.decode(data.buffer.asUint8List());
     }

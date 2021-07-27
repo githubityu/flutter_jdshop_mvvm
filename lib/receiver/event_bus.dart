@@ -12,26 +12,26 @@ class MineChangeEvent{
 class CheckOutEvent{
 }
 class OrderInEvent {
-  String text;
+  String? text;
   OrderInEvent(String text){
     this.text = text;
   }
 }
 class UserInfoInEvent {
-  String text;
+  String? text;
   UserInfoInEvent(String text){
     this.text = text;
   }
 }
 class SpecEvent{
-  String  code;
+  String?  code;
   SpecEvent(String text){
     this.code=text;
   }
 }
 
 class TabIndexEvent{
-  int num;
+  late int num;
   TabIndexEvent(int text){
     this.num=text;
   }

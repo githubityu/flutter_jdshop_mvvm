@@ -4,7 +4,7 @@ import 'package:flutterjdshop/utils/app_size.dart';
 import 'package:flutterjdshop/view/app_topbar.dart';
 
 class OrderInfoPage extends StatefulWidget {
-  OrderInfoPage({Key key}) : super(key: key);
+  OrderInfoPage({Key? key}) : super(key: key);
 
   _OrderInfoPageState createState() => _OrderInfoPageState();
 }

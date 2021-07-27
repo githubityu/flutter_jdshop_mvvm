@@ -2,7 +2,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class StorageManager {
   /// app全局配置
-  static SharedPreferences sp;
+  static late SharedPreferences sp;
 
   /// 网络连接
   var connect;

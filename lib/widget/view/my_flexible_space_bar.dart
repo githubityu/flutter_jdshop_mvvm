@@ -28,7 +28,7 @@ class MyFlexibleSpaceBar extends StatefulWidget {
   ///
   /// Most commonly used in the [AppBar.flexibleSpace] field.
   const MyFlexibleSpaceBar({
-    Key key,
+    Key? key,
     this.title,
     this.background,
     this.centerTitle,
@@ -40,18 +40,18 @@ class MyFlexibleSpaceBar extends StatefulWidget {
   /// The primary contents of the flexible space bar when expanded.
   ///
   /// Typically a [Text] widget.
-  final Widget title;
+  final Widget? title;
 
   /// Shown behind the [title] when expanded.
   ///
   /// Typically an [Image] widget with [Image.fit] set to [BoxFit.cover].
-  final Widget background;
+  final Widget? background;
 
   /// Whether the title should be centered.
   ///
   /// By default this property is true if the current target platform
   /// is [TargetPlatform.iOS], false otherwise.
-  final bool centerTitle;
+  final bool? centerTitle;
 
   /// Collapse effect while scrolling.
   ///
@@ -68,7 +68,7 @@ class MyFlexibleSpaceBar extends StatefulWidget {
   /// By default the value of this property is
   /// `EdgeInsetsDirectional.only(start: 72, bottom: 16)` if the title is
   /// not centered, `EdgeInsetsDirectional.only(start 0, bottom: 16)` otherwise.
-  final EdgeInsetsGeometry titlePadding;
+  final EdgeInsetsGeometry? titlePadding;
 
   /// Wraps a widget that contains an [AppBar] to convey sizing information down
   /// to the [FlexibleSpaceBar].
@@ -88,11 +88,11 @@ class MyFlexibleSpaceBar extends StatefulWidget {
   ///  * [FlexibleSpaceBarSettings] which creates a settings object that can be
   ///    used to specify these settings to a [FlexibleSpaceBar].
   static Widget createSettings({
-    double toolbarOpacity,
-    double minExtent,
-    double maxExtent,
-    @required double currentExtent,
-    @required Widget child,
+    double? toolbarOpacity,
+    double? minExtent,
+    double? maxExtent,
+    required double currentExtent,
+    required Widget child,
   }) {
     assert(currentExtent != null);
     return FlexibleSpaceBarSettings(
@@ -109,7 +109,7 @@ class MyFlexibleSpaceBar extends StatefulWidget {
 }
 
 class _FlexibleSpaceBarState extends State<MyFlexibleSpaceBar> {
-  bool _getEffectiveCenterTitle(ThemeData theme) {
+  bool? _getEffectiveCenterTitle(ThemeData theme) {
     if (widget.centerTitle != null)
       return widget.centerTitle;
     assert(theme.platform != null);
@@ -126,7 +126,7 @@ class _FlexibleSpaceBarState extends State<MyFlexibleSpaceBar> {
     return null;
   }
 
-  Alignment _getTitleAlignment(bool effectiveCenterTitle) {
+  Alignment? _getTitleAlignment(bool effectiveCenterTitle) {
     if (effectiveCenterTitle)
       return Alignment.bottomCenter;
     final TextDirection textDirection = Directionality.of(context);
@@ -140,7 +140,7 @@ class _FlexibleSpaceBarState extends State<MyFlexibleSpaceBar> {
     return null;
   }
 
-  double _getCollapsePadding(double t, FlexibleSpaceBarSettings settings) {
+  double? _getCollapsePadding(double t, FlexibleSpaceBarSettings settings) {
     switch (widget.collapseMode) {
       case CollapseMode.pin:
         return -(settings.maxExtent - settings.currentExtent);
@@ -160,8 +160,8 @@ class _FlexibleSpaceBarState extends State<MyFlexibleSpaceBar> {
   @override
   void initState() {
     //监听Widget是否绘制完毕
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final RenderBox renderBoxRed = _key.currentContext.findRenderObject();
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      final RenderBox renderBoxRed = _key.currentContext!.findRenderObject() as RenderBox;
       _offset = renderBoxRed.size.width / 2;
     });
     super.initState();
@@ -170,7 +170,7 @@ class _FlexibleSpaceBarState extends State<MyFlexibleSpaceBar> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    final FlexibleSpaceBarSettings settings = context.dependOnInheritedWidgetOfExactType<FlexibleSpaceBarSettings>();
+    final FlexibleSpaceBarSettings settings = context.dependOnInheritedWidgetOfExactType<FlexibleSpaceBarSettings>()!;
     assert(settings != null, 'A FlexibleSpaceBar must be wrapped in the widget returned by FlexibleSpaceBar.createSettings().');
 
     final List<Widget> children = <Widget>[];
@@ -202,7 +202,7 @@ class _FlexibleSpaceBarState extends State<MyFlexibleSpaceBar> {
 //    }
 
     if (widget.title != null) {
-      Widget title;
+      Widget? title;
       switch (defaultTargetPlatform) {
         case TargetPlatform.iOS:
           title = widget.title;
@@ -227,22 +227,22 @@ class _FlexibleSpaceBarState extends State<MyFlexibleSpaceBar> {
       final ThemeData theme = Theme.of(context);
       final double opacity = settings.toolbarOpacity;
       if (opacity > 0.0) {
-        TextStyle titleStyle = theme.primaryTextTheme.title;
+        TextStyle titleStyle = theme.primaryTextTheme.title!;
         titleStyle = titleStyle.copyWith(
-            color: titleStyle.color.withOpacity(opacity),
+            color: titleStyle.color!.withOpacity(opacity),
             fontWeight: t != 0 ? FontWeight.normal : FontWeight.bold
         );
-        final bool effectiveCenterTitle = _getEffectiveCenterTitle(theme);
+        final bool? effectiveCenterTitle = _getEffectiveCenterTitle(theme);
         final EdgeInsetsGeometry padding = widget.titlePadding ??
             EdgeInsetsDirectional.only(
-              start: effectiveCenterTitle ? 0.0 : 72.0,
+              start: effectiveCenterTitle! ? 0.0 : 72.0,
               bottom: 16.0,
             );
         final double scaleValue = Tween<double>(begin: 1.5, end: 1.0).transform(t);
         double width = (size.width - 32.0) / 2 - _offset;
         final Matrix4 scaleTransform = Matrix4.identity()
           ..scale(scaleValue, scaleValue, 1.0)..translate(t * width, 0.0);
-        final Alignment titleAlignment = _getTitleAlignment(false);
+        final Alignment titleAlignment = _getTitleAlignment(false)!;
         children.add(Container(
           padding: padding,
           child: Transform(

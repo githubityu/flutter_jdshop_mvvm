@@ -23,15 +23,15 @@ enum RequestType { GET, POST }
 
 class ReqModel {
   // 请求url路径
-  String url() => null;
+  String? url() => null;
 
   // 请求参数
-  Map<String, dynamic> params() => {};
+  Map<String, dynamic>? params() => {};
 
-  String encodeData() => null;
+  String? encodeData() => null;
 
-  IMvvmView view;
-  CancelToken cancelToken;
+  IMvvmView? view;
+  CancelToken? cancelToken;
 
   /*
   * get请求
@@ -57,7 +57,7 @@ class ReqModel {
   * */
   Future postUpload(
     ProgressCallback progressCallBack, {
-    FormData formData,
+    FormData? formData,
   }) async {
     return this._request(
       url: url(),
@@ -72,54 +72,54 @@ class ReqModel {
   * 请求方法
   * */
   Future _request(
-      {String url,
-      RequestType method,
-      Map params,
-      FormData formData,
-      ProgressCallback progressCallBack}) async {
+      {String? url,
+      RequestType? method,
+      Map? params,
+      FormData? formData,
+      ProgressCallback? progressCallBack}) async {
     final httpUrl = '${API.reqUrl}$url';
     print('HTTP_REQUEST_URL::$httpUrl');
 
     final id = _id++;
-    int statusCode;
-    Response response;
+    int? statusCode;
+    Response? response;
     view?.showProgress();
     try {
       if (method == RequestType.GET) {
         ///组合GET请求的参数
         if (mapNoEmpty(params)) {
           response = await DioUtils.instance
-              .getDio()
-              .get(url, queryParameters: params, cancelToken: cancelToken);
+              .getDio()!
+              .get(url!, queryParameters: params as Map<String, dynamic>?, cancelToken: cancelToken);
         } else {
           response = await DioUtils.instance
-              .getDio()
-              .get(url, cancelToken: cancelToken);
+              .getDio()!
+              .get(url!, cancelToken: cancelToken);
         }
       } else {
         if (mapNoEmpty(params)) {
-          response = await DioUtils.instance.getDio().post(url,
-              queryParameters: params,
+          response = await DioUtils.instance.getDio()!.post(url!,
+              queryParameters: params as Map<String, dynamic>?,
               data: formData,
               onSendProgress: progressCallBack,
               cancelToken: cancelToken);
         } else {
           response = await DioUtils.instance
-              .getDio()
-              .post(url, data: encodeData(), cancelToken: cancelToken);
+              .getDio()!
+              .post(url!, data: encodeData(), cancelToken: cancelToken);
         }
       }
     } catch (e) {
       view?.closeProgress();
       handError(-1, msg: e.toString());
     }
-    statusCode = response.statusCode;
+    statusCode = response!.statusCode;
     if (response != null && statusCode == 200) {
       if (mapNoEmpty(params)) print('HTTP_REQUEST_BODY::[$id]::$params');
       print('HTTP_RESPONSE_BODY::[$id]::${json.encode(response.data)}');
       BaseResponse baseResponse = BaseResponse.fromJson(response.data);
       view?.closeProgress();
-      if (baseResponse.success == null || baseResponse.success) {
+      if (baseResponse.success == null || baseResponse.success!) {
         return baseResponse.result ?? response.data;
       } else {
         handError(-1);
@@ -128,19 +128,19 @@ class ReqModel {
     }
 
     ///处理错误部分
-    if (statusCode < 0) {
+    if (statusCode! < 0) {
       handError(statusCode);
     }
   }
 
   ///处理异常
-  handError(int statusCode, {msg}) {
+  handError(int? statusCode, {msg}) {
     DialogUtil.buildToast(msg ?? "$statusCode");
     if (statusCode == -101) {
 //      Application.navKey.currentState.push(
 //         MaterialPageRoute(builder: (context) => RegPageAndLoginPage()),
 //      );
-      UserInfoData.instance.setToken("");
+      UserInfoData.instance!.setToken("");
       DialogUtil.buildToast("请求失败~");
     }
     throw ApiException(statusCode, msg);

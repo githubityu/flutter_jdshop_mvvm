@@ -1,16 +1,16 @@
 class OrderModel {
-  bool success;
-  String message;
-  List<Result> result;
+  bool? success;
+  String? message;
+  List<Result>? result;
 
   OrderModel({this.success, this.message, this.result});
 
   OrderModel.fromJson(List<dynamic> json) {
 
     if (json!= null) {
-      result = new List<Result>();
+        result =  List.empty();
       json.forEach((v) {
-        result.add(new Result.fromJson(v));
+        result!.add(new Result.fromJson(v));
       });
     }
   }
@@ -20,22 +20,22 @@ class OrderModel {
     data['success'] = this.success;
     data['message'] = this.message;
     if (this.result != null) {
-      data['result'] = this.result.map((v) => v.toJson()).toList();
+      data['result'] = this.result!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class Result {
-  String sId;
-  String uid;
-  String name;
-  String phone;
-  String address;
-  String allPrice;
-  int payStatus;
-  int orderStatus;
-  List<OrderItem> orderItem;
+  String? sId;
+  String? uid;
+  String? name;
+  String? phone;
+  String? address;
+  String? allPrice;
+  int? payStatus;
+  int? orderStatus;
+  List<OrderItem>? orderItem;
 
   Result(
       {this.sId,
@@ -58,9 +58,9 @@ class Result {
     payStatus = json['pay_status'];
     orderStatus = json['order_status'];
     if (json['order_item'] != null) {
-      orderItem = new List<OrderItem>();
+      orderItem = List.empty();
       json['order_item'].forEach((v) {
-        orderItem.add(new OrderItem.fromJson(v));
+        orderItem!.add(new OrderItem.fromJson(v));
       });
     }
   }
@@ -76,22 +76,22 @@ class Result {
     data['pay_status'] = this.payStatus;
     data['order_status'] = this.orderStatus;
     if (this.orderItem != null) {
-      data['order_item'] = this.orderItem.map((v) => v.toJson()).toList();
+      data['order_item'] = this.orderItem!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class OrderItem {
-  String sId;
-  String orderId;
-  String productTitle;
-  String productId;
-  int productPrice;
-  String productImg;
-  int productCount;
-  String selectedAttr;
-  int addTime;
+  String? sId;
+  String? orderId;
+  String? productTitle;
+  String? productId;
+  int? productPrice;
+  String? productImg;
+  int? productCount;
+  String? selectedAttr;
+  int? addTime;
 
   OrderItem(
       {this.sId,

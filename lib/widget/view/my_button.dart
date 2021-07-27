@@ -5,17 +5,17 @@ import 'package:flutterjdshop/utils/theme_utils.dart';
 
 class MyButton extends StatelessWidget {
   const MyButton({
-    Key key,
+    Key? key,
     this.text: '',
-    @required this.onPressed,
+    required this.onPressed,
     this.margin,
     this.color = Colours.app_main,
   }) : super(key: key);
 
   final String text;
   final Color color;
-  final EdgeInsetsGeometry margin;
-  final VoidCallback onPressed;
+  final EdgeInsetsGeometry? margin;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {

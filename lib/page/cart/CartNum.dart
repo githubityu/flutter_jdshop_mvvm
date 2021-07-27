@@ -6,15 +6,15 @@ import 'package:provider/provider.dart';
 import '../../provider/Cart.dart';
 
 class CartNum extends StatefulWidget {
-  Map _itemData;
-  CartNum(this._itemData,{Key key}) : super(key: key);
+  Map? _itemData;
+  CartNum(this._itemData,{Key? key}) : super(key: key);
 
   _CartNumState createState() => _CartNumState();
 }
 
 class _CartNumState extends State<CartNum> {
-  Map _itemData;
-  var cartProvider;
+  Map? _itemData;
+  late var cartProvider;
   
   @override
   Widget build(BuildContext context) {
@@ -43,8 +43,8 @@ class _CartNumState extends State<CartNum> {
   Widget _leftBtn() {
     return InkWell(
       onTap: () {
-        if(_itemData["count"]>1){
-           _itemData["count"]--;
+        if(_itemData!["count"]>1){
+           _itemData!["count"]--;
            this.cartProvider.itemCountChange();
         }
       },
@@ -61,7 +61,7 @@ class _CartNumState extends State<CartNum> {
   Widget _rightBtn() {
     return InkWell(
       onTap: (){
-           _itemData["count"]++;
+           _itemData!["count"]++;
           this.cartProvider.itemCountChange();
       },
       child: Container(
@@ -84,7 +84,7 @@ class _CartNumState extends State<CartNum> {
         right: BorderSide(width: AppSize.width(2), color: Colors.black12),
       )),
       height: AppSize.height(45),
-      child: Text("${_itemData["count"]}"),
+      child: Text("${_itemData!["count"]}"),
     );
   }
 }

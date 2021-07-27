@@ -26,7 +26,7 @@ class UpdateDialog extends StatefulWidget {
 
 class UpdateDialogState extends State<UpdateDialog> {
   int _downloadProgress = 0;
-  CancelToken token;
+  CancelToken? token;
   UploadingFlag uploadingFlag = UploadingFlag.idle;
 
   @override
@@ -111,9 +111,9 @@ class UpdateDialogState extends State<UpdateDialog> {
   }
 
   void _androidUpdate() async {
-    final apkPath = await FileUtil.getInstance().getSavePath("/Download/");
+    final apkPath = await FileUtil.getInstance()!.getSavePath("/Download/");
     try {
-      Dio _client;
+      Dio? _client;
       if (_client == null) {
         BaseOptions options = new BaseOptions();
         options.connectTimeout = connectTimeOut;
@@ -146,7 +146,7 @@ class UpdateDialogState extends State<UpdateDialog> {
             });
           }
         },
-        options: RequestOptions(connectTimeout: 15 * 1000, receiveTimeout: 360 * 1000),
+        // options: RequestOptions(connectTimeout: 15 * 1000, receiveTimeout: 360 * 1000),
       );
     } catch (e) {
       if (mounted) {
@@ -238,7 +238,7 @@ class UpdateDialogState extends State<UpdateDialog> {
 
   @override
   void dispose() {
-    if (!token.isCancelled) token?.cancel();
+    if (!token!.isCancelled) token?.cancel();
     super.dispose();
     debugPrint("升级销毁");
   }

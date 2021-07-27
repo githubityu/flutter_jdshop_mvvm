@@ -9,20 +9,20 @@ import 'CartNum.dart';
 
 class CartItem extends StatefulWidget {
   Map _itemData;
-  CartItem(this._itemData,{Key key}) : super(key: key);
+  CartItem(this._itemData,{Key? key}) : super(key: key);
 
   _CartItemState createState() => _CartItemState();
 }
 
 class _CartItemState extends State<CartItem> {
-  Map _itemData;
+  Map? _itemData;
    
   @override
   Widget build(BuildContext context) {
     //注意：给属性赋值
     this._itemData=widget._itemData;
 
-    var cartProvider = Provider.of<Cart>(context);
+    var cartProvider = Provider.of<Cart>(context,listen: false);
     return Container(
       height: AppSize.height(220),
       padding: EdgeInsets.all(5),
@@ -33,9 +33,9 @@ class _CartItemState extends State<CartItem> {
           Container(
             width: AppSize.width(60),
             child: Checkbox(
-              value: _itemData["checked"],
+              value: _itemData!["checked"],
               onChanged: (val) {
-               _itemData["checked"]=!_itemData["checked"];
+               _itemData!["checked"]=!_itemData!["checked"];
                cartProvider.itemChage();
               },
               activeColor: Colors.pink,
@@ -44,7 +44,7 @@ class _CartItemState extends State<CartItem> {
           Container(
             width: AppSize.width(160),
             child: LoadImage(
-                "${getFullPath(_itemData["pic"])}",
+                "${getFullPath(_itemData!["pic"])}",
                 fit: BoxFit.cover),
           ),
           Expanded(
@@ -55,15 +55,15 @@ class _CartItemState extends State<CartItem> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text("${_itemData["title"]}",
+                  Text("${_itemData!["title"]}",
                       maxLines: 2),
-                  Text("${_itemData["selectedAttr"]}",
+                  Text("${_itemData!["selectedAttr"]}",
                       maxLines: 2),
                   Stack(
                     children: <Widget>[
                       Align(
                         alignment: Alignment.centerLeft,
-                        child: Text("￥${_itemData["price"]}",style: TextStyle(
+                        child: Text("￥${_itemData!["price"]}",style: TextStyle(
                           color: Colors.red
                         )),
                       ),

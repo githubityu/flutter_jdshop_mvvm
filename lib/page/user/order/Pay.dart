@@ -5,7 +5,7 @@ import 'package:flutterjdshop/widget/view/my_button.dart';
 
 
 class PayPage extends StatefulWidget {
-  PayPage({Key key}) : super(key: key);
+  PayPage({Key? key}) : super(key: key);
 
   _PayPageState createState() => _PayPageState();
 }

@@ -13,14 +13,14 @@ class ListViewModel extends ViewModel {
     print("======VoidViewModel()=====");
   }
 
-  ListViewModel.get(IMvvmView view, CancelToken cancelToken) {
+  ListViewModel.get(IMvvmView? view, CancelToken? cancelToken) {
     print("======VoidViewModel.get()=====");
     this.view = view;
     this.cancelToken = cancelToken;
   }
 
-  Future<List> getData({type : 0, Map<String, dynamic> params2}) async {
-    final List data = await VoidModel(cancelToken, view).data(type, params2);
+  Future<List> getData({type : 0, Map<String, dynamic>? params2}) async {
+    final List? data = await (VoidModel(cancelToken, view).data(type, params2) as Future<List<dynamic>?>);
     if (data != null) {
       return data;
     }

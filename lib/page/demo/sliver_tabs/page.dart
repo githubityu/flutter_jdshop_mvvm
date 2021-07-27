@@ -8,7 +8,7 @@ import 'page_state.dart';
 class Tab1Page extends StatefulWidget {
   final TabName tabName;
 
-  const Tab1Page(this.tabName, {Key key}) : super(key: key);
+  const Tab1Page(this.tabName, {Key? key}) : super(key: key);
 
   @override
   _Tab1PageState createState() => _Tab1PageState();

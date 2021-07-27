@@ -1,4 +1,4 @@
-import 'package:city_pickers/city_pickers.dart';
+// import 'package:city_pickers/city_pickers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterjdshop/api/model/void_modle.dart';
@@ -15,9 +15,9 @@ import 'package:flutterjdshop/widget/view/my_button.dart';
 import 'package:flutterjdshop/widget/view/text_field.dart';
 
 class AddressAddOrEdit extends StatefulWidget {
-  final Map<String, List<String>> address;
+  final Map<String, List<String>>? address;
 
-  const AddressAddOrEdit({Key key, this.address}) : super(key: key);
+  const AddressAddOrEdit({Key? key, this.address}) : super(key: key);
 
   @override
   _AddressAddOrEditState createState() => _AddressAddOrEditState();
@@ -64,11 +64,11 @@ class _AddressAddOrEditState extends BasePageState<AddressAddOrEdit> {
   @override
   void subInitState() {
     // TODO: implement subInitState
-    isEdit = widget.address.keys.length > 0;
+    isEdit = widget.address!.keys.length > 0;
     if (isEdit) {
-      nameController.text = widget.address["name"].first;
-      phoneController.text = widget.address["phone"].first;
-      addressController.text = widget.address["address"].first;
+      nameController.text = widget.address!["name"]!.first;
+      phoneController.text = widget.address!["phone"]!.first;
+      addressController.text = widget.address!["address"]!.first;
     }
     nameController.addListener(verData);
     phoneController.addListener(verData);
@@ -110,12 +110,12 @@ class _AddressAddOrEditState extends BasePageState<AddressAddOrEdit> {
             child: FlatButton.icon(
               padding: EdgeInsets.all(0),
               onPressed: () async {
-                var result = await CityPickers.showCityPicker(
-                    context: context, locationCode: "130102");
-                setState(() {
-                  this.area =
-                      "${result.provinceName}/${result.cityName}/${result.areaName}";
-                });
+                // var result = await CityPickers.showCityPicker(
+                //     context: context, locationCode: "130102");
+                // setState(() {
+                //   this.area =
+                //       "${result.provinceName}/${result.cityName}/${result.areaName}";
+                // });
               },
               icon: Icon(Icons.add_location),
               label: Text(
@@ -143,14 +143,14 @@ class _AddressAddOrEditState extends BasePageState<AddressAddOrEdit> {
                       return;
                     }
                     var tempJson = {
-                      "uid": UserInfoData.instance.id,
+                      "uid": UserInfoData.instance!.id,
                       "name": nameController.text,
                       "phone": phoneController.text,
                       "address": "$area${addressController.text}",
-                      "salt": UserInfoData.instance.salt
+                      "salt": UserInfoData.instance!.salt
                     };
                     if (isEdit) {
-                      tempJson["id"] = widget.address["id"].first;
+                      tempJson["id"] = widget.address!["id"]!.first;
                     }
                     var sign = getSign(tempJson);
                     if (isEdit) {

@@ -16,13 +16,13 @@ import 'package:flutterjdshop/widget/load_image.dart';
 //订单列表数据模型
 
 class OrderPage extends StatefulWidget {
-  OrderPage({Key key}) : super(key: key);
+  OrderPage({Key? key}) : super(key: key);
 
   _OrderPageState createState() => _OrderPageState();
 }
 
 class _OrderPageState extends BasePageState<OrderPage> {
-  List<Result> _orderList = [];
+  List<Result>? _orderList = [];
 
   @override
   void subInitState() {
@@ -39,14 +39,14 @@ class _OrderPageState extends BasePageState<OrderPage> {
   }
   void _getListData() async {
     var tempJson = {
-      "uid": UserInfoData.instance.id,
-      "salt": UserInfoData.instance.salt
+      "uid": UserInfoData.instance!.id,
+      "salt": UserInfoData.instance!.salt
     };
     var sign = getSign(tempJson);
     ListViewModel.get(this, getCancelToken()).getData(
         type: VoidModel.ORDERLIST,
         params2: {
-          "uid": UserInfoData.instance.id,
+          "uid": UserInfoData.instance!.id,
           "sign": sign
         }).then((onValue) {
       setState(() {
@@ -93,7 +93,7 @@ class _OrderPageState extends BasePageState<OrderPage> {
           margin: EdgeInsets.fromLTRB(0, AppSize.height(80), 0, 0),
           padding: EdgeInsets.all(AppSize.width(16)),
           child: ListView(
-              children: this._orderList.map((value) {
+              children: this._orderList!.map((value) {
                 return InkWell(
                   onTap: () {
                     NavigatorUtils.push(context, ShopRouter.ORDERINFO);

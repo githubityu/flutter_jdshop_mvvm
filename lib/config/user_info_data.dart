@@ -3,27 +3,27 @@ import 'package:flutterjdshop/utils/utils.dart';
 
 class UserInfoData {
   //用户相关信息
-  static UserInfoData _instance;
+  static UserInfoData? _instance;
   bool isUser = false;
   int orderIndex = 0;
-  String account;
-  String salt;
-  String id;
-  String mobile;
-  String token;
-  String nickName;
-  String avatar;
-  String gender;
+  String? account;
+  String? salt;
+  String? id;
+  String? mobile;
+  String? token;
+  String? nickName;
+  String? avatar;
+  String? gender;
 
-  factory UserInfoData() => _getInstance();
+  factory UserInfoData() => _getInstance()!;
 
-  static UserInfoData get instance => _getInstance();
+  static UserInfoData? get instance => _getInstance();
 
   UserInfoData._internal() {
     // 初始化
   }
 
-  static UserInfoData _getInstance() {
+  static UserInfoData? _getInstance() {
     if (_instance == null) {
       _instance = new UserInfoData._internal();
     }
@@ -46,7 +46,7 @@ class UserInfoData {
   }
 
   get isLogin {
-    return account != null && account.isNotEmpty;
+    return account != null && account!.isNotEmpty;
   }
 
   setNickName(String name) {

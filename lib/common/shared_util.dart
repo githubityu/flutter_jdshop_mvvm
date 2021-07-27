@@ -5,17 +5,17 @@ export 'package:flutterjdshop/config/keys.dart';
 import 'package:flutterjdshop/config/storage_manager.dart';
 
 class SharedUtil {
-  factory SharedUtil() => _getInstance();
+  factory SharedUtil() => _getInstance()!;
 
-  static SharedUtil get instance => _getInstance();
-  static SharedUtil _instance;
+  static SharedUtil? get instance => _getInstance();
+  static SharedUtil? _instance;
 
   SharedUtil._internal() {
     //初始化
     //init
   }
 
-  static SharedUtil _getInstance() {
+  static SharedUtil? _getInstance() {
     if (_instance == null) {
       _instance = new SharedUtil._internal();
     }
@@ -72,17 +72,17 @@ class SharedUtil {
   }
 
   /// get
-  String getString(String key) {
+  String? getString(String key) {
     String account = StorageManager.sp.getString(Keys.account) ?? "default";
     return StorageManager.sp.getString(key + account);
   }
 
-  int getInt(String key) {
+  int? getInt(String key) {
     String account = StorageManager.sp.getString(Keys.account) ?? "default";
     return StorageManager.sp.getInt(key + account);
   }
 
-  double getDouble(String key) {
+  double? getDouble(String key) {
     String account = StorageManager.sp.getString(Keys.account) ?? "default";
     return StorageManager.sp.getDouble(key + account);
   }
@@ -92,14 +92,14 @@ class SharedUtil {
     return StorageManager.sp.getBool(key + account) ?? defValue;
   }
 
-  List<String> getStringList(String key) {
+  List<String>? getStringList(String key) {
     String account = StorageManager.sp.getString(Keys.account) ?? "default";
     return StorageManager.sp.getStringList(key + account);
   }
 
-  T getAny<T>(String key) {
+  T? getAny<T>(String key) {
     String account = StorageManager.sp.getString(Keys.account) ?? "default";
-    return json.decode(StorageManager.sp.getString(key + account));
+    return json.decode(StorageManager.sp.getString(key + account)!);
   }
 
   Future saveAny<T>(String key, T data) async {

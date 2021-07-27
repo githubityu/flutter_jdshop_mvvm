@@ -13,12 +13,12 @@ enum TabName {
 }
 
 abstract class PageState extends State<DemoPage> with SingleTickerProviderStateMixin {
-  TabController tabController;
+  TabController? tabController;
 
   /// 切换页签
-  VoidCallback _toggleTabListener() {
-    if (!tabController.indexIsChanging) {
-      toggleTab(tabController.index);
+  VoidCallback? _toggleTabListener() {
+    if (!tabController!.indexIsChanging) {
+      toggleTab(tabController!.index);
     }
     return null;
   }
@@ -27,13 +27,13 @@ abstract class PageState extends State<DemoPage> with SingleTickerProviderStateM
   void initState() {
     super.initState();
     tabController = TabController(length: 4, vsync: this);
-    tabController.addListener(_toggleTabListener);
+    tabController!.addListener(_toggleTabListener);
   }
 
   @override
   void dispose() {
-    tabController.removeListener(_toggleTabListener);
-    tabController.dispose();
+    tabController!.removeListener(_toggleTabListener);
+    tabController!.dispose();
     super.dispose();
   }
 

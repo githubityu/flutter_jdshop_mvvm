@@ -48,7 +48,7 @@ class _ProductDetail2State extends BasePageState<ProductDetail2>
     );
   }
 
-  TabController _tabController;
+  TabController? _tabController;
 
   @override
   Widget build(BuildContext context) {
@@ -61,9 +61,9 @@ class _ProductDetail2State extends BasePageState<ProductDetail2>
   @override
   void subInitState() {
     // TODO: implement subInitState
-    oneY = getY(globalKeyOne.currentContext);
-    twoY = getY(globalKeyTwo.currentContext);
-    threeY = getY(globalKeyThree.currentContext);
+    oneY = getY(globalKeyOne.currentContext!);
+    twoY = getY(globalKeyTwo.currentContext!);
+    threeY = getY(globalKeyThree.currentContext!);
 
     print('one=$oneY=two=$twoY=three=$threeY');
   }
@@ -76,11 +76,11 @@ class _ProductDetail2State extends BasePageState<ProductDetail2>
     _controller.addListener(() {
       var of = _controller.offset;
       if (of > threeY - oneY) {
-        _tabController.animateTo(2);
+        _tabController!.animateTo(2);
       }else if (of > twoY - oneY) {
-        _tabController.animateTo(1);
+        _tabController!.animateTo(1);
       } else {
-        _tabController.animateTo(0);
+        _tabController!.animateTo(0);
       }
       print("滚动了$of one=${twoY - oneY}=two=${threeY - oneY}");
     });
@@ -90,7 +90,7 @@ class _ProductDetail2State extends BasePageState<ProductDetail2>
   void dispose() {
     // TODO: implement dispose
     _controller.dispose();
-    _tabController.dispose();
+    _tabController!.dispose();
     super.dispose();
   }
 
@@ -108,15 +108,15 @@ class _ProductDetail2State extends BasePageState<ProductDetail2>
             switch(index){
               case 0:
                 _controller.jumpTo(0);
-                _tabController.animateTo(0);
+                _tabController!.animateTo(0);
                 break;
               case 1:
                 _controller.jumpTo(twoY - oneY);
-                _tabController.animateTo(1);
+                _tabController!.animateTo(1);
                 break;
               case 2:
                 _controller.jumpTo(threeY - oneY);
-                _tabController.animateTo(2);
+                _tabController!.animateTo(2);
                 break;
             }
 

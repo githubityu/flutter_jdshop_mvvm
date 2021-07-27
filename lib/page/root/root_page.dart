@@ -4,6 +4,7 @@ import 'package:flutterjdshop/page/cart/cart_page.dart';
 import 'package:flutterjdshop/page/category/category_page.dart';
 import 'package:flutterjdshop/page/home/home_page.dart';
 import 'package:flutterjdshop/page/user/user_page.dart';
+import 'package:flutterjdshop/utils/app_size.dart';
 import 'package:flutterjdshop/utils/double_tap_back_exit_app.dart';
 import 'package:flutterjdshop/widget/root_tabbar.dart';
 
@@ -15,7 +16,7 @@ class RootPage extends StatefulWidget {
 }
 
 class _RootPageState extends State<RootPage> {
-  DateTime lastPopTime;
+  DateTime? lastPopTime;
 
   @override
   void initState() {
@@ -55,6 +56,7 @@ class _RootPageState extends State<RootPage> {
 
   @override
   Widget build(BuildContext context) {
+    AppSize.init(context);
     List<TabBarModel> pages = <TabBarModel>[
       new TabBarModel(
         title: '首页',

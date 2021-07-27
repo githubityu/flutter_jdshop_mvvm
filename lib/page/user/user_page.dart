@@ -101,7 +101,7 @@ class _UserPageState extends BasePageState<UserPage>
               ),
             ),
           ),
-          !UserInfoData.instance.isLogin
+          !UserInfoData.instance!.isLogin
               ? Expanded(
                   child: InkWell(
                     onTap: () {
@@ -120,7 +120,7 @@ class _UserPageState extends BasePageState<UserPage>
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          "用户名：${UserInfoData.instance.account}",
+                          "用户名：${UserInfoData.instance!.account}",
                           textAlign: TextAlign.left,
                           style: TextStyles.textWhite14,
                         ),
@@ -146,7 +146,7 @@ class _UserPageState extends BasePageState<UserPage>
               confirmFunc: () {
                 setState(() {
                   NavigatorUtils.pop(context);
-                  UserInfoData.instance.setAccount("");
+                  UserInfoData.instance!.setAccount("");
                 });
               },
             ));
@@ -175,7 +175,7 @@ class _UserPageState extends BasePageState<UserPage>
       ));
       wids.add(Gaps.line);
     }).toList();
-    if (UserInfoData.instance.isLogin) wids.add(bottomButton());
+    if (UserInfoData.instance!.isLogin) wids.add(bottomButton());
     return wids;
   }
 

@@ -23,7 +23,7 @@ import 'package:provider/provider.dart';
 import 'productdetail/ProductContent.dart';
 
 class ProductDetail3 extends StatefulWidget {
-  final String sId;
+  final String? sId;
 
   const ProductDetail3({this.sId});
 
@@ -33,7 +33,7 @@ class ProductDetail3 extends StatefulWidget {
 
 class _ProductDetail3State extends BasePageState<ProductDetail3>
     with SingleTickerProviderStateMixin {
-  TabController _tabController;
+  TabController? _tabController;
   bool isDark = false;
   LoadState state = LoadState.State_Loading;
   List _productContentList = [];
@@ -114,7 +114,7 @@ class _ProductDetail3State extends BasePageState<ProductDetail3>
                           ),
                           Consumer<Cart>(
                             builder: (context, p, child) {
-                              return p.cartList.length > 0
+                              return p.cartList!.length > 0
                                   ? Positioned(
                                       right: 0,
                                       top: 0,
@@ -129,7 +129,7 @@ class _ProductDetail3State extends BasePageState<ProductDetail3>
                                               borderRadius:
                                                   BorderRadius.circular(12.0)),
                                           child: Text(
-                                            "${p.cartList.length}",
+                                            "${p.cartList!.length}",
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: AppSize.sp(22)),
@@ -184,7 +184,7 @@ class _ProductDetail3State extends BasePageState<ProductDetail3>
 
   @override
   void dispose() {
-    _tabController.dispose();
+    _tabController!.dispose();
     super.dispose();
   }
 
@@ -221,7 +221,7 @@ class _ProductDetail3State extends BasePageState<ProductDetail3>
                 Container(
                   width: double.infinity,
                   //该高度和SliverPersistentHeader 一致
-                  height: AppSize.height(80) + ScreenUtil.statusBarHeight,
+                  height: AppSize.height(80) + ScreenUtil().statusBarHeight,
                   color: Colors.red,
                   child: Text(""),
                 ),

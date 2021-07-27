@@ -20,7 +20,7 @@ import 'package:flutterjdshop/view/app_topbar.dart';
 import 'package:provider/provider.dart';
 
 class CheckOutPage extends StatefulWidget {
-  CheckOutPage({Key key}) : super(key: key);
+  CheckOutPage({Key? key}) : super(key: key);
 
   _CheckOutPageState createState() => _CheckOutPageState();
 }
@@ -50,8 +50,8 @@ class _CheckOutPageState extends BasePageState<CheckOutPage> {
   _getDefaultAddress() async {
     // print('1234');
     var tempJson = {
-      "uid": UserInfoData.instance.id,
-      "salt": UserInfoData.instance.salt
+      "uid": UserInfoData.instance!.id,
+      "salt": UserInfoData.instance!.salt
     };
 
     var sign = getSign(tempJson);
@@ -59,7 +59,7 @@ class _CheckOutPageState extends BasePageState<CheckOutPage> {
     ListViewModel.get(this, getCancelToken()).getData(
         type: VoidModel.ONEADDRESSLIST,
         params2: {
-          "uid": UserInfoData.instance.id,
+          "uid": UserInfoData.instance!.id,
           "sign": sign
         }).then((onValue) {
       setState(() {
@@ -211,7 +211,7 @@ class _CheckOutPageState extends BasePageState<CheckOutPage> {
 
                         //获取签名
                         var sign = getSign({
-                          "uid": UserInfoData.instance.id,
+                          "uid": UserInfoData.instance!.id,
                           "phone": this._addressList[0]["phone"],
                           "address": this._addressList[0]["address"],
                           "name": this._addressList[0]["name"],
@@ -219,13 +219,13 @@ class _CheckOutPageState extends BasePageState<CheckOutPage> {
                           "products": json.encode(
                               Provider.of<CheckOut>(context, listen: false)
                                   .checkOutListData),
-                          "salt": UserInfoData.instance.salt //私钥
+                          "salt": UserInfoData.instance!.salt //私钥
                         });
                         //请求接口
 
                         VoidViewModel.get(this, getCancelToken())
                             .getData(type: VoidModel.DOORDER, params2: {
-                          "uid": UserInfoData.instance.id,
+                          "uid": UserInfoData.instance!.id,
                           "phone": this._addressList[0]["phone"],
                           "address": this._addressList[0]["address"],
                           "name": this._addressList[0]["name"],

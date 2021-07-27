@@ -60,7 +60,7 @@ class _DemoPageState extends PageState {
 class MyStickyTabBarDelegate extends SliverPersistentHeaderDelegate {
   final PreferredSize child;
 
-  MyStickyTabBarDelegate({@required this.child});
+  MyStickyTabBarDelegate({required this.child});
 
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {

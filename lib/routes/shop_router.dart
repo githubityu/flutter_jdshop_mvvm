@@ -63,19 +63,19 @@ class ShopRouter implements IRouterProvider {
     router.define(REGISTER_SECOND,
         handler: Handler(
             handlerFunc: (context, params) =>
-                RegisterSecond(params["tel"].first)));
+                RegisterSecond(params["tel"]!.first)));
     router.define(REGISTER_THIRD,
         handler: Handler(
             handlerFunc: (context, params) =>
-                RegisterThird(params["tel"].first, params["code"].first)));
+                RegisterThird(params["tel"]!.first, params["code"]!.first)));
     router.define(PRODUCT_CONTENT,
         handler: Handler(
             handlerFunc: (context, params) =>
-                ProductDetail3(sId: params["id"].first)));
+                ProductDetail3(sId: params["id"]!.first)));
     router.define(PRODUCTLIST,
         handler: Handler(
             handlerFunc: (context, params) => ProductListPage(
-                cid: params["cid"]?.first, keywords: params["keywords"].first)));
+                cid: params["cid"]?.first, keywords: params["keywords"]!.first)));
     router.define(PRODUCT_CONTENT_2,
         handler: Handler(
             handlerFunc: (context, params) =>

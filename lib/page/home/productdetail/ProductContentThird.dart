@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ProductContentThird extends StatefulWidget {
-  ProductContentThird({Key key}) : super(key: key);
+  ProductContentThird({Key? key}) : super(key: key);
 
   _ProductContentThirdState createState() => _ProductContentThirdState();
 }

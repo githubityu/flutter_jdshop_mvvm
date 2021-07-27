@@ -77,7 +77,7 @@ class _RegisterThirdState extends BasePageState<RegisterThird> {
                     "password": pwd1
                   }).then((onValue) {
                 var map = (onValue as Map<String, dynamic>)["userinfo"][0];
-                UserInfoData.instance.userInfo =map;
+                UserInfoData.instance!.userInfo =map;
                 NavigatorUtils.goRootPage(context);
               });
             },

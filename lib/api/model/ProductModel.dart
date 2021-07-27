@@ -18,34 +18,34 @@ class ProductModel2 extends ReqModel {
 }
 
 class ProductModel {
-  List<ProductItemModel> result;
+  List<ProductItemModel>? result;
 
   ProductModel({this.result});
 
   ProductModel.fromJson(List<dynamic> json) {
-    result = new List<ProductItemModel>();
+    result = List.empty();
     json.forEach((v) {
-      result.add(new ProductItemModel.fromJson(v));
+      result!.add(new ProductItemModel.fromJson(v));
     });
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.result != null) {
-      data['result'] = this.result.map((v) => v.toJson()).toList();
+      data['result'] = this.result!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class ProductItemModel {
-  String sId;
-  String title;
-  String cid;
-  Object price; //所有的类型都继承 Object
-  String oldPrice;
-  String pic;
-  String sPic;
+  String? sId;
+  String? title;
+  String? cid;
+  Object? price; //所有的类型都继承 Object
+  String? oldPrice;
+  String? pic;
+  String? sPic;
 
   ProductItemModel(
       {this.sId,

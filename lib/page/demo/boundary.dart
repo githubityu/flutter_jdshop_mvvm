@@ -32,7 +32,7 @@ class LayoutBoundaryDelegate extends MultiChildLayoutDelegate {
 }
 
 class LayoutBoundary extends StatefulWidget {
-  LayoutBoundary({Key key}) : super(key: key);
+  LayoutBoundary({Key? key}) : super(key: key);
 
   @override
   _LayoutBoundaryState createState() => _LayoutBoundaryState();
@@ -69,7 +69,7 @@ class PaintBoundary extends StatelessWidget {
 }
 
 class CirclePainter extends CustomPainter {
-  final Color color;
+  final Color? color;
 
   const CirclePainter({this.color});
 
@@ -78,7 +78,7 @@ class CirclePainter extends CustomPainter {
     print('CirclePainter paint');
     var radius = size.width / 2;
     var paint = Paint()
-      ..color = color
+      ..color = color!
       ..style = PaintingStyle.fill;
     canvas.drawCircle(Offset(radius, size.height), radius, paint);
   }

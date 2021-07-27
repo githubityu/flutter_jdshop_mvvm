@@ -16,9 +16,9 @@ class AnimationThree extends StatefulWidget {
 
 class _AnimationThreeState extends BasePageState<AnimationThree>
     with TickerProviderStateMixin {
-  AnimationController _animationController;
-  AnimationController _controller;
-  Animation groupAnimation;
+  AnimationController? _animationController;
+  AnimationController? _controller;
+  Animation? groupAnimation;
 
   @override
   void initState() {
@@ -58,9 +58,9 @@ class _AnimationThreeState extends BasePageState<AnimationThree>
   Future<Null> _playAnimation() async {
     try {
       //先正向执行动画
-      await _animationController.forward().orCancel;
+      await _animationController!.forward().orCancel;
       //再执行反向动画
-      await _animationController.reverse().orCancel;
+      await _animationController!.reverse().orCancel;
     } on TickerCanceled {
       // the animation got canceled, probably because we were disposed
       print(' cancel');
@@ -70,8 +70,8 @@ class _AnimationThreeState extends BasePageState<AnimationThree>
   @override
   void dispose() {
     // TODO: implement dispose
-    _animationController.dispose();
-    _controller.dispose();
+    _animationController!.dispose();
+    _controller!.dispose();
     super.dispose();
   }
 
@@ -85,7 +85,7 @@ class _AnimationThreeState extends BasePageState<AnimationThree>
             children: <Widget>[
               RotationTransition(
                 alignment: Alignment.center,
-                turns: _animationController,
+                turns: _animationController!,
                 child: Container(
                   width: 100,
                   height: 50,
@@ -95,7 +95,7 @@ class _AnimationThreeState extends BasePageState<AnimationThree>
                 ),
               ),
               ScaleTransition(
-                scale: _animationController,
+                scale: _animationController!,
                 child: Container(
                   width: 100,
                   height: 50,
@@ -132,7 +132,7 @@ class _AnimationThreeState extends BasePageState<AnimationThree>
           Row(
             children: <Widget>[
               SizeTransition(
-                sizeFactor: _animationController,
+                sizeFactor: _animationController!,
                 child: Container(
                   width: 100,
                   height: 50,
@@ -151,17 +151,17 @@ class _AnimationThreeState extends BasePageState<AnimationThree>
 
 ///组合动画学习
 class GroupAnimalWidget extends StatelessWidget {
-  final AnimationController controller;
-  final Widget child;
-  Animation<double> groupAnimation;
-  Animation<double> height;
+  final AnimationController? controller;
+  final Widget? child;
+  late Animation<double> groupAnimation;
+  late Animation<double> height;
 
-  GroupAnimalWidget({Key key, this.controller, this.child}) : super(key: key) {
+  GroupAnimalWidget({Key? key, this.controller, this.child}) : super(key: key) {
     var d2 = Tween(begin: 0.0, end: 1.0)
         .chain(CurveTween(curve: Interval(0.0, 1, curve: Curves.ease)));
     var d1 = Tween(begin: 0.0, end: 50.0);
-    groupAnimation = controller.drive(d2);
-    height = controller.drive(d1);
+    groupAnimation = controller!.drive(d2);
+    height = controller!.drive(d1);
 
     //监听值
     height.addListener(() {
@@ -188,7 +188,7 @@ class GroupAnimalWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(animation: controller, builder: _b2);
+    return AnimatedBuilder(animation: controller!, builder: _b2);
   }
 
   Widget _b(BuildContext context, Widget child2) {
@@ -211,7 +211,7 @@ class GroupAnimalWidget extends StatelessWidget {
     );
   }
 
-  Widget _b2(BuildContext context, Widget child2) {
+  Widget _b2(BuildContext context, Widget? child2) {
     return Opacity(
       opacity: 1 - groupAnimation.value,
       child: UnconstrainedBox(
@@ -231,9 +231,9 @@ class GroupAnimalWidget extends StatelessWidget {
 }
 
 class MyStatefulWidget extends StatefulWidget {
-  final AnimationController controller;
+  final AnimationController? controller;
 
-  const MyStatefulWidget({Key key, this.controller}) : super(key: key);
+  const MyStatefulWidget({Key? key, this.controller}) : super(key: key);
 
   @override
   _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
@@ -241,7 +241,7 @@ class MyStatefulWidget extends StatefulWidget {
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget>
     with SingleTickerProviderStateMixin {
-  Animation<Offset> _offsetAnimation;
+  late Animation<Offset> _offsetAnimation;
 
   @override
   void initState() {
@@ -251,7 +251,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget>
       begin: Offset.zero,
       end: const Offset(1.5, 0.0),
     ).animate(CurvedAnimation(
-      parent: widget.controller,
+      parent: widget.controller!,
       curve: Curves.elasticIn,
     ));
   }

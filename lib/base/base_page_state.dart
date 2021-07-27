@@ -14,7 +14,7 @@ import 'package:flutterjdshop/view/customize_appbar.dart';
 
 abstract class BasePageState<T extends StatefulWidget> extends State<T>
     implements IMvvmView {
-  CancelToken _cancelToken;
+  CancelToken? _cancelToken;
 
   BasePageState() {
     _cancelToken = CancelToken();
@@ -25,7 +25,7 @@ abstract class BasePageState<T extends StatefulWidget> extends State<T>
   void initState() {
     Log.e("initState");
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((callback) {
+    WidgetsBinding.instance!.addPostFrameCallback((callback) {
       subInitState();
     });
   }
@@ -42,9 +42,10 @@ abstract class BasePageState<T extends StatefulWidget> extends State<T>
   ///方便width AutomaticKeepAliveClientMixin的使用
   Widget getScaffold() {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: useMyAppBar() ? MyAppBar(
           preferredSize: Size.fromHeight(AppSize.height(80)),
-          child: getAppBar(context)) : getAppBar(context),
+          child: getAppBar(context)) : getAppBar(context) as PreferredSizeWidget?,
       body: isAutoCloseKeyboard()
           ? hideKeyword(getBody(context), context)
           : getBody(context),
@@ -113,8 +114,8 @@ abstract class BasePageState<T extends StatefulWidget> extends State<T>
   void dispose() {
     Log.e("dispose");
     super.dispose();
-    if (_cancelToken != null && !_cancelToken.isCancelled) {
-      _cancelToken.cancel();
+    if (_cancelToken != null && !_cancelToken!.isCancelled) {
+      _cancelToken!.cancel();
     }
   }
 
@@ -133,15 +134,15 @@ abstract class BasePageState<T extends StatefulWidget> extends State<T>
 
   void didUpdateWidgets<W>(W oldWidget) {}
 
-  CancelToken getCancelToken() {
+  CancelToken? getCancelToken() {
     return _cancelToken;
   }
 
-  Widget getAppBar(BuildContext context) {
+  Widget? getAppBar(BuildContext context) {
     return null;
   }
 
-  Widget getBody(BuildContext context);
+  Widget? getBody(BuildContext context);
 
   //如果要用model与view交互就需要给viewmodle 设置view
   void injectViewModelView() {}

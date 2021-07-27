@@ -13,7 +13,7 @@ import 'scroll/my_behavior.dart';
 class RootTabBar extends StatefulWidget {
   RootTabBar({this.pages, this.currentIndex = 0});
 
-  final List pages;
+  final List? pages;
   final int currentIndex;
 
   @override
@@ -21,18 +21,18 @@ class RootTabBar extends StatefulWidget {
 }
 
 class RootTabBarState extends State<RootTabBar> {
-  var pages = new List<BottomNavigationBarItem>();
-  int currentIndex;
-  var contents = new List<Offstage>();
-  PageController pageController;
+  var pages =  <BottomNavigationBarItem>[];
+  late int currentIndex;
+  var contents =  <Offstage>[];
+  PageController? pageController;
 
-  StreamSubscription _indexSubscription;
+  late StreamSubscription _indexSubscription;
 
   void _listen() {
     _indexSubscription = eventBus.on<TabIndexEvent>().listen((event) {
       int index = event.num;
       this.currentIndex = index;
-      pageController.jumpToPage(index);
+      pageController!.jumpToPage(index);
     });
   }
 
@@ -41,13 +41,13 @@ class RootTabBarState extends State<RootTabBar> {
     super.initState();
     currentIndex = widget.currentIndex;
     pageController = PageController(initialPage: currentIndex);
-    for (int i = 0; i < widget.pages.length; i++) {
-      TabBarModel model = widget.pages[i];
+    for (int i = 0; i < widget.pages!.length; i++) {
+      TabBarModel model = widget.pages![i];
       pages.add(
         new BottomNavigationBarItem(
-          icon: model.icon,
+          icon: model.icon!,
           activeIcon: model.selectIcon,
-          title: new Text(model.title, style: new TextStyle(fontSize: 12.0)),
+          title: new Text(model.title!, style: new TextStyle(fontSize: 12.0)),
         ),
       );
     }
@@ -91,7 +91,7 @@ class RootTabBarState extends State<RootTabBar> {
         behavior: MyBehavior(),
         child: new PageView.builder(
           itemBuilder: (BuildContext context, int index) =>
-              widget.pages[index].page,
+              widget.pages![index].page,
           controller: pageController,
           itemCount: pages.length,
           physics: Platform.isAndroid
@@ -116,8 +116,8 @@ class RootTabBarState extends State<RootTabBar> {
 class TabBarModel {
   const TabBarModel({this.title, this.page, this.icon, this.selectIcon});
 
-  final String title;
-  final Widget icon;
-  final Widget selectIcon;
-  final Widget page;
+  final String? title;
+  final Widget? icon;
+  final Widget? selectIcon;
+  final Widget? page;
 }

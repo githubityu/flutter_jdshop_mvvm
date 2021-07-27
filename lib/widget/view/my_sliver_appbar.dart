@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class MySliverAppBar extends SliverPersistentHeaderDelegate {
   final double expandedHeight;
 
-  MySliverAppBar({@required this.expandedHeight});
+  MySliverAppBar({required this.expandedHeight});
 
   @override
   Widget build(

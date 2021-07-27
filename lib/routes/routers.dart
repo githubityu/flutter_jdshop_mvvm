@@ -20,17 +20,17 @@ class Routes {
   static void configureRoutes(FluroRouter router) {
     /// 指定路由跳转错误返回页
     router.notFoundHandler = Handler(
-      handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+      handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
         debugPrint('未找到目标页');
         return WidgetNotFound();
       });
 
     router.define(home, handler: Handler(
-      handlerFunc: (BuildContext context, Map<String, List<String>> params) => SplashPage()));
+      handlerFunc: (BuildContext? context, Map<String, List<String>> params) => SplashPage()));
     
     router.define(webViewPage, handler: Handler(handlerFunc: (_, params) {
-      String title = params['title']?.first;
-      String url = params['url']?.first;
+      String? title = params['title']?.first;
+      String? url = params['url']?.first;
       return WebViewPage(title: title, url: url);
     }));
     

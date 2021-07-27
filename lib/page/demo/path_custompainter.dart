@@ -43,7 +43,7 @@ class PathPainterStudy extends CustomPainter {
     path2.close();
     canvas.drawPath(path2, paint2);
 
-    List<Offset> points = new List();
+    List<Offset> points = List.empty();
     points.add(new Offset(100, 50)); // 画出控制点位置，方便理解
     canvas.drawPoints(PointMode.points, points, paint2);
     ///画弧线 - arcTo(Rect rect, double startAngle, double sweepAngle, bool forceMoveTo)

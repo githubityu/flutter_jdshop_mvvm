@@ -22,27 +22,28 @@ class NavigatorUtils {
     });
   }
 
-  static push(BuildContext context, String path,
+  static push(BuildContext context, String? path,
       {bool replace = false,
       bool clearStack = false,
-      Map<String, dynamic> params}) {
+      Map<String, dynamic>? params}) {
     FocusScope.of(context).unfocus();
-    Observable.just(1).delay(Duration(milliseconds: 100)).listen((onData) {
+    Future.delayed(Duration(milliseconds: 100),(){
       Application.router.navigateTo(
-          context, navigateToReplace(path, params: params),
+          context, navigateToReplace(path!, params: params),
           replace: replace,
           clearStack: clearStack,
           transition: TransitionType.native);
     });
+
   }
 
   static pushResult(
       BuildContext context, String path, Function(Object) function,
       {bool replace = false,
       bool clearStack = false,
-      Map<String, dynamic> params}) {
+      Map<String, dynamic>? params}) {
     FocusScope.of(context).unfocus();
-    Observable.just(1).delay(Duration(milliseconds: 100)).listen((onData) {
+    Future.delayed(Duration(milliseconds: 100),(){
       Application.router
           .navigateTo(context, navigateToReplace(path, params: params),
               replace: replace,
@@ -72,7 +73,7 @@ class NavigatorUtils {
     pop(context, result: result);
   }
 
-  static void pop<T>(BuildContext context, {T result, isPop = true}) {
+  static void pop<T>(BuildContext context, {T? result, isPop = true}) {
     FocusScope.of(context).unfocus();
     if (isPop == true) {
       Navigator.pop(context, result);
@@ -93,7 +94,7 @@ class NavigatorUtils {
   }
 
   static bool isLogin(context) {
-    if (!UserInfoData.instance.isLogin) {
+    if (!UserInfoData.instance!.isLogin) {
       //push(context, ShopRouter.login_page);
       return false;
     }
@@ -105,18 +106,18 @@ class NavigatorUtils {
     var route = getRouteByName(routeName);
     if (route != null) {
       Navigator.removeRoute(context, route);
-      MyNavigatorObserver.getInstance().list.remove(route);
+      MyNavigatorObserver.getInstance()!.list.remove(route);
     }
   }
 
   static Route<dynamic> getRouteByName(String routeName) {
-    var firstWhere = MyNavigatorObserver.getInstance()
+    var firstWhere = MyNavigatorObserver.getInstance()!
         .list
         .firstWhere((element) => element.settings.name == routeName);
     return firstWhere;
   }
 
-  static String navigateToReplace(String path, {Map<String, dynamic> params}) {
+  static String navigateToReplace(String path, {Map<String, dynamic>? params}) {
     String query = "";
     if (params != null) {
       int index = 0;

@@ -4,7 +4,7 @@ import 'base_response.dart';
 
 ///网络请求监听
 class RequestListener {
-  RequestListener({@required this.onSuccessListener, @required this.onErrorListener});
+  RequestListener({required this.onSuccessListener, required this.onErrorListener});
 
   //请求成功
   final ValueChanged<BaseResponse> onSuccessListener;

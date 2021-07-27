@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 
 /// 底部弹出框
 class CommonBottomSheet extends StatefulWidget {
-  CommonBottomSheet({Key key, this.list, this.onItemClickListener})
+  CommonBottomSheet({Key? key, required this.list, this.onItemClickListener})
       : assert(list != null),
         super(key: key);
   final list;
-  final OnItemClickListener onItemClickListener;
+  final OnItemClickListener? onItemClickListener;
 
   @override
   _CommonBottomSheetState createState() => _CommonBottomSheetState();
@@ -16,7 +16,7 @@ class CommonBottomSheet extends StatefulWidget {
 typedef OnItemClickListener = void Function(int index);
 
 class _CommonBottomSheetState extends State<CommonBottomSheet> {
-  OnItemClickListener onItemClickListener;
+  OnItemClickListener? onItemClickListener;
   var itemCount;
   double itemHeight = 44;
   var borderColor = Colors.white;
@@ -174,7 +174,7 @@ class _CommonBottomSheetState extends State<CommonBottomSheet> {
         child: center);
     var onTap2 = () {
       if (onItemClickListener != null) {
-        onItemClickListener(index);
+        onItemClickListener!(index);
       }
     };
     var stack = Stack(

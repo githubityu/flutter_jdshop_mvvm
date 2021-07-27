@@ -4,12 +4,12 @@ import 'dart:convert';
 import 'package:flutterjdshop/common/common.dart';
 
 class Cart with ChangeNotifier {
-  List _cartList = []; //购物车数据
-  bool _isCheckedAll = false; //全选
+  List? _cartList = []; //购物车数据
+  bool? _isCheckedAll = false; //全选
   double _allPrice = 0; //总价
 
-  List get cartList => this._cartList;
-  bool get isCheckedAll => this._isCheckedAll;
+  List? get cartList => this._cartList;
+  bool? get isCheckedAll => this._isCheckedAll;
   double get allPrice => this._allPrice;
 
   Cart() {
@@ -18,7 +18,7 @@ class Cart with ChangeNotifier {
   //初始化的时候获取购物车数据
   init() async {
     try {
-      List cartListData = json.decode(SharedUtil.instance.getString('cartList'));
+      List? cartListData = json.decode(SharedUtil.instance!.getString('cartList')!);
       this._cartList = cartListData;
     } catch (e) {
       this._cartList = [];
@@ -36,7 +36,7 @@ class Cart with ChangeNotifier {
   }
 
   itemCountChange() {
-    SharedUtil.instance.saveString("cartList", json.encode(this._cartList));
+    SharedUtil.instance!.saveString("cartList", json.encode(this._cartList));
     //计算总价
     this.computeAllPrice();
     
@@ -45,22 +45,22 @@ class Cart with ChangeNotifier {
 
   //全选 反选
   checkAll(value) {
-    for (var i = 0; i < this._cartList.length; i++) {
-      this._cartList[i]["checked"] = value;
+    for (var i = 0; i < this._cartList!.length; i++) {
+      this._cartList![i]["checked"] = value;
     }
     this._isCheckedAll = value;
     //计算总价
     this.computeAllPrice();
 
-    SharedUtil.instance.saveString("cartList", json.encode(this._cartList));
+    SharedUtil.instance!.saveString("cartList", json.encode(this._cartList));
     notifyListeners();
   }
 
   //判断是否全选
   bool isCheckAll() {
-    if (this._cartList.length > 0) {
-      for (var i = 0; i < this._cartList.length; i++) {
-        if (this._cartList[i]["checked"] == false) {
+    if (this._cartList!.length > 0) {
+      for (var i = 0; i < this._cartList!.length; i++) {
+        if (this._cartList![i]["checked"] == false) {
           return false;
         }
       }
@@ -79,16 +79,16 @@ class Cart with ChangeNotifier {
      //计算总价
     this.computeAllPrice();
 
-    SharedUtil.instance.saveString("cartList", json.encode(this._cartList));
+    SharedUtil.instance!.saveString("cartList", json.encode(this._cartList));
     notifyListeners();
   }
 
   //计算总价
   computeAllPrice() {
     double tempAllPrice = 0;
-    for (var i = 0; i < this._cartList.length; i++) {
-      if (this._cartList[i]["checked"] == true) {
-        tempAllPrice += this._cartList[i]["price"] * this._cartList[i]["count"];
+    for (var i = 0; i < this._cartList!.length; i++) {
+      if (this._cartList![i]["checked"] == true) {
+        tempAllPrice += this._cartList![i]["price"] * this._cartList![i]["count"];
       }
     }
     this._allPrice = tempAllPrice;
@@ -106,15 +106,15 @@ class Cart with ChangeNotifier {
     // }
 
     List tempList=[];
-    for (var i = 0; i < this._cartList.length; i++) {
-      if (this._cartList[i]["checked"] == false) {
-         tempList.add(this._cartList[i]);
+    for (var i = 0; i < this._cartList!.length; i++) {
+      if (this._cartList![i]["checked"] == false) {
+         tempList.add(this._cartList![i]);
       }
     }
     this._cartList=tempList;
     //计算总价
     this.computeAllPrice();
-    SharedUtil.instance.saveString("cartList", json.encode(this._cartList));
+    SharedUtil.instance!.saveString("cartList", json.encode(this._cartList));
     notifyListeners();
   }
 }

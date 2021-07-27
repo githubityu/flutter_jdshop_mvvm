@@ -4,11 +4,11 @@ import 'package:flutterjdshop/widget/view/base_dialog.dart';
 
 class RemindDialog extends StatefulWidget {
   final String title;
-  final String content;
-  final Function confirmFunc;
+  final String? content;
+  final Function? confirmFunc;
 
   RemindDialog({
-    Key key,
+    Key? key,
     this.title: "提示",
     this.content,
     this.confirmFunc,
@@ -25,7 +25,7 @@ class _ExitDialog extends State<RemindDialog> {
       title: widget.title,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-        child: Text(widget.content, style: TextStyles.textSize16),
+        child: Text(widget.content!, style: TextStyles.textSize16),
       ),
       onPressed: widget.confirmFunc,
     );

@@ -8,11 +8,11 @@ import 'package:flutterjdshop/config/api.dart';
 import 'package:crypto/crypto.dart';
 import 'package:flutterjdshop/utils/app_size.dart';
 
-String getSafeData(String data) {
+String getSafeData(String? data) {
   return data ?? "";
 }
 
-Widget hideKeyword(Widget child, BuildContext context) {
+Widget hideKeyword(Widget? child, BuildContext context) {
   return GestureDetector(
 
       ///透明也响应处理
@@ -53,16 +53,16 @@ String getSign(json) {
 }
 
 String getStrByKey(String key) {
-  return getSafeData(SharedUtil.instance.getString(key));
+  return getSafeData(SharedUtil.instance!.getString(key));
 }
 
 Future saveStrByKey(String key, String data) async {
-  await SharedUtil.instance.saveString(key, data);
+  await SharedUtil.instance!.saveString(key, data);
 }
 
 
 double getY(BuildContext buildContext) {
-  final RenderBox box = buildContext.findRenderObject();
+  final RenderBox box = buildContext.findRenderObject() as RenderBox;
   final size = box.size;
   ////代表的意思是说 button 组件中（0，0）点转换成全屏幕上的点的坐标值
   final topLeftPosition = box.localToGlobal(Offset.zero);

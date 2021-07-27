@@ -5,17 +5,17 @@ import 'package:flutterjdshop/utils/log_utils.dart';
 ///抽取出来缩小刷新区域
 class MyCheckBox extends StatefulWidget {
   // 是否是check状态
-  final bool isChecked;
+  final bool? isChecked;
 
   final Color colorBg;
   final Color color;
   final double size;
 
   // check回传
-  final ValueChanged<bool> onChecked;
+  final ValueChanged<bool?>? onChecked;
 
   MyCheckBox({
-    Key key,
+    Key? key,
     this.isChecked,
     this.colorBg = Colors.red,
     this.color = Colors.blue,
@@ -30,7 +30,7 @@ class MyCheckBox extends StatefulWidget {
 
 class CheckTextBox extends State<MyCheckBox> {
   // 是否是check状态 如何修改这个状态呢
-  bool isChecked;
+  bool? isChecked;
 
   CheckTextBox({this.isChecked: false});
 
@@ -48,9 +48,9 @@ class CheckTextBox extends State<MyCheckBox> {
       child: GestureDetector(
         onTap: () {
           setState(() {
-            isChecked = !isChecked;
+            isChecked = !isChecked!;
             // 回传改变事件
-            if (widget.onChecked != null) widget.onChecked(isChecked);
+            if (widget.onChecked != null) widget.onChecked!(isChecked);
           });
         },
 
@@ -72,7 +72,7 @@ class CheckTextBox extends State<MyCheckBox> {
 
 class MyCheckBoxPainter extends CustomPainter {
   final _paint = Paint();
-  bool isCheck = false;
+  bool? isCheck = false;
   Color color;
   MyCheckBoxPainter({this.isCheck = false, this.color = Colors.blue}) {
     _paint.color = color; //白色笔
@@ -90,7 +90,7 @@ class MyCheckBoxPainter extends CustomPainter {
     ///圆形半径为（width-笔的宽度）/2
     ///画弧形是矩形内切
     canvas.drawCircle(Offset(_center, _center), _radius, _paint);
-    if (isCheck) {
+    if (isCheck!) {
       _paint.style = PaintingStyle.fill;
       canvas.drawCircle(Offset(_center, _center), _radius / 2, _paint);
     }

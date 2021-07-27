@@ -50,7 +50,7 @@ bool strNoEmpty(String value) {
 }
 
 /// 字符串不为空
-bool mapNoEmpty(Map value) {
+bool mapNoEmpty(Map? value) {
   if (value == null) return false;
   return value.isNotEmpty;
 }
@@ -75,11 +75,11 @@ bool isAssetsImg(String img) {
 }
 
 double getMemoryImageCashe() {
-  return PaintingBinding.instance.imageCache.maximumSize / 1000;
+  return PaintingBinding.instance!.imageCache!.maximumSize / 1000;
 }
 
 void clearMemoryImageCache() {
-  PaintingBinding.instance.imageCache.clear();
+  PaintingBinding.instance!.imageCache!.clear();
 }
 
 String stringAsFixed(value, num) {

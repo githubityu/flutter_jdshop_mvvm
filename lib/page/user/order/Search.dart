@@ -8,7 +8,7 @@ import 'package:flutterjdshop/utils/app_size.dart';
 
 
 class SearchPage extends StatefulWidget {
-  SearchPage({Key key}) : super(key: key);
+  SearchPage({Key? key}) : super(key: key);
 
   _SearchPageState createState() => _SearchPageState();
 }

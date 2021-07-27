@@ -17,8 +17,8 @@ class AnimationPage extends StatefulWidget {
 
 class AnimationState extends State<AnimationPage>
     with SingleTickerProviderStateMixin {
-  AnimationController imageAnimationController;
-  Animation<double> animation;
+  late AnimationController imageAnimationController;
+  Animation<double>? animation;
 
   IconData _icon = Icons.done;
 
@@ -76,7 +76,7 @@ class AnimationState extends State<AnimationPage>
             ),
             SizedBox(height: 50.0),
             AnimationImage(
-              animation: animation,
+              animation: animation!,
             )
           ],
         ));
@@ -108,13 +108,13 @@ class AnimationImage extends AnimatedWidget {
   static final _opacityAni = Tween(begin: 0.0, end: 1.0);*/
 
   AnimationImage({
-    Key key,
-    Animation animation,
+    Key? key,
+    required Animation animation,
   }) : super(key: key, listenable: animation);
 
   @override
   Widget build(BuildContext context) {
-    final Animation animation = listenable;
+    final Animation animation = listenable as Animation<dynamic>;
     return Opacity(
       opacity: animation.value / 200,
       child: LoadAssetImage("app_start_1",
@@ -127,8 +127,8 @@ class AnimationImage extends AnimatedWidget {
 }
 
 class GrowTransition extends StatelessWidget {
-  final Widget child;
-  final Animation animation;
+  final Widget? child;
+  final Animation? animation;
 
   GrowTransition({this.child, this.animation});
 
@@ -136,21 +136,21 @@ class GrowTransition extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: AnimatedBuilder(
-        animation: animation,
+        animation: animation!,
         builder: _animatedBuilder,
         child: child,
       ),
     );
   }
 
-  Widget _animatedBuilder(BuildContext context, Widget child) {
+  Widget _animatedBuilder(BuildContext context, Widget? child) {
     return Opacity(
       child: Container(
         child: child,
-        height: animation.value,
-        width: animation.value,
+        height: animation!.value,
+        width: animation!.value,
       ),
-      opacity: animation.value / 200,
+      opacity: animation!.value / 200,
     );
   }
 }

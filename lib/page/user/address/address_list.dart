@@ -35,8 +35,8 @@ class _AddressListState extends BasePageState<AddressList> {
     return CommonBackTopBar(title: "地址表");
   }
 
-  StreamSubscription listen;
-  BuildContext myContext;
+  StreamSubscription? listen;
+  BuildContext? myContext;
 
   @override
   void subInitState() {
@@ -49,13 +49,13 @@ class _AddressListState extends BasePageState<AddressList> {
 
   _getAddressList() {
     var tempJson = {
-      "uid": UserInfoData.instance.id,
-      "salt": UserInfoData.instance.salt
+      "uid": UserInfoData.instance!.id,
+      "salt": UserInfoData.instance!.salt
     };
     ListViewModel.get(null, getCancelToken()).getData(
         type: VoidModel.ADDRESS_LIST,
         params2: {
-          "uid": UserInfoData.instance.id,
+          "uid": UserInfoData.instance!.id,
           "sign": getSign(tempJson)
         }).then((data) {
       setState(() {
@@ -79,14 +79,14 @@ class _AddressListState extends BasePageState<AddressList> {
 
   _deleteAddress(id) {
     var tempJson = {
-      "uid": UserInfoData.instance.id,
+      "uid": UserInfoData.instance!.id,
       "id": id,
-      "salt": UserInfoData.instance.salt
+      "salt": UserInfoData.instance!.salt
     };
     VoidViewModel.get(this, getCancelToken()).getData(
         type: VoidModel.DELETE_ADDRESS,
         params2: {
-          "uid": UserInfoData.instance.id,
+          "uid": UserInfoData.instance!.id,
           "id": id,
           "sign": getSign(tempJson)
         }).then((data) {
@@ -99,14 +99,14 @@ class _AddressListState extends BasePageState<AddressList> {
 
   _changeDefaultAddress(id) {
     var tempJson = {
-      "uid": UserInfoData.instance.id,
+      "uid": UserInfoData.instance!.id,
       "id": id,
-      "salt": UserInfoData.instance.salt
+      "salt": UserInfoData.instance!.salt
     };
     VoidViewModel.get(this, getCancelToken()).getData(
         type: VoidModel.CHANGE_ADDRESS,
         params2: {
-          "uid": UserInfoData.instance.id,
+          "uid": UserInfoData.instance!.id,
           "id": id,
           "sign": getSign(tempJson)
         }).then((data) {
@@ -194,7 +194,7 @@ class _AddressListState extends BasePageState<AddressList> {
                       text: "增加收货地址",
                       onPressed: () {
                         if(slidableController.activeState!=null){
-                          slidableController.activeState.close();
+                          slidableController.activeState!.close();
                         }
                         NavigatorUtils.push(context, ShopRouter.ADDRESS_ADDOREDIT);
                       },

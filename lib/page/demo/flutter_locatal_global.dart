@@ -13,9 +13,9 @@ import 'package:flutterjdshop/provider/counter_provider.dart';
 ///全局坐标相对于整个屏幕的
 ///局部坐标相对于父widget
 class LocalToGlobalPage extends StatefulWidget {
-  final Map<String, List<String>> address;
+  final Map<String, List<String>>? address;
 
-  const LocalToGlobalPage({Key key, this.address}) : super(key: key);
+  const LocalToGlobalPage({Key? key, this.address}) : super(key: key);
 
   @override
   _LocalToGlobalPageState createState() => _LocalToGlobalPageState();
@@ -39,7 +39,7 @@ class _LocalToGlobalPageState extends BasePageState<LocalToGlobalPage> {
         children: <Widget>[
           GestureDetector(
             onHorizontalDragUpdate: (DragUpdateDetails details){
-              RenderBox findRenderObject = _testKey.currentContext.findRenderObject();
+              RenderBox findRenderObject = _testKey.currentContext!.findRenderObject() as RenderBox;
               var dx = findRenderObject.globalToLocal(details.globalPosition).dx;
               Log.e("${details.globalPosition.dx}=$dx");
             },
@@ -70,8 +70,8 @@ class _LocalToGlobalPageState extends BasePageState<LocalToGlobalPage> {
 
   /// design/4商品/index.html#artboard18
   void _showHint() {
-    final RenderBox hint = _hintKey.currentContext.findRenderObject();
-    final RenderBox overlay = Overlay.of(context).context.findRenderObject();
+    final RenderBox hint = _hintKey.currentContext!.findRenderObject() as RenderBox;
+    final RenderBox overlay = Overlay.of(context)!.context.findRenderObject() as RenderBox;
     var dy = hint.localToGlobal(Offset.zero).dy;
     var dx = hint.localToGlobal(Offset.zero).dx;
     var dy2 = overlay.localToGlobal(Offset.zero).dy;

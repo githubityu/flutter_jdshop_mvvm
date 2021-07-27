@@ -16,7 +16,7 @@ import 'CartNum.dart';
 class ProductContentFirst extends StatefulWidget {
   final List productContentList;
 
-  const ProductContentFirst(this.productContentList,{Key key})
+  const ProductContentFirst(this.productContentList,{Key? key})
       : super(key: key);
 
   @override
@@ -25,13 +25,13 @@ class ProductContentFirst extends StatefulWidget {
 
 class _ProductContentFirstState extends State<ProductContentFirst>
     with AutomaticKeepAliveClientMixin {
-  ProductContentitem _productContent;
+  ProductContentitem? _productContent;
 
-  List _attr = [];
+  List? _attr = [];
 
-  String _selectedValue;
+  String? _selectedValue;
 
-  var actionEventBus;
+  late var actionEventBus;
 
 
   @override
@@ -40,7 +40,7 @@ class _ProductContentFirstState extends State<ProductContentFirst>
     super.initState();
     this._productContent = widget.productContentList[0];
 
-    this._attr = this._productContent.attr;
+    this._attr = this._productContent!.attr;
 
     _initAttr();
 
@@ -61,18 +61,18 @@ class _ProductContentFirstState extends State<ProductContentFirst>
         children: <Widget>[
           AspectRatio(
             aspectRatio: 16 / 12,
-            child: LoadImage("${getFullPath(this._productContent.pic)}", fit: BoxFit.cover),
+            child: LoadImage("${getFullPath(this._productContent!.pic!)}", fit: BoxFit.cover),
           ),
           //标题
           Container(
             padding: EdgeInsets.only(top: 10),
-            child: Text("${this._productContent.title}",
+            child: Text("${this._productContent!.title}",
                 style: TextStyle(
                     color: Colors.black87, fontSize: AppSize.sp(36))),
           ),
           Container(
               padding: EdgeInsets.only(top: 10),
-              child: Text("${this._productContent.subTitle}",
+              child: Text("${this._productContent!.subTitle}",
                   style: TextStyle(
                       color: Colors.black54,
                       fontSize: AppSize.sp(28)))),
@@ -86,7 +86,7 @@ class _ProductContentFirstState extends State<ProductContentFirst>
                   child: Row(
                     children: <Widget>[
                       Text("特价: "),
-                      Text("¥${this._productContent.price}",
+                      Text("¥${this._productContent!.price}",
                           style: TextStyle(
                               color: Colors.red,
                               fontSize: AppSize.sp(46))),
@@ -99,7 +99,7 @@ class _ProductContentFirstState extends State<ProductContentFirst>
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
                       Text("原价: "),
-                      Text("¥${this._productContent.oldPrice}",
+                      Text("¥${this._productContent!.oldPrice}",
                           style: TextStyle(
                               color: Colors.black38,
                               fontSize: AppSize.sp(28),
@@ -111,7 +111,7 @@ class _ProductContentFirstState extends State<ProductContentFirst>
             ),
           ),
           //筛选
-          this._attr.length > 0
+          this._attr!.length > 0
               ? Container(
             margin: EdgeInsets.only(top: 10),
             height: AppSize.height(80),
@@ -157,7 +157,7 @@ class _ProductContentFirstState extends State<ProductContentFirst>
 
   //初始化Attr 格式化数据
   _initAttr() {
-    var attr = this._attr;
+    var attr = this._attr!;
     for (var i = 0; i < attr.length; i++) {
       attr[i].attrList.clear(); //清空数组里面的数据
 
@@ -178,7 +178,7 @@ class _ProductContentFirstState extends State<ProductContentFirst>
 
   //改变属性值
   _changeAttr(cate, title, setBottomState) {
-    var attr = this._attr;
+    var attr = this._attr!;
     for (var i = 0; i < attr.length; i++) {
       if (attr[i].cate == cate) {
         for (var j = 0; j < attr[i].attrList.length; j++) {
@@ -198,7 +198,7 @@ class _ProductContentFirstState extends State<ProductContentFirst>
 
   //获取选中的值
   _getSelectedAttrValue() {
-    var _list = this._attr;
+    var _list = this._attr!;
     List tempArr = [];
     for (var i = 0; i < _list.length; i++) {
       for (var j = 0; j < _list[i].attrList.length; j++) {
@@ -211,7 +211,7 @@ class _ProductContentFirstState extends State<ProductContentFirst>
     setState(() {
       this._selectedValue = tempArr.join(',');
       //给筛选属性赋值
-      this._productContent.selectedAttr = this._selectedValue;
+      this._productContent!.selectedAttr = this._selectedValue;
     });
   }
 
@@ -241,7 +241,7 @@ class _ProductContentFirstState extends State<ProductContentFirst>
   //封装一个组件 渲染attr
   List<Widget> _getAttrWidget(setBottomState) {
     List<Widget> attrList = [];
-    this._attr.forEach((attrItem) {
+    this._attr!.forEach((attrItem) {
       attrList.add(Wrap(
         children: <Widget>[
           Container(
@@ -276,7 +276,7 @@ class _ProductContentFirstState extends State<ProductContentFirst>
                 behavior: HitTestBehavior.opaque,
                 //解决showModalBottomSheet点击消失的问题
                 onTap: () {
-                  return false;
+                  return;
                 },
                 child: Stack(
                   children: <Widget>[

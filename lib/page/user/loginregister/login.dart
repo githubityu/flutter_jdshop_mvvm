@@ -97,7 +97,7 @@ class _LoginPageState extends BasePageState<LoginPage> {
                     }).then((onValue) {
                       var map =
                           (onValue as Map<String, dynamic>)["userinfo"][0];
-                      UserInfoData.instance.userInfo = map;
+                      UserInfoData.instance!.userInfo = map;
                       Future.delayed(Duration(milliseconds:  200), () {
                         eventBus.fire(MineChangeEvent());
                         NavigatorUtils.pop(context);

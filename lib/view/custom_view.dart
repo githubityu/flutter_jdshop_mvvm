@@ -8,19 +8,19 @@ import 'package:flutterjdshop/view/theme_ui.dart';
 
 import 'flutter_iconfont.dart';
 
-typedef ImgBtnFunc = void Function(String);
+typedef ImgBtnFunc = void Function(String?);
 
 class ImageButton extends StatelessWidget {
-  double width;
-  double height;
-  double iconSize;
-  Color iconColor;
+  double? width;
+  double? height;
+  double? iconSize;
+  Color? iconColor;
 
   String assetPath;
-  String text;
+  String? text;
 
-  TextStyle textStyle;
-  ImgBtnFunc func;
+  TextStyle? textStyle;
+  ImgBtnFunc? func;
 
   ImageButton(this.assetPath,
       {this.width, this.height, this.iconSize, this.text, this.textStyle
@@ -29,7 +29,7 @@ class ImageButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: ()=>func(text),
+      onTap: ()=>func!(text),
       child: SizedBox(
 
         child: Column(
@@ -43,7 +43,7 @@ class ImageButton extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 4),
-                child: Text(text, style: textStyle),
+                child: Text(text!, style: textStyle),
               )
             ]),
       ),
@@ -52,14 +52,14 @@ class ImageButton extends StatelessWidget {
 }
 
 class IconBtn extends StatelessWidget {
-  double iconSize;
-  Color iconColor;
+  double? iconSize;
+  Color? iconColor;
 
   final IconData icon;
-  String text;
+  String? text;
 
-  TextStyle textStyle;
-  ImgBtnFunc func;
+  TextStyle? textStyle;
+  ImgBtnFunc? func;
 
   IconBtn(this.icon,
       {this.iconColor, this.text, this.textStyle
@@ -68,7 +68,7 @@ class IconBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: ()=>func(text),
+      onTap: ()=>func!(text),
       child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -76,7 +76,7 @@ class IconBtn extends StatelessWidget {
               Icon(icon,color: iconColor),
               Padding(
                 padding: const EdgeInsets.only(top: 1),
-                child: Text(text, style: textStyle),
+                child: Text(text!, style: textStyle),
               )
             ]),
     );
@@ -89,11 +89,11 @@ class IconBtn extends StatelessWidget {
  */
 
 class ThemeCard extends StatelessWidget {
-  final String title;
-  final String price;
-  final String number;
-  final String imgUrl;
-  final String descript;
+  final String? title;
+  final String? price;
+  final String? number;
+  final String? imgUrl;
+  final String? descript;
   ThemeCard({
     this.title,
     this.price,
@@ -124,7 +124,7 @@ class ThemeCard extends StatelessWidget {
                               topLeft: Radius.circular(8),
                               topRight: Radius.circular(8)),
                           child: Image.network(
-                            imgUrl,
+                            imgUrl!,
                             fit: BoxFit.cover,
                           ),),
                     ),
@@ -137,21 +137,21 @@ class ThemeCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              title,
+                              title!,
                               overflow: TextOverflow.ellipsis,
                               maxLines: 1,
                               textAlign: TextAlign.left,
                               style: ThemeTextStyle.cardTitleStyle,
                             ),
                             Text(
-                              descript,
+                              descript!,
                               textAlign: TextAlign.left,
                               overflow: TextOverflow.ellipsis,
                               maxLines: 2,
                               style: ThemeTextStyle.cardNumStyle,
                             ),
                             Text(
-                              price,
+                              price!,
                               textAlign: TextAlign.left,
                               style: ThemeTextStyle.cardPriceStyle,
                             ),
@@ -166,7 +166,7 @@ class ThemeCard extends StatelessWidget {
                       alignment:Alignment.center,
                       height: AppSize.height(232),
                       child:Text(
-                        number,
+                        number!,
                         textAlign: TextAlign.center,
                         style: ThemeTextStyle.cardTitleStyle,
                       ),
@@ -188,9 +188,9 @@ class ThemeCard extends StatelessWidget {
 }
 
 class ThemeBtnCard extends StatelessWidget {
-  final String title;
-  final String price;
-  final String imgUrl;
+  final String? title;
+  final String? price;
+  final String? imgUrl;
 
   ThemeBtnCard({
     this.title,
@@ -211,18 +211,18 @@ class ThemeBtnCard extends StatelessWidget {
                   topLeft: Radius.circular(8),
                   topRight: Radius.circular(8)),
               child:Image.network(
-                imgUrl,
+                imgUrl!,
                 fit: BoxFit.cover,
               ),)
           ,
           Padding(
-              child: Text(title,style: ThemeTextStyle.cardTitleStyle,
+              child: Text(title!,style: ThemeTextStyle.cardTitleStyle,
                 maxLines:2,overflow: TextOverflow.clip,
               ),
               padding: EdgeInsets.all(AppSize.width(30))),
           Padding(
               padding: EdgeInsets.only(left: AppSize.width(30)),
-              child:Text(price,style: ThemeTextStyle.cardPriceStyle)),
+              child:Text(price!,style: ThemeTextStyle.cardPriceStyle)),
           Padding(
               padding: EdgeInsets.only(left: AppSize.width(30)),
               child:Image.asset("images/exchange_btn.png",fit: BoxFit.cover))
@@ -258,7 +258,7 @@ class Badge extends StatelessWidget {
 class LoadingDialog extends Dialog {
   final String text;
 
-  const LoadingDialog({Key key, @required this.text}) : super(key: key);
+  const LoadingDialog({Key? key, required this.text}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

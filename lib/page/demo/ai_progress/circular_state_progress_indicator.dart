@@ -13,21 +13,21 @@ class AirCircularStateProgressIndicator extends StatefulWidget {
   /// default value
   static const double DEFAULT_VALUE = 10;
 
-  Size _size;
-  double _min;
-  double _max;
-  num _value;
-  Color _pathColor;
-  Color _valueColor;
-  double _pathStrokeWidth;
-  double _valueStrokeWidth;
-  bool _filled;
-  bool _useCenter;
-  bool _roundCap;
+  late Size _size;
+  double? _min;
+  double? _max;
+  num? _value;
+  late Color _pathColor;
+  late Color _valueColor;
+  late double _pathStrokeWidth;
+  late double _valueStrokeWidth;
+  late bool _filled;
+  bool? _useCenter;
+  late bool _roundCap;
 
   /// constructor
   AirCircularStateProgressIndicator({
-    @required Size size,
+    required Size size,
     double min = LIMITED_MIN_VALUE,
     double max = LIMITED_MAX_VALUE,
     num value = DEFAULT_VALUE,
@@ -121,16 +121,16 @@ class A extends CustomPainter with ProgressMixin {
   static const double DEFAULT_START_ANGLE = -1.5;
 
   bool _shouldRepaint;
-  num _min;
-  num _max;
-  num _value;
+  num? _min;
+  num? _max;
+  num? _value;
   Paint _pathPaint;
   Paint _valuePaint;
 
   ///判断是否和中心点连接
-  bool _useCenter;
+  bool? _useCenter;
 
-  Size size;
+  late Size size;
 
   A._(this._shouldRepaint, this._min, this._max, this._value, this._pathPaint,
       this._valuePaint, this._useCenter);
@@ -160,7 +160,7 @@ class A extends CustomPainter with ProgressMixin {
   drawProgressValue(Paint paint, Canvas canvas, Size size) {
     // TODO: implement drawProgressValue
     canvas.drawArc(Rect.fromCircle(center: _getPoint, radius: _getRadius),
-        DEFAULT_START_ANGLE, _getSweepAngle, _useCenter, paint);
+        DEFAULT_START_ANGLE, _getSweepAngle, _useCenter!, paint);
   }
 
   ///求圆的中心
@@ -182,19 +182,19 @@ class A extends CustomPainter with ProgressMixin {
     if (_value == _min) {
       _value = 0;
     }
-    if (_value > _min && _value < _max / 2) {
-      return _value * 0.0612;
+    if (_value! > _min! && _value! < _max! / 2) {
+      return _value! * 0.0612;
     }
 
-    if (_value == _max / 2) {
-      return _value * 0.6;
+    if (_value == _max! / 2) {
+      return _value! * 0.6;
     }
 
-    if (_value > _max / 2 && _value < _max) {}
+    if (_value! > _max! / 2 && _value! < _max!) {}
 
     if (_value == _max) {
-      return maxSweepAngleIncludeCap;
+      return maxSweepAngleIncludeCap as double;
     }
-    return _value * 0.615;
+    return _value! * 0.615;
   }
 }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 typedef KeyboardShowCallback = void Function(bool isKeyboardShowing);
 
 class KeyboardDetector extends StatefulWidget {
-  KeyboardShowCallback keyboardShowCallback;
+  KeyboardShowCallback? keyboardShowCallback;
 
   Widget content;
 
@@ -17,14 +17,14 @@ class _KeyboardDetectorState extends State<KeyboardDetector>
     with WidgetsBindingObserver {
   @override
   void initState() {
-    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance!.addObserver(this);
     super.initState();
   }
 
   @override
   void didChangeMetrics() {
     super.didChangeMetrics();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
       print(MediaQuery.of(context).viewInsets.bottom);
       setState(() {
         widget.keyboardShowCallback
@@ -35,7 +35,7 @@ class _KeyboardDetectorState extends State<KeyboardDetector>
 
   @override
   void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
+    WidgetsBinding.instance!.removeObserver(this);
     super.dispose();
   }
 

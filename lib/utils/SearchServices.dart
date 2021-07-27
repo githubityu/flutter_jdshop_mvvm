@@ -27,7 +27,7 @@ class SearchServices {
       */
 
     try {
-      List searchListData = json.decode( SharedUtil.instance.getString('searchList'));
+      List searchListData = json.decode( SharedUtil.instance!.getString('searchList')!);
 
       print(searchListData);
       var hasData = searchListData.any((v) {
@@ -35,17 +35,17 @@ class SearchServices {
       });
       if (!hasData) {
         searchListData.add(keywords);
-        await SharedUtil.instance.saveString('searchList', json.encode(searchListData));
+        await SharedUtil.instance!.saveString('searchList', json.encode(searchListData));
       }
     } catch (e) {
-      List tempList = new List();
+      List tempList = List.empty();
       tempList.add(keywords);
-      await SharedUtil.instance.saveString('searchList', json.encode(tempList));
+      await SharedUtil.instance!.saveString('searchList', json.encode(tempList));
     }
   }
   static getHistoryList() async{
      try {
-      List searchListData = json.decode(await SharedUtil.instance.getString('searchList'));
+      List? searchListData = json.decode(await SharedUtil.instance!.getString('searchList')!);
       return searchListData;
     } catch (e) {
       return [];
@@ -53,12 +53,12 @@ class SearchServices {
   }
 
   static clearHistoryList() async{    
-      await SharedUtil.instance.remove('searchList');
+      await SharedUtil.instance!.remove('searchList');
   }
   static removeHistoryData(keywords) async{    
-      List searchListData = json.decode(await SharedUtil.instance.getString('searchList'));
+      List searchListData = json.decode(await SharedUtil.instance!.getString('searchList')!);
       searchListData.remove(keywords);
-      await SharedUtil.instance.saveString('searchList', json.encode(searchListData));
+      await SharedUtil.instance!.saveString('searchList', json.encode(searchListData));
   }
 
 }

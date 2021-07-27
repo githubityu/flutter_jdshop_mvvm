@@ -14,7 +14,7 @@ import '../load_image.dart';
 class SearchBar extends StatefulWidget implements PreferredSizeWidget {
 
   const SearchBar({
-    Key key,
+    Key? key,
     this.hintText: '',
     this.backImg: 'assets/images/ic_back_black.png',
     this.onPressed,
@@ -22,7 +22,7 @@ class SearchBar extends StatefulWidget implements PreferredSizeWidget {
 
   final String backImg;
   final String hintText;
-  final Function(String) onPressed;
+  final Function(String)? onPressed;
   
   @override
   _SearchBarState createState() => _SearchBarState();
@@ -86,7 +86,7 @@ class _SearchBarState extends State<SearchBar> {
                       onSubmitted: (val) {
                         FocusScope.of(context).unfocus();
                         // 点击软键盘的动作按钮时的回调
-                        widget.onPressed(val);
+                        widget.onPressed!(val);
                       },
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.only(top: 0.0, left: -8.0, right: -16.0, bottom: 14.0),
@@ -106,7 +106,7 @@ class _SearchBarState extends State<SearchBar> {
                           ),
                           onTap: () {
                             /// https://github.com/flutter/flutter/issues/36324
-                            SchedulerBinding.instance.addPostFrameCallback((_) {
+                            SchedulerBinding.instance!.addPostFrameCallback((_) {
                               _controller.text = '';
                             });
                           },
@@ -133,7 +133,7 @@ class _SearchBarState extends State<SearchBar> {
                       color: isDark ?  Colours.dark_app_main : Colours.app_main,
                       onPressed:() {
                         FocusScope.of(context).unfocus();
-                        widget.onPressed(_controller.text);
+                        widget.onPressed!(_controller.text);
                       },
                       child: Text('搜索', style: TextStyle(fontSize: Dimens.font_sp14)),
                   ),

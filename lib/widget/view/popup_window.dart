@@ -15,17 +15,17 @@ const double _kWindowVerticalPadding = 0.0;
 const double _kWindowScreenPadding = 0.0;
 
 ///弹窗方法
-Future<T> showPopupWindow<T>({
-  @required BuildContext context,
-  RelativeRect position,
-  @required Widget child,
+Future<T?> showPopupWindow<T>({
+  required BuildContext context,
+  RelativeRect? position,
+  required Widget child,
   double elevation: 8.0,
-  String semanticLabel,
-  bool fullWidth,
+  String? semanticLabel,
+  bool? fullWidth,
   bool isShowBg = false,
 }) {
   assert(context != null);
-  String label = semanticLabel;
+  String? label = semanticLabel;
   switch (defaultTargetPlatform) {
     case TargetPlatform.iOS:
       label = semanticLabel;
@@ -57,8 +57,8 @@ Future<T> showPopupWindow<T>({
 ///自定义弹窗路由：参照_PopupMenuRoute修改的
 class _PopupWindowRoute<T> extends PopupRoute<T> {
   _PopupWindowRoute({
-    @required BuildContext context,
-    RouteSettings settings,
+    required BuildContext context,
+    RouteSettings? settings,
     this.child,
     this.position,
     this.elevation: 8.0,
@@ -71,22 +71,22 @@ class _PopupWindowRoute<T> extends PopupRoute<T> {
     assert(child != null);
   }
 
-  final Widget child;
-  final RelativeRect position;
+  final Widget? child;
+  final RelativeRect? position;
   double elevation;
-  final ThemeData theme;
-  final String semanticLabel;
-  final bool fullWidth;
-  final bool isShowBg;
+  final ThemeData? theme;
+  final String? semanticLabel;
+  final bool? fullWidth;
+  final bool? isShowBg;
   
   @override
-  Color get barrierColor => null;
+  Color? get barrierColor => null;
 
   @override
   bool get barrierDismissible => true;
 
   @override
-  final String barrierLabel;
+  final String? barrierLabel;
 
   @override
   Duration get transitionDuration => _kWindowDuration;
@@ -108,7 +108,7 @@ class _PopupWindowRoute<T> extends PopupRoute<T> {
       fullWidth: fullWidth,
     );
     if (theme != null) {
-      win = Theme(data: theme, child: win);
+      win = Theme(data: theme!, child: win);
     }
 
     return MediaQuery.removePadding(
@@ -126,7 +126,7 @@ class _PopupWindowRoute<T> extends PopupRoute<T> {
               child: Container(
                 width: double.infinity,
                 height: double.infinity,
-                color: isShowBg ? const Color(0x99000000) : null,
+                color: isShowBg! ? const Color(0x99000000) : null,
                 child: CustomSingleChildLayout(
                   delegate: _PopupWindowLayoutDelegate(
                       position, null, Directionality.of(context)),
@@ -144,15 +144,15 @@ class _PopupWindowRoute<T> extends PopupRoute<T> {
 ///自定义弹窗控件：对自定义的弹窗内容进行再包装，添加长宽、动画等约束条件
 class _PopupWindow<T> extends StatelessWidget {
   const _PopupWindow({
-    Key key,
+    Key? key,
     this.route,
     this.semanticLabel,
     this.fullWidth: false,
   }) : super(key: key);
 
-  final _PopupWindowRoute<T> route;
-  final String semanticLabel;
-  final bool fullWidth;
+  final _PopupWindowRoute<T>? route;
+  final String? semanticLabel;
+  final bool? fullWidth;
 
   @override
   Widget build(BuildContext context) {
@@ -167,28 +167,28 @@ class _PopupWindow<T> extends StatelessWidget {
 
     final Widget child = ConstrainedBox(
       constraints: BoxConstraints(
-        minWidth: fullWidth ? double.infinity : _kWindowMinWidth,
-        maxWidth: fullWidth ? double.infinity : _kWindowMaxWidth,
+        minWidth: fullWidth! ? double.infinity : _kWindowMinWidth,
+        maxWidth: fullWidth! ? double.infinity : _kWindowMaxWidth,
       ),
       child: SingleChildScrollView(
         padding:
         const EdgeInsets.symmetric(vertical: _kWindowVerticalPadding),
-        child: route.child,
+        child: route!.child,
       )
     );
 
     return AnimatedBuilder(
-      animation: route.animation,
-      builder: (BuildContext context, Widget child) {
+      animation: route!.animation!,
+      builder: (BuildContext context, Widget? child) {
         return Opacity(
-          opacity: opacity.evaluate(route.animation),
+          opacity: opacity.evaluate(route!.animation!),
           child: Material(
-            type: route.elevation == 0 ? MaterialType.transparency : MaterialType.card,
-            elevation: route.elevation,
+            type: route!.elevation == 0 ? MaterialType.transparency : MaterialType.card,
+            elevation: route!.elevation,
             child: Align(
               alignment: AlignmentDirectional.topEnd,
-              widthFactor: width.evaluate(route.animation),
-              heightFactor: height.evaluate(route.animation),
+              widthFactor: width.evaluate(route!.animation!),
+              heightFactor: height.evaluate(route!.animation!),
               child: Semantics(
                 scopesRoute: true,
                 namesRoute: true,
@@ -210,8 +210,8 @@ class _PopupWindowLayoutDelegate extends SingleChildLayoutDelegate {
   _PopupWindowLayoutDelegate(
       this.position, this.selectedItemOffset, this.textDirection);
 
-  final RelativeRect position;
-  final double selectedItemOffset;
+  final RelativeRect? position;
+  final double? selectedItemOffset;
   final TextDirection textDirection;
 
   @override
@@ -219,7 +219,7 @@ class _PopupWindowLayoutDelegate extends SingleChildLayoutDelegate {
     // The menu can be at most the size of the overlay minus 8.0 pixels in each
     // direction.
     return BoxConstraints.loose(constraints.biggest -
-        const Offset(_kWindowScreenPadding * 2.0, _kWindowScreenPadding * 2.0));
+        const Offset(_kWindowScreenPadding * 2.0, _kWindowScreenPadding * 2.0) as Size);
   }
 
   @override
@@ -231,30 +231,30 @@ class _PopupWindowLayoutDelegate extends SingleChildLayoutDelegate {
     // Find the ideal vertical position.
     double y;
     if (selectedItemOffset == null) {
-      y = position.top;
+      y = position!.top;
     } else {
-      y = position.top +
-          (size.height - position.top - position.bottom) / 2.0 -
-          selectedItemOffset;
+      y = position!.top +
+          (size.height - position!.top - position!.bottom) / 2.0 -
+          selectedItemOffset!;
     }
 
     // Find the ideal horizontal position.
-    double x;
-    if (position.left > position.right) {
+    late double x;
+    if (position!.left > position!.right) {
       // Menu button is closer to the right edge, so grow to the left, aligned to the right edge.
-      x = size.width - position.right - childSize.width;
-    } else if (position.left < position.right) {
+      x = size.width - position!.right - childSize.width;
+    } else if (position!.left < position!.right) {
       // Menu button is closer to the left edge, so grow to the right, aligned to the left edge.
-      x = position.left;
+      x = position!.left;
     } else {
       // Menu button is equidistant from both edges, so grow in reading direction.
       assert(textDirection != null);
       switch (textDirection) {
         case TextDirection.rtl:
-          x = size.width - position.right - childSize.width;
+          x = size.width - position!.right - childSize.width;
           break;
         case TextDirection.ltr:
-          x = position.left;
+          x = position!.left;
           break;
       }
     }

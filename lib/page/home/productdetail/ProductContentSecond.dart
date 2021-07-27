@@ -4,7 +4,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 class ProductContentSecond extends StatefulWidget {
 
   final List _productContentList;
-  ProductContentSecond(this._productContentList,{Key key}) : super(key: key);
+  ProductContentSecond(this._productContentList,{Key? key}) : super(key: key);
 
   _ProductContentSecondState createState() => _ProductContentSecondState();
 }

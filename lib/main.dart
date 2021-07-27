@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutterjdshop/config/user_info_data.dart';
 import 'package:flutterjdshop/page/splash_page.dart';
 import 'package:flutterjdshop/provider/Cart.dart';
@@ -31,16 +31,16 @@ void main() async {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   }
-  FlutterStatusbarcolor.setStatusBarWhiteForeground(false);
+  // FlutterStatusbarcolor.setStatusBarWhiteForeground(false);
 }
 
 class MyApp extends StatelessWidget {
-  final Widget home;
-  final ThemeData theme;
+  final Widget? home;
+  final ThemeData? theme;
   MyApp({this.home, this.theme}) {
     Log.init();
     NavigatorUtils.initRouter();
-    UserInfoData.instance.getUserInfo;
+    UserInfoData.instance!.getUserInfo;
   }
 
   @override
@@ -55,31 +55,34 @@ class MyApp extends StatelessWidget {
       ],
       child: Consumer<ThemeProvider>(
         builder: (context, provider, child) {
-          return MaterialApp(
-            //        debugShowCheckedModeBanner: false,
-            home: home ?? SplashPage(),
-            navigatorKey: Application.navKey,
-            onGenerateRoute: Application.router.generator,
-            theme: theme??provider.getTheme(),
-            darkTheme: provider.getTheme(isDarkMode: true),
-            themeMode: provider.getThemeMode(),
-            localizationsDelegates: const [
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            navigatorObservers: [
-              MyNavigatorObserver.getInstance()
-            ],
-            supportedLocales: const [Locale('zh', 'CH'), Locale('en', 'US')],
-            builder: (context, child) {
-              /// 保证文字大小不受手机系统设置影响 https://www.kikt.top/posts/flutter/layout/dynamic-text/
-              return MediaQuery(
-                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                // 或者 MediaQueryData.fromWindow(WidgetsBinding.instance.window).copyWith(textScaleFactor: 1.0),
-                child: child,
-              );
-            },
+          return ScreenUtilInit(
+            designSize: Size(1334, 750),
+            builder:()=> MaterialApp(
+              //        debugShowCheckedModeBanner: false,
+              home: home ?? SplashPage(),
+              navigatorKey: Application.navKey,
+              onGenerateRoute: Application.router.generator,
+              theme: theme??provider.getTheme(),
+              darkTheme: provider.getTheme(isDarkMode: true),
+              themeMode: provider.getThemeMode(),
+              localizationsDelegates: const [
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              navigatorObservers: [
+                MyNavigatorObserver.getInstance()!
+              ],
+              supportedLocales: const [Locale('zh', 'CH'), Locale('en', 'US')],
+              builder: (context, child) {
+                /// 保证文字大小不受手机系统设置影响 https://www.kikt.top/posts/flutter/layout/dynamic-text/
+                return MediaQuery(
+                  data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                  // 或者 MediaQueryData.fromWindow(WidgetsBinding.instance.window).copyWith(textScaleFactor: 1.0),
+                  child: child!,
+                );
+              },
+            ),
           );
         },
       ),

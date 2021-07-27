@@ -50,7 +50,7 @@ class CartServices {
       */
 
     try {
-      List cartListData = json.decode(SharedUtil.instance.getString('cartList'));
+      List cartListData = json.decode(SharedUtil.instance!.getString('cartList')!);
 
       //判断购物车有没有当前数据
       bool hasData = cartListData.any((value) {
@@ -65,15 +65,15 @@ class CartServices {
             cartListData[i]["count"] = cartListData[i]["count"] + 1;
           }
         }
-        await SharedUtil.instance.saveString('cartList', json.encode(cartListData));
+        await SharedUtil.instance!.saveString('cartList', json.encode(cartListData));
       } else {
         cartListData.add(item);
-        await SharedUtil.instance.saveString('cartList', json.encode(cartListData));
+        await SharedUtil.instance!.saveString('cartList', json.encode(cartListData));
       }
     } catch (e) {
       List tempList = [];
       tempList.add(item);
-      await SharedUtil.instance.saveString('cartList', json.encode(tempList));
+      await SharedUtil.instance!.saveString('cartList', json.encode(tempList));
     }
   }
 
@@ -99,14 +99,14 @@ class CartServices {
 
   //获取购物车选中的数据
   static getCheckOutData() async {
-    List cartListData = [];
+    List? cartListData = [];
     List tempCheckOutData = [];
     try {
-      cartListData = json.decode(SharedUtil.instance.getString('cartList'));
+      cartListData = json.decode(SharedUtil.instance!.getString('cartList')!);
     } catch (e) {
       cartListData = [];
     }
-    for (var i = 0; i < cartListData.length; i++) {
+    for (var i = 0; i < cartListData!.length; i++) {
       if (cartListData[i]["checked"] == true) {
         tempCheckOutData.add(cartListData[i]);
       }

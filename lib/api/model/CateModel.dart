@@ -3,7 +3,7 @@ import 'package:flutterjdshop/http/req_model.dart';
 
 class CateModel2 extends ReqModel {
   int type = 0;
-  String pid;
+  String? pid;
 
   @override
   String url() => "${API.pcate}";
@@ -20,33 +20,33 @@ class CateModel2 extends ReqModel {
 }
 
 class CateModel {
-  List<CateItemModel> result;
+  List<CateItemModel>? result;
 
   CateModel({this.result});
 
   CateModel.fromJson(List<dynamic> json) {
-    result = new List<CateItemModel>();
+    result =  List.empty();
     json.forEach((v) {
-      result.add(new CateItemModel.fromJson(v));
+      result!.add(new CateItemModel.fromJson(v));
     });
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.result != null) {
-      data['result'] = this.result.map((v) => v.toJson()).toList();
+      data['result'] = this.result!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class CateItemModel {
-  String sId;
-  String title;
-  Object status;
-  String pic;
-  String pid;
-  String sort;
+  String? sId;
+  String? title;
+  Object? status;
+  String? pic;
+  String? pid;
+  String? sort;
 
   CateItemModel(
       {this.sId, this.title, this.status, this.pic, this.pid, this.sort});

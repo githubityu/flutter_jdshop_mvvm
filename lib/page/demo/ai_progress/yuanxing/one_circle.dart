@@ -6,16 +6,16 @@ import 'package:flutterjdshop/bean/option_bean.dart';
 //传入颜色和值来画饼形状
 class OneCircle extends StatefulWidget {
   //饼状的颜色
-  final List<Color> colors;
+  final List<Color>? colors;
   final int index;
 
   //饼状的值
-  final List<double> values;
+  final List<double>? values;
 
-  OneCircle({Key key, this.colors, this.values, this.index: -1})
+  OneCircle({Key? key, this.colors, this.values, this.index: -1})
       : super(key: key) {
     ///两个值数量一定要一致
-    assert(colors.length == values.length);
+    assert(colors!.length == values!.length);
   }
 
   @override
@@ -38,10 +38,10 @@ class _OneCircleState extends State<OneCircle> {
 
 class B extends CustomPainter {
   //饼状的颜色
-  final List<Color> colors;
+  final List<Color>? colors;
 
   //饼状的值
-  final List<double> values;
+  final List<double>? values;
   bool _shouldRepaint;
 
   final int index;
@@ -49,7 +49,7 @@ class B extends CustomPainter {
   ///判断是否和中心点连接
   bool _useCenter;
 
-  Size size;
+  Size? size;
 
   var _valuePaint = Paint();
 
@@ -97,17 +97,17 @@ class B extends CustomPainter {
     double small = pi * 2 / getCount;
     double startNum = 0;
     List<OptionBean> ops = [];
-    List.generate(values.length, (index) {
+    List.generate(values!.length, (index) {
       var op = OptionBean(first: startNum);
       //设置画笔颜色和值
       //360
-      op.second = values[index] * small;
+      op.second = values![index] * small;
       startNum += op.second;
-      op.third = colors[index];
+      op.third = colors![index];
       ops.add(op);
     });
     return ops;
   }
 
-  double get getCount => values.reduce((x1, x2) => x1 + x2);
+  double get getCount => values!.reduce((x1, x2) => x1 + x2);
 }

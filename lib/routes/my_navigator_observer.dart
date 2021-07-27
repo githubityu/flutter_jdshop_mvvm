@@ -11,9 +11,9 @@ import 'package:flutter/material.dart';
 class MyNavigatorObserver extends NavigatorObserver {
   //清空某些页面
   List<Route<dynamic>> list = [];
-  static MyNavigatorObserver _instance;
+  static MyNavigatorObserver? _instance;
 
-  static MyNavigatorObserver getInstance() {
+  static MyNavigatorObserver? getInstance() {
     if (_instance == null) {
       _instance = MyNavigatorObserver();
     }
@@ -22,7 +22,7 @@ class MyNavigatorObserver extends NavigatorObserver {
 
   ///调用push的时候
   @override
-  void didPush(Route<dynamic> route, Route<dynamic> previousRoute) {
+  void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
     /// 首页不添加
     //路由名字
     print("didPushname${route.settings.name}");
@@ -34,7 +34,7 @@ class MyNavigatorObserver extends NavigatorObserver {
 
   ///调用pop的时候
   @override
-  void didPop(Route<dynamic> route, Route<dynamic> previousRoute) {
+  void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
     print("didPop${route.settings.name}");
     list.remove(route);
     print(list.length);

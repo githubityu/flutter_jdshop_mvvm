@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 
 class ThermometerPage extends StatefulWidget {
   final double width;
-  final double degree;
-  final double maxDegree;
-  final double minDegree;
+  final double? degree;
+  final double? maxDegree;
+  final double? minDegree;
 
   const ThermometerPage(
-      {Key key,
-        @required this.width,
+      {Key? key,
+        required this.width,
         this.degree,
         this.maxDegree,
         this.minDegree})
@@ -25,7 +25,7 @@ class ThermometerPage extends StatefulWidget {
 class ThermometerPageState extends State<ThermometerPage>
     with SingleTickerProviderStateMixin {
   double _fraction = 0.0;
-  Animation<double> animation;
+  late Animation<double> animation;
 
   @override
   void initState() {
@@ -51,14 +51,14 @@ class ThermometerPageState extends State<ThermometerPage>
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      painter: ThermometerPainter(width: widget.width, degree: widget.degree*_fraction),
+      painter: ThermometerPainter(width: widget.width, degree: widget.degree!*_fraction),
       size: Size(widget.width, widget.width),
     );
   }
 }
 
 class ThermometerPainter extends CustomPainter {
-  final double width;
+  final double? width;
   double degree;
   final double maxDegree;
   final double minDegree;
@@ -85,28 +85,28 @@ class ThermometerPainter extends CustomPainter {
 
     final border = Path()
       ..addArc(Rect.fromCircle(center: Offset(radius, radius), radius: radius),
-          degToRad(30), degToRad(300));
+          degToRad(30) as double, degToRad(300) as double);
     final w = cos(degToRad(30)) * radius;
     final h = sin(degToRad(30)) * radius;
 
     border.addPath(
         Path()
           ..addPolygon(
-              [Offset(radius + w, radius - h), Offset(width - h, radius - h)],
+              [Offset(radius + w, radius - h), Offset(width! - h, radius - h)],
               true),
         Offset(0, 0));
-    border.addArc(Rect.fromCircle(center: Offset(width - h, radius), radius: h),
-        degToRad(-90), degToRad(180));
+    border.addArc(Rect.fromCircle(center: Offset(width! - h, radius), radius: h),
+        degToRad(-90) as double, degToRad(180) as double);
     border.addPath(
         Path()
           ..addPolygon(
-              [Offset(radius + w, radius + h), Offset(width - h, radius + h)],
+              [Offset(radius + w, radius + h), Offset(width! - h, radius + h)],
               true),
         Offset(0, 0));
     canvas.drawPath(border, baseCircle);
 
     // draw calibration
-    final caliTotalWidth = width - h - radius - w;
+    final caliTotalWidth = width! - h - radius - w;
     final caliWidth = caliTotalWidth / 20;
 
     for (var i = 0; i < 21; i++) {
@@ -128,8 +128,8 @@ class ThermometerPainter extends CustomPainter {
     final baseBorder = Path()
       ..addArc(
           Rect.fromCircle(center: Offset(radius, radius), radius: radius - 4),
-          degToRad(30),
-          degToRad(300));
+          degToRad(30) as double,
+          degToRad(300) as double);
     canvas.drawPath(baseBorder, innerPaint);
 
     final ww = cos(degToRad(30)) * (radius - 4);
@@ -147,8 +147,8 @@ class ThermometerPainter extends CustomPainter {
         Offset(0, 0));
     innerBorder.addArc(
         Rect.fromCircle(center: Offset(degreeW, radius), radius: hh),
-        degToRad(-90),
-        degToRad(180));
+        degToRad(-90) as double,
+        degToRad(180) as double);
 //    innerBorder.addPath(
 //        Path()
 //          ..addPolygon(
@@ -168,8 +168,8 @@ class ThermometerPainter extends CustomPainter {
     lightPath
       ..addArc(
           Rect.fromCircle(center: Offset(radius, radius), radius: radius - 10),
-          degToRad(-120),
-          degToRad(90));
+          degToRad(-120) as double,
+          degToRad(90) as double);
     lightPath.addPath(
         Path()
           ..addPolygon([
@@ -179,8 +179,8 @@ class ThermometerPainter extends CustomPainter {
         Offset(0, 0));
     lightPath.addArc(
         Rect.fromCircle(center: Offset(degreeW - 8, radius), radius: lighth),
-        degToRad(-90),
-        degToRad(60));
+        degToRad(-90) as double,
+        degToRad(60) as double);
     canvas.drawPath(lightPath, lightPaint);
   }
 

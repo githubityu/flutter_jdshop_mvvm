@@ -11,16 +11,16 @@ import 'customcheckbox/my_check_box.dart';
 
 ///我们在使用Selector的时候也小心一些，包裹的粒度尽可能的小
 class SelectorPage extends StatefulWidget {
-  final Map<String, List<String>> address;
+  final Map<String, List<String>>? address;
 
-  const SelectorPage({Key key, this.address}) : super(key: key);
+  const SelectorPage({Key? key, this.address}) : super(key: key);
 
   @override
   _SelectorPageState createState() => _SelectorPageState();
 }
 
 class _SelectorPageState extends BasePageState<SelectorPage> {
-  var check = false;
+  bool? check = false;
   var myCheckBoxKey = GlobalKey();
 
   @override
@@ -44,7 +44,7 @@ class _SelectorPageState extends BasePageState<SelectorPage> {
             secondary: const Icon(Icons.shutter_speed),
             title: const Text('硬件加速'),
             value: this.check,
-            onChanged: (bool value) {
+            onChanged: (bool? value) {
               setState(() {
                 this.check = value;
                 (myCheckBoxKey.currentState as CheckTextBox).isChecked = check;
@@ -73,7 +73,7 @@ class _SelectorPageState extends BasePageState<SelectorPage> {
                 child: new Text("测试Selector")),
             padding: const EdgeInsets.all(8.0),
           ),
-          Selector(builder: (context, value, child) {
+          Selector(builder: (context, dynamic value, child) {
             return Text("$value");
           }, selector: (context, CounterProvider value) {
             return value.value;

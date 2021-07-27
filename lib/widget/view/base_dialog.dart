@@ -13,15 +13,15 @@ import 'package:flutterjdshop/utils/theme_utils.dart';
 class BaseDialog extends StatelessWidget {
 
   const BaseDialog({
-    Key key,
+    Key? key,
     this.title,
     this.onPressed,
     this.hiddenTitle : false,
-    @required this.child
+    required this.child
   }) : super(key : key);
 
-  final String title;
-  final Function onPressed;
+  final String? title;
+  final Function? onPressed;
   final Widget child;
   final bool hiddenTitle;
 
@@ -51,7 +51,7 @@ class BaseDialog extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 8.0),
                     child: Text(
-                      hiddenTitle ? '' : title,
+                      hiddenTitle ? '' : title!,
                       style: TextStyles.textBold18,
                     ),
                   ),
@@ -95,7 +95,7 @@ class BaseDialog extends StatelessWidget {
                           ),
                           textColor: Theme.of(context).primaryColor,
                           onPressed: () {
-                            onPressed();
+                            onPressed!();
                           },
                         ),
                       ),

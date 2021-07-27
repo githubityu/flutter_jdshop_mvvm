@@ -4,8 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:rxdart/rxdart.dart';
-import 'package:flutterjdshop/res/colors.dart';
 import 'package:flutterjdshop/res/dimens.dart';
 import 'package:flutterjdshop/res/gaps.dart';
 
@@ -14,8 +12,8 @@ import '../load_image.dart';
 /// 登录模块的输入框封装
 class MyTextField extends StatefulWidget {
   const MyTextField(
-      {Key key,
-      @required this.controller,
+      {Key? key,
+      required this.controller,
       this.maxLength: 16,
       this.autoFocus: false,
       this.keyboardType: TextInputType.text,
@@ -32,13 +30,13 @@ class MyTextField extends StatefulWidget {
   final bool autoFocus;
   final TextInputType keyboardType;
   final String hintText;
-  final FocusNode focusNode;
+  final FocusNode? focusNode;
   final bool isInputPwd;
   final bool isSend;
-  final Future<bool> Function() getVCode;
+  final Future<bool> Function()? getVCode;
 
   /// 用于集成测试寻找widget
-  final String keyName;
+  final String? keyName;
 
   @override
   _MyTextFieldState createState() => _MyTextFieldState();
@@ -46,15 +44,15 @@ class MyTextField extends StatefulWidget {
 
 class _MyTextFieldState extends State<MyTextField> {
   bool _isShowPwd = false;
-  bool _isShowDelete;
+  late bool _isShowDelete;
   bool _isClick = true;
 
   /// 倒计时秒数
   final int _second = 30;
 
   /// 当前秒数
-  int _currentSecond;
-  StreamSubscription _subscription;
+  late int _currentSecond;
+  StreamSubscription? _subscription;
 
   @override
   void initState() {
@@ -83,13 +81,13 @@ class _MyTextFieldState extends State<MyTextField> {
   }
 
   Future _getVCode() async {
-    bool isSuccess = await widget.getVCode();
+    bool isSuccess = await widget.getVCode!();
     if (isSuccess != null && isSuccess) {
       setState(() {
         _currentSecond = _second;
         _isClick = false;
       });
-      _subscription = Observable.periodic(Duration(seconds: 1), (i) => i)
+      _subscription = Stream.periodic(Duration(seconds: 1), (i) => i)
           .take(_second)
           .listen((i) {
         setState(() {
@@ -118,8 +116,8 @@ class _MyTextFieldState extends State<MyTextField> {
           // 数字、手机号限制格式为0到9(白名单)， 密码限制不包含汉字（黑名单）
           inputFormatters: (widget.keyboardType == TextInputType.number ||
                   widget.keyboardType == TextInputType.phone)
-              ? [WhitelistingTextInputFormatter(RegExp('[0-9]'))]
-              : [BlacklistingTextInputFormatter(RegExp('[\u4e00-\u9fa5]'))],
+              ? [FilteringTextInputFormatter(RegExp('[0-9]'), allow: true)]
+              : [FilteringTextInputFormatter(RegExp('[\u4e00-\u9fa5]'), allow: true)],
           decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(vertical: 16.0),
               hintText: widget.hintText,
@@ -129,7 +127,7 @@ class _MyTextFieldState extends State<MyTextField> {
                       BorderSide(color: themeData.primaryColor, width: 0.8)),
               enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
-                      color: Theme.of(context).dividerTheme.color,
+                      color: Theme.of(context).dividerTheme.color!,
                       width: 0.8))),
         ),
         Row(
@@ -184,25 +182,19 @@ class _MyTextFieldState extends State<MyTextField> {
                         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       ),
                     ),
-                    child: FlatButton(
+                    child: TextButton(
                       onPressed: _isClick ? _getVCode : null,
-                      textColor: themeData.primaryColor,
-                      color: Colors.transparent,
-                      disabledTextColor:
-                          isDark ? Colours.dark_text : Colors.white,
-                      disabledColor:
-                          isDark ? Colours.dark_text_gray : Colours.text_gray_c,
-                      shape: RoundedRectangleBorder(
+                      style: TextButton.styleFrom(primary: Colors.green,shape:RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(1.0),
                           side: BorderSide(
                             color: _isClick
                                 ? themeData.primaryColor
                                 : Colors.transparent,
                             width: 0.8,
-                          )),
+                          ))),
                       child: Text(
                         _isClick ? '获取验证码' : '（$_currentSecond s）',
-                        style: TextStyle(fontSize: Dimens.font_sp12),
+                        style: TextStyle(fontSize: Dimens.font_sp12,color:themeData.primaryColor ),
                       ),
                     ),
                   )

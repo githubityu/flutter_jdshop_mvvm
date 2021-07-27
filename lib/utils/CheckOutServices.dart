@@ -14,23 +14,23 @@ class CheckOutServices{
   }
   static removeUnSelectedCartItem() async{
 
-    List _cartList=[];
+    List? _cartList=[];
     List _tempList=[];
     //获取购物车的数据
     try {
-      List cartListData = json.decode(SharedUtil.instance.getString('cartList'));
+      List? cartListData = json.decode(SharedUtil.instance!.getString('cartList')!);
       _cartList = cartListData;
     } catch (e) {
       _cartList = [];
     }
  
-    for (var i = 0; i < _cartList.length; i++) {
+    for (var i = 0; i < _cartList!.length; i++) {
       if (_cartList[i]["checked"] == false) {
          _tempList.add(_cartList[i]);
       }
     }
 
-    SharedUtil.instance.saveString("cartList", json.encode(_tempList));
+    SharedUtil.instance!.saveString("cartList", json.encode(_tempList));
     
   }
 }

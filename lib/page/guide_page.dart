@@ -1,9 +1,10 @@
 import 'dart:async';
 
+
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-import 'package:flutter_swiper/flutter_swiper.dart';
+// import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:flutterjdshop/common/shared_util.dart';
 import 'package:flutterjdshop/config/const.dart';
@@ -20,14 +21,14 @@ class GuidePage extends StatefulWidget {
 class _GuidePageState extends State<GuidePage> {
   int _status = 0;
   List<String> _guideList = ['app_start_1', 'app_start_2', 'app_start_3'];
-  StreamSubscription _subscription;
+  StreamSubscription? _subscription;
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
+    WidgetsBinding.instance!.addPostFrameCallback((_) async {
       // 由于SpUtil未初始化，所以MaterialApp获取的为默认主题配置，这里同步一下。
-      if (SharedUtil.instance.getBoolean(Keys.keyGuide, defValue: true)) {
+      if (SharedUtil.instance!.getBoolean(Keys.keyGuide, defValue: true)) {
         /// 预先缓存图片，避免直接使用时因为首次加载造成闪动
         _guideList.forEach((image) {
           precacheImage(ImageUtils.getAssetImage(image), context);
@@ -50,9 +51,8 @@ class _GuidePageState extends State<GuidePage> {
   }
 
   void _initSplash() {
-    _subscription =
-        Observable.just(1).delay(Duration(milliseconds: 1500)).listen((_) {
-      SharedUtil.instance.saveBoolean(Keys.keyGuide, false);
+    Future.delayed(Duration(milliseconds: 1500),(){
+      SharedUtil.instance!.saveBoolean(Keys.keyGuide, false);
       _initGuide();
     });
   }
@@ -72,24 +72,6 @@ class _GuidePageState extends State<GuidePage> {
                 leftFactor: 0.33,
                 bottomFactor: 0,
                 child: const LoadAssetImage('banner',format: IMAGE_JPG,))
-            : Swiper(
-                key: const Key('swiper'),
-                itemCount: _guideList.length,
-                loop: false,
-                itemBuilder: (_, index) {
-                  return LoadAssetImage(
-                    _guideList[index],
-                    key: Key(_guideList[index]),
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                    height: double.infinity,
-                  );
-                },
-                onTap: (index) {
-                  if (index == _guideList.length - 1) {
-                    _goLogin();
-                  }
-                },
-              ));
+            : Container(child: Text("替换")),);
   }
 }

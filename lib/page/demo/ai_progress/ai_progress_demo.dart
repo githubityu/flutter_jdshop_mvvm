@@ -33,9 +33,9 @@ class _AiProgressDemoState extends BasePageState<AiProgressDemo>
     Colors.blue
   ];
 
-  AnimationController _controller;
-  Animation<int> _valueTween;
-  Animation<int> _valueTween2;
+  late AnimationController _controller;
+  Animation<int>? _valueTween;
+  Animation<int>? _valueTween2;
 
 
   @override
@@ -51,9 +51,9 @@ class _AiProgressDemoState extends BasePageState<AiProgressDemo>
       begin: 1,
       end: 5,
     ));
-    _valueTween.addListener(() {
+    _valueTween!.addListener(() {
       setState(() {
-        _index = _valueTween.value;
+        _index = _valueTween!.value;
         print("_index=$_index");
       });
     });
@@ -99,7 +99,7 @@ class _AiProgressDemoState extends BasePageState<AiProgressDemo>
               return OneCircle(
                 colors: colors,
                 values:  values,
-                index: _valueTween2==null?-1:_valueTween2.value,
+                index: _valueTween2==null?-1:_valueTween2!.value,
               );
             },
           ),
@@ -112,7 +112,7 @@ class _AiProgressDemoState extends BasePageState<AiProgressDemo>
               animation: _controller,
               builder: (context, child) {
                 return TwoCircle(Colors.red, Colors.blue, 10,
-                    _valueTween.value.toDouble() * 10);
+                    _valueTween!.value.toDouble() * 10);
               },
             ),
           ),
@@ -149,7 +149,7 @@ class _AiProgressDemoState extends BasePageState<AiProgressDemo>
                 ///可以通过其他值来改变颜色
                 valueColor:
                 ColorTween(begin: Colors.grey, end: Colors.blue)
-                    .transform(_index / 10),
+                    .transform(_index / 10)!,
                 pathStrokeWidth: 10.0,
                 valueStrokeWidth: 10.0,
                 useCenter: true,
@@ -166,7 +166,7 @@ class _AiProgressDemoState extends BasePageState<AiProgressDemo>
                   padding: EdgeInsets.all(5),
                   child: AirCircularStateProgressIndicator(
                     size: Size(100, 100),
-                    value: _valueTween == null ? 0 : _valueTween.value / 10 *
+                    value: _valueTween == null ? 0 : _valueTween!.value / 10 *
                         100,
                     //1~100
                     pathColor: Colors.white,
@@ -175,7 +175,7 @@ class _AiProgressDemoState extends BasePageState<AiProgressDemo>
                     valueColor:
                     ColorTween(begin: Colors.grey, end: Colors.blue)
                         .transform(
-                        _valueTween == null ? 0 : _valueTween.value / 10),
+                        _valueTween == null ? 0 : _valueTween!.value / 10)!,
                     pathStrokeWidth: 10.0,
                     valueStrokeWidth: 10.0,
                     useCenter: true,

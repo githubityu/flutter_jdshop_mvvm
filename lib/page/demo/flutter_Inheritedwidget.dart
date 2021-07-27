@@ -6,9 +6,9 @@ import 'package:flutterjdshop/page/demo/share_data_widget.dart';
 import 'package:flutterjdshop/view/app_topbar.dart';
 
 class InheritedWidgetPage extends StatefulWidget {
-  final Map<String, List<String>> address;
+  final Map<String, List<String>>? address;
 
-  const InheritedWidgetPage({Key key, this.address}) : super(key: key);
+  const InheritedWidgetPage({Key? key, this.address}) : super(key: key);
 
   @override
   _InheritedWidgetPageState createState() => _InheritedWidgetPageState();
@@ -64,7 +64,7 @@ class __TestWidgetState extends State<_TestWidget> {
   Widget build(BuildContext context) {
     //使用InheritedWidget中的共享数据
     return Text(ShareDataWidget
-        .of(context)
+        .of(context)!
         .data
         .toString());
   }

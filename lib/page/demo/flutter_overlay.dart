@@ -5,9 +5,9 @@ import 'package:flutterjdshop/base/base_page_state.dart';
 import 'package:flutterjdshop/view/app_topbar.dart';
 
 class OverlayPage extends StatefulWidget {
-  final Map<String, List<String>> address;
+  final Map<String, List<String>>? address;
 
-  const OverlayPage({Key key, this.address}) : super(key: key);
+  const OverlayPage({Key? key, this.address}) : super(key: key);
 
   @override
   _OverlayPageState createState() => _OverlayPageState();
@@ -54,8 +54,8 @@ class _OverlayPageState extends BasePageState<OverlayPage> {
 //      overlayEntry.remove();
 //    });
 //  }
-  OverlayEntry _weixinOverlayEntry;
-  OverlayState _overlayState;
+  OverlayEntry? _weixinOverlayEntry;
+  OverlayState? _overlayState;
   bool _isVisible = false;
 
   /// 展示微信下拉的弹窗
@@ -137,7 +137,7 @@ class _OverlayPageState extends BasePageState<OverlayPage> {
     if (!_isVisible) {
       _overlayState = Overlay.of(context);
       _weixinOverlayEntry = createWeixinButtonView();
-      _overlayState.insert(_weixinOverlayEntry);
+      _overlayState!.insert(_weixinOverlayEntry!);
       _isVisible = true;
     }
   }

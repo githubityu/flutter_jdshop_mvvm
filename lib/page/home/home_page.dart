@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutterjdshop/api/model/product_view_model.dart';
 import 'package:flutterjdshop/api/model/focus_view_model.dart';
 import 'package:flutterjdshop/base/base_page_state.dart';
@@ -21,9 +20,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends BasePageState<HomePage>
     with AutomaticKeepAliveClientMixin {
-  List _focusData = [];
-  List _hotProductList = [];
-  List _bestProductList = [];
+  List? _focusData = [];
+  List? _hotProductList = [];
+  List? _bestProductList = [];
   LoadState _layoutState = LoadState.State_Loading;
 
   @override
@@ -36,7 +35,7 @@ class _HomePageState extends BasePageState<HomePage>
   @override
   void initState() {
     // TODO: implement initState
-    WidgetsBinding.instance.addPostFrameCallback((callback) {
+    WidgetsBinding.instance!.addPostFrameCallback((callback) {
       //调用接口
       _getFocusData();
       _getHotProductData();
@@ -79,16 +78,8 @@ class _HomePageState extends BasePageState<HomePage>
   Widget _swiper() {
     return AspectRatio(
       aspectRatio: 2 / 1,
-      child: Swiper(
-        itemBuilder: (BuildContext context, int index) {
-          return new Image.network(
-            getFullPath(this._focusData[index].pic),
-            fit: BoxFit.fill,
-          );
-        },
-        itemCount: _focusData.length,
-        viewportFraction: 0.8,
-        scale: 0.9,
+      child:Container(
+        child: Text("轮播图"),
       ),
     );
   }
@@ -120,14 +111,14 @@ class _HomePageState extends BasePageState<HomePage>
               Container(
                 margin: EdgeInsets.only(right: AppSize.width(21)),
                 child: ExcludeSemantics(
-                    child: LoadImage(getFullPath(_hotProductList[index].sPic),
+                    child: LoadImage(getFullPath(_hotProductList![index].sPic),
                         width: AppSize.width(140), height: AppSize.width(140))),
               ),
               Container(
                 padding: EdgeInsets.only(top: AppSize.height(20)),
                 height: AppSize.height(44),
                 child: Text(
-                  "¥${this._hotProductList[index].price}",
+                  "¥${this._hotProductList![index].price}",
                   style: TextStyle(color: Colors.red),
                 ),
               )
@@ -135,7 +126,7 @@ class _HomePageState extends BasePageState<HomePage>
           );
         },
         scrollDirection: Axis.horizontal,
-        itemCount: _hotProductList.length,
+        itemCount: _hotProductList!.length,
       ),
     );
   }
@@ -148,7 +139,7 @@ class _HomePageState extends BasePageState<HomePage>
       child: Wrap(
         runSpacing: AppSize.width(10),
         spacing: AppSize.width(10),
-        children: this._bestProductList.map((value) {
+        children: this._bestProductList!.map((value) {
           return InkWell(
             onTap: () {
               NavigatorUtils.push(context, ShopRouter.PRODUCT_CONTENT,

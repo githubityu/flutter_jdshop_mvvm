@@ -51,7 +51,7 @@ class C extends CustomPainter {
   ///判断是否和中心点连接
   bool _useCenter;
 
-  Size size;
+  Size? size;
 
   double radius = 0;
 

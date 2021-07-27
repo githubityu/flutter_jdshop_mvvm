@@ -13,9 +13,9 @@ class SearchBar extends StatelessWidget {
   final FocusNode focusNode;
 
   SearchBar(
-      {@required this.focusNode,
-      @required this.controller,
-      @required this.onChangedCallback});
+      {required this.focusNode,
+      required this.controller,
+      required this.onChangedCallback});
 
   @override
   Widget build(BuildContext context) {
@@ -58,15 +58,15 @@ class SearchBar extends StatelessWidget {
 }
 
 class CommonBackTopBar extends StatelessWidget {
-  final String title;
-  final Widget leftW;
-  final Widget rightW;
-  final Function onLeft;
-  final Function onRight;
+  final String? title;
+  final Widget? leftW;
+  final Widget? rightW;
+  final Function? onLeft;
+  final Function? onRight;
   final bool isBack;
 
   CommonBackTopBar({
-    @required this.title,
+    required this.title,
     this.onRight,
     this.leftW,
     this.rightW,
@@ -81,7 +81,7 @@ class CommonBackTopBar extends StatelessWidget {
       children: <Widget>[
         Container(
           padding: EdgeInsets.only(top: 3),
-          child: Text(title,
+          child: Text(title!,
               textAlign: TextAlign.center,
               softWrap: true,
               overflow: TextOverflow.ellipsis,
@@ -95,7 +95,7 @@ class CommonBackTopBar extends StatelessWidget {
                 ? () {
                     Navigator.maybePop(context);
                   }
-                : onLeft,
+                : onLeft as void Function()?,
             child: isBack
                 ? Padding(
                     padding: EdgeInsets.only(left: AppSize.width(20)),
@@ -107,7 +107,7 @@ class CommonBackTopBar extends StatelessWidget {
         ),
         Positioned(
           right: 0,
-          child: InkWell(onTap: onRight, child: rightW ?? Container()),
+          child: InkWell(onTap: onRight as void Function()?, child: rightW ?? Container()),
         )
       ],
     );

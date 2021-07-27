@@ -11,9 +11,9 @@ import 'package:flutterjdshop/utils/image_utils.dart';
 import 'package:flutterjdshop/widget/load_image.dart';
 
 class SplashPage extends StatefulWidget {
-  SplashPage({Key key, this.title}) : super(key: key);
+  SplashPage({Key? key, this.title}) : super(key: key);
 
-  final String title;
+  final String? title;
 
 
   @override
@@ -23,30 +23,23 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  StreamSubscription splashSubscription;
   @override
   void initState() {
     // TODO: do something to init
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
+    WidgetsBinding.instance!.addPostFrameCallback((_) async {
       precacheImage(ImageUtils.getAssetImage('app_start_1'), context);
       goHome();
     });
   }
 
   goHome() {
-     splashSubscription = Observable.just(1).delay(Duration(milliseconds: 3000)).listen((_) {
-      if (SharedUtil.instance.getBoolean(Keys.keyGuide, defValue: true)) {
+    Future.delayed(Duration(milliseconds: 3000),(){
+      if (SharedUtil.instance!.getBoolean(Keys.keyGuide, defValue: true)) {
         NavigatorUtils.push(context, ShopRouter.GUIDE_PAGE, replace: true);
       } else {
         NavigatorUtils.goRootPage(context);
-      }
-    });
-  }
-  @override
-  void dispose() {
-    splashSubscription?.cancel();
-    super.dispose();
+      }});
   }
   @override
   Widget build(BuildContext context) {

@@ -6,14 +6,14 @@ import 'package:flutter/material.dart';
 
 class ClockPage extends StatefulWidget {
   final double radius;
-  final Color hourHandColor;
-  final Color minuteHandColor;
-  final Color secondHandColor;
-  final Color numberColor;
-  final Color borderColor;
+  final Color? hourHandColor;
+  final Color? minuteHandColor;
+  final Color? secondHandColor;
+  final Color? numberColor;
+  final Color? borderColor;
 
   const ClockPage(
-      {Key key,
+      {Key? key,
         this.hourHandColor,
         this.minuteHandColor,
         this.secondHandColor,
@@ -29,8 +29,8 @@ class ClockPage extends StatefulWidget {
 }
 
 class ClockPageState extends State<ClockPage> {
-  DateTime datetime;
-  Timer timer;
+  DateTime? datetime;
+  late Timer timer;
 
   @override
   void initState() {
@@ -68,10 +68,10 @@ class ClockPainter extends CustomPainter {
   final Color borderColor;
   final double radius;
   List<Offset> secondsOffset = [];
-  final DateTime datetime;
-  TextPainter textPainter;
-  double angle;
-  double borderWidth;
+  final DateTime? datetime;
+  late TextPainter textPainter;
+  late double angle;
+  late double borderWidth;
 
   ClockPainter(this.datetime,
       {this.radius = 150.0,
@@ -92,7 +92,7 @@ class ClockPainter extends CustomPainter {
       textAlign: TextAlign.center,
       textDirection: TextDirection.rtl,
     );
-    angle = degToRad(360 / 60);
+    angle = degToRad(360 / 60) as double;
   }
 
   @override
@@ -152,9 +152,9 @@ class ClockPainter extends CustomPainter {
       canvas.drawPoints(PointMode.points, bigger, biggerPaint);
     }
 
-    final hour = datetime.hour;
-    final minute = datetime.minute;
-    final second = datetime.second;
+    final hour = datetime!.hour;
+    final minute = datetime!.minute;
+    final second = datetime!.second;
 
     // draw hour hand
     Offset hourHand1 = Offset(

@@ -26,7 +26,7 @@ import 'package:flutterjdshop/widget/view/my_button.dart';
 import 'package:provider/provider.dart';
 
 class ProductDetail extends StatefulWidget {
-  final String sId;
+  final String? sId;
 
   const ProductDetail({this.sId});
 
@@ -36,7 +36,7 @@ class ProductDetail extends StatefulWidget {
 
 class _ProductDetailState extends BasePageState<ProductDetail>
     with SingleTickerProviderStateMixin {
-  TabController _tabController;
+  TabController? _tabController;
   bool isDark = false;
   LoadState state = LoadState.State_Loading;
   List _productContentList = [];
@@ -108,7 +108,7 @@ class _ProductDetailState extends BasePageState<ProductDetail>
                           ),
                           Consumer<Cart>(
                             builder: (context, p, child) {
-                              return p.cartList.length > 0
+                              return p.cartList!.length > 0
                                   ? Positioned(
                                 right: 0,
                                 top: 0,
@@ -121,7 +121,7 @@ class _ProductDetailState extends BasePageState<ProductDetail>
                                         borderRadius:
                                         BorderRadius.circular(12.0)),
                                     child: Text(
-                                      "${p.cartList.length}",
+                                      "${p.cartList!.length}",
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontSize: AppSize.sp(22)),
@@ -177,7 +177,7 @@ class _ProductDetailState extends BasePageState<ProductDetail>
 
   @override
   void dispose() {
-    _tabController.dispose();
+    _tabController!.dispose();
     super.dispose();
   }
 
@@ -214,7 +214,7 @@ class _ProductDetailState extends BasePageState<ProductDetail>
                 Container(
                   width: double.infinity,
                   //该高度和SliverPersistentHeader 一致
-                  height: AppSize.height(80)+ScreenUtil.statusBarHeight,
+                  height: AppSize.height(80)+ScreenUtil().statusBarHeight,
                   color: Colors.red,
                   child: Text(""),
                 ),

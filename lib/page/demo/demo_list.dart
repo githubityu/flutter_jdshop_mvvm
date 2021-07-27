@@ -9,9 +9,9 @@ import 'package:flutterjdshop/view/app_topbar.dart';
 import 'package:provider/provider.dart';
 
 class DemoListPage extends StatefulWidget {
-  final Map<String, List<String>> address;
+  final Map<String, List<String>>? address;
 
-  const DemoListPage({Key key, this.address}) : super(key: key);
+  const DemoListPage({Key? key, this.address}) : super(key: key);
 
   @override
   _DemoListPageState createState() => _DemoListPageState();
@@ -33,7 +33,7 @@ class _DemoListPageState extends BasePageState<DemoListPage> {
     return ListView(
       children: <Widget>[
         ListTile(
-          title: Text("barcode_scan"),
+          title: Text("barcode_scan",style: ,),
           subtitle: Text("扫描二维码功能测试"),
           onTap: () {
             NavigatorUtils.push(context, DemoRouter.BARCODE);
@@ -117,11 +117,13 @@ class _DemoListPageState extends BasePageState<DemoListPage> {
           },
         ),
         ListTile(
-          title: Selector(builder: (_, value, __) {
-            return Text("Selector的使用方法$value");
-          }, selector: (_, CounterProvider value) {
-            return value.value;
-          }),
+          title: Selector<CounterProvider,int>(
+              builder: (_, value, __) {
+                  return Text("Selector的使用方法$value");
+                 },
+              selector: (_,  value) {
+                  return value.value;
+              }),
           subtitle: Text("Selector ChangeNotifierProvider"),
           onTap: () {
             NavigatorUtils.push(context, DemoRouter.DEMO_SELECTOR);

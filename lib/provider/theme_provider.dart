@@ -16,19 +16,19 @@ class ThemeProvider extends ChangeNotifier {
   };
   
   void syncTheme() {
-    String theme = SharedUtil.instance.getString(Keys.theme);
+    String theme = SharedUtil.instance!.getString(Keys.theme)!;
     if (theme.isNotEmpty && theme != themes[ThemeMode.system]) {
       notifyListeners();
     }
   }
 
   void setTheme(ThemeMode themeMode) {
-    SharedUtil.instance.saveString(Keys.theme, themes[themeMode]);
+    SharedUtil.instance!.saveString(Keys.theme, themes[themeMode]!);
     notifyListeners();
   }
 
   ThemeMode getThemeMode(){
-    String theme = SharedUtil.instance.getString(Keys.theme);
+    String? theme = SharedUtil.instance!.getString(Keys.theme);
     switch(theme) {
       case 'Dark':
         return ThemeMode.dark;

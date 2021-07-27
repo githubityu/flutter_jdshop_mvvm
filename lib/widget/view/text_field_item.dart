@@ -10,19 +10,19 @@ import 'package:flutterjdshop/utils/number_text_input_formatter.dart';
 class TextFieldItem extends StatelessWidget {
 
   const TextFieldItem({
-    Key key,
+    Key? key,
     this.controller,
-    @required this.title,
+    required this.title,
     this.keyboardType: TextInputType.text,
     this.hintText: '',
     this.focusNode,
   }): super(key: key);
 
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String title;
   final String hintText;
   final TextInputType keyboardType;
-  final FocusNode focusNode;
+  final FocusNode? focusNode;
 
   @override
   Widget build(BuildContext context) {

@@ -11,32 +11,32 @@ class FocusModel2 extends ReqModel {
 }
 
 class FocusModel {
-  List<FocusItemModel> result;
+  List<FocusItemModel>? result;
 
   FocusModel({this.result});
 
   FocusModel.fromJson(List<dynamic> json) {
-    result = new List<FocusItemModel>();
+    result =  List.empty();
     json.forEach((v) {
-      result.add(new FocusItemModel.fromJson(v));
+      result!.add(new FocusItemModel.fromJson(v));
     });
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.result != null) {
-      data['result'] = this.result.map((v) => v.toJson()).toList();
+      data['result'] = this.result!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class FocusItemModel {
-  String sId;
-  String title;
-  String status;
-  String pic;
-  String url;
+  String? sId;
+  String? title;
+  String? status;
+  String? pic;
+  String? url;
 
   FocusItemModel({this.sId, this.title, this.status, this.pic, this.url});
 

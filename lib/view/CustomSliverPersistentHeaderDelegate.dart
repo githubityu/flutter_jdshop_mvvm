@@ -6,7 +6,7 @@ class CustomSliverPersistentHeaderDelegate extends SliverPersistentHeaderDelegat
   final double min; // 最小高度
   final Widget child; // 需要展示的内容
 
-  CustomSliverPersistentHeaderDelegate({@required this.max, @required this.min, @required this.child})
+  CustomSliverPersistentHeaderDelegate({required this.max, required this.min, required this.child})
 // 如果 assert 内部条件不成立，会报错
       : assert(max != null),
         assert(min != null),

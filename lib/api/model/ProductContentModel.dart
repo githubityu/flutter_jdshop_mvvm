@@ -1,5 +1,5 @@
 class ProductContentModel {
-  ProductContentitem result;
+  ProductContentitem? result;
 
   ProductContentModel({this.result});
 
@@ -10,31 +10,31 @@ class ProductContentModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.result != null) {
-      data['result'] = this.result.toJson();
+      data['result'] = this.result!.toJson();
     }
     return data;
   }
 }
 
 class ProductContentitem {
-  String sId;
-  String title;
-  String cid;
-  Object price;   //注意
-  String oldPrice;
-  Object isBest;
-  Object isHot;
-  Object isNew;
-  String status;
-  String pic;
-  String content;
-  String cname;
-  List<Attr> attr;
-  String subTitle;
-  Object salecount;
+  String? sId;
+  String? title;
+  String? cid;
+  Object? price;   //注意
+  String? oldPrice;
+  Object? isBest;
+  Object? isHot;
+  Object? isNew;
+  String? status;
+  String? pic;
+  String? content;
+  String? cname;
+  List<Attr>? attr;
+  String? subTitle;
+  Object? salecount;
   //新增
-  int count;
-  String selectedAttr;
+  int? count;
+  String? selectedAttr;
 
 
 
@@ -72,9 +72,9 @@ class ProductContentitem {
     content = json['content'];
     cname = json['cname'];
     if (json['attr'] != null) {
-      attr = new List<Attr>();
+      attr = List.empty();
       json['attr'].forEach((v) {
-        attr.add(new Attr.fromJson(v));
+        attr!.add(new Attr.fromJson(v));
       });
     }
     subTitle = json['sub_title'];
@@ -102,7 +102,7 @@ class ProductContentitem {
     data['content'] = this.content;
     data['cname'] = this.cname;
     if (this.attr != null) {
-      data['attr'] = this.attr.map((v) => v.toJson()).toList();
+      data['attr'] = this.attr!.map((v) => v.toJson()).toList();
     }
     data['sub_title'] = this.subTitle;
     data['salecount'] = this.salecount;
@@ -111,9 +111,9 @@ class ProductContentitem {
 }
 
 class Attr {
-  String cate;
-  List<String> list;
-  List<Map> attrList;
+  String? cate;
+  List<String>? list;
+  List<Map>? attrList;
 
 
   Attr({this.cate, this.list});

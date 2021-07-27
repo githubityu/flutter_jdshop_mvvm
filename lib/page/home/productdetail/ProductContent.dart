@@ -4,7 +4,7 @@ class ProductContent extends StatefulWidget {
   final String title;
   final int index;
 
-  ProductContent(this.title, this.index, {Key key}) : super(key: key);
+  ProductContent(this.title, this.index, {Key? key}) : super(key: key);
 
   _ProductContentState createState() => _ProductContentState();
 }
@@ -13,7 +13,7 @@ class _ProductContentState extends State<ProductContent>
     with AutomaticKeepAliveClientMixin<ProductContent> {
 
   bool get wantKeepAlive => true;
-  PageStorageKey pKey;
+  PageStorageKey? pKey;
   @override
   void initState() {
     // TODO: implement initState
