@@ -1,91 +1,71 @@
-import 'dart:io';
+import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutterjdshop/util/extension/log_extensions.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutterjdshop/config/user_info_data.dart';
-import 'package:flutterjdshop/page/splash_page.dart';
-import 'package:flutterjdshop/provider/Cart.dart';
-import 'package:flutterjdshop/provider/CheckOut.dart';
-import 'package:flutterjdshop/provider/counter_provider.dart';
-import 'package:flutterjdshop/provider/order_page_provider.dart';
-import 'package:flutterjdshop/provider/theme_provider.dart';
-import 'package:flutterjdshop/routes/application.dart';
-import 'package:flutterjdshop/routes/my_navigator_observer.dart';
-import 'package:provider/provider.dart';
+import 'exports.dart';
+import 'hook/use_router.dart';
+import 'providers/providers.dart';
+import 'theme/theme_exports.dart';
+import 'util/local_data_util.dart';
 
-
-import 'config/storage_manager.dart';
-import 'routes/fluro_navigator.dart';
-import 'utils/log_utils.dart';
-
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await StorageManager.init();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-      .then((_) {
-    runApp(MyApp());
-  });
-  if (Platform.isAndroid) {
-    SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+Future<void> main() async {
+  await initLocalData();
+  if (kReleaseMode) {
+    debugPrint = (message, {wrapWidth}) {};
   }
-  // FlutterStatusbarcolor.setStatusBarWhiteForeground(false);
+  //InAppWebView使用
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      systemNavigationBarColor: Colors.black,
+      statusBarIconBrightness: Brightness.dark));
+  if (kIsWeb) {
+    // Increase Skia cache size to support bigger images.
+    const int megabyte = 1000000;
+    SystemChannels.skia
+        .invokeMethod('Skia.setResourceCacheMaxBytes', 512 * megabyte);
+    await Future<void>.delayed(Duration.zero);
+  }
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  PaintingBinding.instance?.imageCache?.maximumSize = 1000000; // 2000 entries
+  PaintingBinding.instance?.imageCache?.maximumSizeBytes = 300 << 20; //
+  runZonedGuarded(() {
+    runApp(const ProviderScope(child: MyApp()));
+  }, (error, stackTrace) {
+    '$stackTrace $error'.log();
+  });
 }
 
-class MyApp extends StatelessWidget {
-  final Widget? home;
-  final ThemeData? theme;
-  MyApp({this.home, this.theme}) {
-    Log.init();
-    NavigatorUtils.initRouter();
-    UserInfoData.instance!.getUserInfo;
-  }
+class MyApp extends HookConsumerWidget {
+  const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => Cart()),
-        ChangeNotifierProvider(create: (_) => CheckOut()),
-        ChangeNotifierProvider(create: (_) => OrderPageProvider()),
-        ChangeNotifierProvider(create: (_) => ThemeProvider()),
-        ChangeNotifierProvider(create: (_) => CounterProvider()),
+  Widget build(BuildContext context, ref) {
+    final theme = ref.watch(appThemeProvider);
+    final themeMode = ref.watch(appThemeModeProvider);
+    final appRouter = userAppRouter();
+    return MaterialApp.router(
+      theme: theme,
+      darkTheme: AppTheme.darkThemeData,
+      themeMode: themeMode,
+      title: 'FilWallet',
+      builder: FlutterSmartDialog.init(),
+      locale: ref.watch(localChange),
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
       ],
-      child: Consumer<ThemeProvider>(
-        builder: (context, provider, child) {
-          return ScreenUtilInit(
-            designSize: Size(1334, 750),
-            builder:()=> MaterialApp(
-              //        debugShowCheckedModeBanner: false,
-              home: home ?? SplashPage(),
-              navigatorKey: Application.navKey,
-              onGenerateRoute: Application.router.generator,
-              theme: theme??provider.getTheme(),
-              darkTheme: provider.getTheme(isDarkMode: true),
-              themeMode: provider.getThemeMode(),
-              localizationsDelegates: const [
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              navigatorObservers: [
-                MyNavigatorObserver.getInstance()!
-              ],
-              supportedLocales: const [Locale('zh', 'CH'), Locale('en', 'US')],
-              builder: (context, child) {
-                /// 保证文字大小不受手机系统设置影响 https://www.kikt.top/posts/flutter/layout/dynamic-text/
-                return MediaQuery(
-                  data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                  // 或者 MediaQueryData.fromWindow(WidgetsBinding.instance.window).copyWith(textScaleFactor: 1.0),
-                  child: child!,
-                );
-              },
-            ),
-          );
-        },
-      ),
+      supportedLocales: [
+        Locale('en'),
+        Locale('ja'),
+        Locale('zh')
+      ],
+      routerConfig: appRouter,
     );
   }
 }
+

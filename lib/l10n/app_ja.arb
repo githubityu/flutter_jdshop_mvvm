@@ -1,0 +1,7 @@
+{
+  "app_name": "flutterjdshop",
+  "network_tip": "通信エラーが発生しました。通信状況をご確認ください",
+  "request_failed_tip": "リクエストが失敗しました、しばらくしてからもう一度お試しください",
+  "setting": "設定",
+  "press_again_exit": "アプリを終了する場合は、もう一度戻るを押してください。"
+}

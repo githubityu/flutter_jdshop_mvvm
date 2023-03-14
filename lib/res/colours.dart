@@ -1,5 +1,0 @@
-
-class Colours2 {
-
-
-}

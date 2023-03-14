@@ -1,0 +1,7 @@
+{
+  "app_name": "flutterjdshop",
+  "network_tip": "未联网，请检查网络状态",
+  "request_failed_tip": "请求失败，请稍后重试",
+  "setting": "设置",
+  "press_again_exit": "要退出该应用程序，请再次按。"
+}
