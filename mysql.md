@@ -1,4 +1,6 @@
 [TOC]
+#### test 2.0
+
 #### 常用mysql>
 >`分组后加条件然后合并求数量`
 
@@ -18,6 +20,7 @@ SELECT  t_p_address,  SUM(t_amount) as t_total_amount, id
 FROM t_h_balance GROUP BY t_p_address
 ```
 >`查询重复的数据并排序`
+
 
 ```mysql
 SELECT * FROM t_h_user_copy tU WHERE t_phone IN (SELECT t_phone FROM t_h_user_copy tU GROUP BY t_phone HAVING COUNT(t_phone)>1)  ORDER BY `t_phone` DESC
