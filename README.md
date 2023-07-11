@@ -32,7 +32,7 @@ $ flutter run
 这是一个用Flutter写的简易商城APP
 
 ###  武功太差，努力练习，减少代码的重复和便于维护
-###  学好武功，迎娶白富美
+###  学好武功
 
 * 该项目使用mvvm
 * 自定义BasePageState 提取公共方法例如需要初始化的ScreenUtil,showToast,显示隐藏进度弹框，点击外部是否隐藏软键盘等
