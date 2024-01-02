@@ -86,8 +86,10 @@ class _LoadStateLayoutState extends State<LoadStateLayout> {
             width: 100,
           ),
           Text("加载失败，请重试"),
-          RaisedButton(
-            color: Color(0xffbc2929),
+          TextButton(
+            style: TextButton.styleFrom(
+              backgroundColor: Color(0xffbc2929)
+            ),
             onPressed: widget.errorRetry,
             child: Text(
               '重新加载',

@@ -12,7 +12,7 @@ class OneCircle extends StatefulWidget {
   //饼状的值
   final List<double>? values;
 
-  OneCircle({Key? key, this.colors, this.values, this.index: -1})
+  OneCircle({Key? key, this.colors, this.values, this.index = -1})
       : super(key: key) {
     ///两个值数量一定要一致
     assert(colors!.length == values!.length);

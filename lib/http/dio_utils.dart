@@ -21,8 +21,8 @@ class DioUtils {
 
   DioUtils._internal() {
     var options = BaseOptions(
-      connectTimeout: connectTimeOut,
-      receiveTimeout: receiveTimeOut,
+      connectTimeout: Duration(seconds: connectTimeOut),
+      receiveTimeout: Duration(seconds: receiveTimeOut),
       //responseType: ResponseType.plain,
       headers: {
         'content-type': 'application/json',

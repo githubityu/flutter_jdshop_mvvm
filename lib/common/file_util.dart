@@ -78,8 +78,8 @@ class FileUtil {
     Dio? _client;
     if (_client == null) {
       BaseOptions options = new BaseOptions();
-      options.connectTimeout = connectTimeOut;
-      options.receiveTimeout = receiveTimeOut;
+      options.connectTimeout = Duration(seconds: connectTimeOut);
+      options.receiveTimeout = Duration(seconds: receiveTimeOut);
       options.headers = const {'Content-Type': 'application/json'};
       options.baseUrl = API.reqUrl;
       _client = new Dio(options);

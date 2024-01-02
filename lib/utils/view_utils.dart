@@ -26,7 +26,7 @@ AppBar getSearchAppBar(context){
         padding: EdgeInsets.only(left: AppSize.width(10)),
         child: Container(
           alignment: Alignment.center,
-          child: FlatButton.icon(
+          child: TextButton.icon(
               onPressed: () {
                 NavigatorUtils.push(context, ShopRouter.SEARCH);
               },

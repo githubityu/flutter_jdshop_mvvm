@@ -107,8 +107,7 @@ class _AddressAddOrEditState extends BasePageState<AddressAddOrEdit> {
             decoration: BoxDecoration(
                 border: Border(
                     bottom: BorderSide(width: 1, color: Colors.black12))),
-            child: FlatButton.icon(
-              padding: EdgeInsets.all(0),
+            child: TextButton.icon(
               onPressed: () async {
                 // var result = await CityPickers.showCityPicker(
                 //     context: context, locationCode: "130102");
@@ -118,9 +117,12 @@ class _AddressAddOrEditState extends BasePageState<AddressAddOrEdit> {
                 // });
               },
               icon: Icon(Icons.add_location),
-              label: Text(
-                this.area.length > 0 ? "${this.area}" : "省/市/区",
-                style: TextStyles.textBlack14,
+              label: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  this.area.length > 0 ? "${this.area}" : "省/市/区",
+                  style: TextStyles.textBlack14,
+                ),
               ),
             ),
           ),

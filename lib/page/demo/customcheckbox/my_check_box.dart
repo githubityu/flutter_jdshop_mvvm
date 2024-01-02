@@ -32,7 +32,7 @@ class CheckTextBox extends State<MyCheckBox> {
   // 是否是check状态 如何修改这个状态呢
   bool? isChecked;
 
-  CheckTextBox({this.isChecked: false});
+  CheckTextBox({this.isChecked = false});
 
   @override
   void initState() {

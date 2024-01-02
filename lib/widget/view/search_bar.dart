@@ -15,8 +15,8 @@ class SearchBar extends StatefulWidget implements PreferredSizeWidget {
 
   const SearchBar({
     Key? key,
-    this.hintText: '',
-    this.backImg: 'assets/images/ic_back_black.png',
+    this.hintText = '',
+    this.backImg = 'assets/images/ic_back_black.png',
     this.onPressed,
   }): super(key: key);
 
@@ -128,9 +128,11 @@ class _SearchBarState extends State<SearchBar> {
                         )
                     ),
                   ),
-                  child: FlatButton(
-                      textColor: isDark ?  Colours.dark_button_text : Colors.white,
-                      color: isDark ?  Colours.dark_app_main : Colours.app_main,
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      backgroundColor: isDark ?  Colours.dark_app_main : Colours.app_main,
+                      foregroundColor: isDark ?  Colours.dark_button_text : Colors.white,
+                    ),
                       onPressed:() {
                         FocusScope.of(context).unfocus();
                         widget.onPressed!(_controller.text);

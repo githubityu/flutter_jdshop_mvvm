@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterjdshop/api/model/void_modle.dart';
 import 'package:flutterjdshop/api/model/void_view_model.dart';
@@ -9,11 +8,10 @@ import 'package:flutterjdshop/res/gaps.dart';
 import 'package:flutterjdshop/routes/fluro_navigator.dart';
 import 'package:flutterjdshop/routes/shop_router.dart';
 import 'package:flutterjdshop/utils/app_size.dart';
+import 'package:flutterjdshop/utils/log_utils.dart';
 import 'package:flutterjdshop/view/app_topbar.dart';
 import 'package:flutterjdshop/widget/view/my_button.dart';
 import 'package:flutterjdshop/widget/view/text_field.dart';
-import 'package:flutterjdshop/utils/log_utils.dart';
-import 'package:rxdart/rxdart.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -66,17 +64,21 @@ class _LoginPageState extends BasePageState<LoginPage> {
               children: <Widget>[
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: FlatButton(
+                  child: TextButton(
                     child: Text('忘记密码'),
-                    color: Colors.transparent,
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                    ),
                     onPressed: () {},
                   ),
                 ),
                 Align(
                   alignment: Alignment.centerRight,
-                  child: FlatButton(
+                  child: TextButton(
                     child: Text('新用户注册'),
-                    color: Colors.transparent,
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                    ),
                     onPressed: () {
                       NavigatorUtils.push(context, ShopRouter.REGISTER_FIRST);
                     },
@@ -98,7 +100,7 @@ class _LoginPageState extends BasePageState<LoginPage> {
                       var map =
                           (onValue as Map<String, dynamic>)["userinfo"][0];
                       UserInfoData.instance!.userInfo = map;
-                      Future.delayed(Duration(milliseconds:  200), () {
+                      Future.delayed(Duration(milliseconds: 200), () {
                         eventBus.fire(MineChangeEvent());
                         NavigatorUtils.pop(context);
                         Log.e("销毁页面");

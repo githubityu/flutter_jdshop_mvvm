@@ -40,7 +40,7 @@ class _StudyBoundaryState extends State<StudyBoundary> {
                       child: InkWell(
                         child: Text(
                           _buttonText,
-                          style: Theme.of(context).textTheme.display1,
+                          style: Theme.of(context).textTheme.displayLarge,
                         ),
                         onTap: () {
                           setState(() {

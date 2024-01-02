@@ -45,7 +45,7 @@ class _LayoutBoundaryState extends State<LayoutBoundary> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: FlatButton(
+      child: ElevatedButton(
         child: Text(
           '${_buttonText * _index}',
           textDirection: TextDirection.ltr,

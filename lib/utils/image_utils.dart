@@ -7,21 +7,21 @@ import 'package:flutterjdshop/widget/load_image.dart';
 
 class ImageUtils {
 
-  static ImageProvider getAssetImage(String name, {String format: 'png'}) {
+  static ImageProvider getAssetImage(String name, {String format = 'png'}) {
     return AssetImage(getImgPath(name, format: format));
   }
 
-  static String getImgPath(String name, {String format: 'png'}) {
+  static String getImgPath(String name, {String format = 'png'}) {
     return 'assets/images/$name.$format';
   }
 
   static ImageProvider getImageProvider(String imageUrl,
-      {String holderImg: 'none'}) {
+      {String holderImg = 'none'}) {
     if (getSafeData(imageUrl).isNotEmpty) {
       return AssetImage(getImgPath(holderImg));
     }
     return CachedNetworkImageProvider(
-        imageUrl, errorListener: () => print("图片加载失败！"));
+        imageUrl, errorListener: (o) => print("图片加载失败！"));
   }
 }
 

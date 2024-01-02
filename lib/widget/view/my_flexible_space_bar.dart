@@ -122,6 +122,10 @@ class _FlexibleSpaceBarState extends State<MyFlexibleSpaceBar> {
       case TargetPlatform.macOS:
         // TODO: Handle this case.
         break;
+      case TargetPlatform.linux:
+        // TODO: Handle this case.
+      case TargetPlatform.windows:
+        // TODO: Handle this case.
     }
     return null;
   }
@@ -211,12 +215,13 @@ class _FlexibleSpaceBarState extends State<MyFlexibleSpaceBar> {
         // TODO: Handle this case.
           break;
         case TargetPlatform.fuchsia:
+        case TargetPlatform.linux:
         case TargetPlatform.android:
+        case TargetPlatform.windows:
           title = Semantics(
             namesRoute: true,
             child: widget.title,
           );
-
       }
 
       title = Container(
@@ -227,7 +232,7 @@ class _FlexibleSpaceBarState extends State<MyFlexibleSpaceBar> {
       final ThemeData theme = Theme.of(context);
       final double opacity = settings.toolbarOpacity;
       if (opacity > 0.0) {
-        TextStyle titleStyle = theme.primaryTextTheme.title!;
+        TextStyle titleStyle = theme.primaryTextTheme.titleMedium!;
         titleStyle = titleStyle.copyWith(
             color: titleStyle.color!.withOpacity(opacity),
             fontWeight: t != 0 ? FontWeight.normal : FontWeight.bold

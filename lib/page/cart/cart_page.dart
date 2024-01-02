@@ -114,21 +114,25 @@ class _CartPageState extends BasePageState<CartPage>
                             this._isEdit == false
                                 ? Align(
                                     alignment: Alignment.centerRight,
-                                    child: RaisedButton(
+                                    child: ElevatedButton(
+                                      style: TextButton.styleFrom(
+                                        backgroundColor: Colors.red,
+                                      ),
                                       child: Text("结算",
                                           style:
                                               TextStyle(color: Colors.white)),
-                                      color: Colors.red,
                                       onPressed: doCheckOut,
                                     ),
                                   )
                                 : Align(
                                     alignment: Alignment.centerRight,
-                                    child: RaisedButton(
+                                    child: ElevatedButton(
                                       child: Text("删除",
                                           style:
                                               TextStyle(color: Colors.white)),
-                                      color: Colors.red,
+                                      style: TextButton.styleFrom(
+                                        backgroundColor: Colors.red,
+                                      ),
                                       onPressed: () {
                                         cartProvider.removeItem();
                                       },

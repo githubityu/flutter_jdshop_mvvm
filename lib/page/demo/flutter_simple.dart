@@ -72,7 +72,7 @@ class _SimpleDemoPageState extends BasePageState<SimpleDemoPage> {
           TextField(
             maxLength: 20,
             keyboardType:TextInputType.number,
-            inputFormatters: [WhitelistingTextInputFormatter(RegExp("[0-9]"))],
+            inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9]"))],
             decoration: InputDecoration(
               hintText: "请输入手机号",
               counterText: "",
@@ -135,7 +135,7 @@ class _SimpleDemoPageState extends BasePageState<SimpleDemoPage> {
           ),
           IgnorePointer(
             ignoring:true,
-            child: RaisedButton(
+            child: TextButton(
               onPressed: (){
 
               },

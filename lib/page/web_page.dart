@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutterjdshop/utils/app_size.dart';
 import 'package:flutterjdshop/view/app_topbar.dart';
 import 'package:flutterjdshop/view/customize_appbar.dart';
+import 'package:flutterjdshop/widget/my_iframe/my_iframe.dart';
 
-import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewPage extends StatefulWidget {
   const WebViewPage({
@@ -44,27 +44,8 @@ class _WebViewState extends State<WebViewPage> {
       ),
       body: Stack(
         children: <Widget>[
-          WebView(
-            initialUrl: widget.url,
-            onWebViewCreated: (WebViewController web) {
-              web.canGoBack().then((res) {
-//                print(res); // 是否能返回上一级
-              });
-              web.currentUrl().then((url) {
-//                print(url); // 返回当前url
-              });
-              web.canGoForward().then((res) {
-//                print(res); //是否能前进
-              });
-            },
-            onPageFinished: (String value) {
-              // 返回当前url
-//              print(value);
-              setState(() {
-                _isLoading = false;
-              });
-            },
-          ),
+          MyIFrame(
+             widget.url!),
           _loading()
         ],
       ),

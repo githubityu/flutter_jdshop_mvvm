@@ -72,7 +72,7 @@ class UpdateDialogState extends State<UpdateDialog> {
                   !widget.isForce
                       ? Expanded(
                           flex: 1,
-                          child: FlatButton(
+                          child: TextButton(
                               onPressed: () {
                                 Navigator.of(context).pop();
                               },
@@ -85,7 +85,7 @@ class UpdateDialogState extends State<UpdateDialog> {
                       : SizedBox(),
                   Expanded(
                     flex: 1,
-                    child: FlatButton(
+                    child: TextButton(
                         onPressed: () async {
                           if (uploadingFlag == UploadingFlag.uploading) return;
                           uploadingFlag = UploadingFlag.uploading;
@@ -116,8 +116,8 @@ class UpdateDialogState extends State<UpdateDialog> {
       Dio? _client;
       if (_client == null) {
         BaseOptions options = new BaseOptions();
-        options.connectTimeout = connectTimeOut;
-        options.receiveTimeout = receiveTimeOut;
+        options.connectTimeout = Duration(seconds: connectTimeOut);
+        options.receiveTimeout = Duration(seconds: receiveTimeOut);
         options.headers = const {'Content-Type': 'application/json'};
         options.baseUrl = API.reqUrl;
         _client = new Dio(options);

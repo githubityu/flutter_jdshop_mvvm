@@ -199,9 +199,11 @@ class _CheckOutPageState extends BasePageState<CheckOutPage> {
                 ),
                 Align(
                   alignment: Alignment.centerRight,
-                  child: RaisedButton(
+                  child: TextButton(
                     child: Text('立即下单', style: TextStyle(color: Colors.white)),
-                    color: Colors.red,
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.red
+                    ),
                     onPressed: () async {
                       if (this._addressList.length > 0) {
                         //注意：商品总价保留一位小数

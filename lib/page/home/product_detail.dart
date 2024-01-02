@@ -196,7 +196,6 @@ class _ProductDetailState extends BasePageState<ProductDetail>
               NavigatorUtils.pop(context);
             },
           ),
-          brightness: Brightness.dark,
           backgroundColor: Colors.blue,
           elevation: 0.0,
           centerTitle: true,

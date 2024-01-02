@@ -9,7 +9,7 @@ class RemindDialog extends StatefulWidget {
 
   RemindDialog({
     Key? key,
-    this.title: "提示",
+    this.title = "提示",
     this.content,
     this.confirmFunc,
   }) : super(key: key);

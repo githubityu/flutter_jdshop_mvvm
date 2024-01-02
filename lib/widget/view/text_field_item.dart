@@ -13,8 +13,8 @@ class TextFieldItem extends StatelessWidget {
     Key? key,
     this.controller,
     required this.title,
-    this.keyboardType: TextInputType.text,
-    this.hintText: '',
+    this.keyboardType = TextInputType.text,
+    this.hintText = '',
     this.focusNode,
   }): super(key: key);
 
@@ -64,7 +64,7 @@ class TextFieldItem extends StatelessWidget {
       return [UsNumberTextInputFormatter()];
     }
     if (keyboardType == TextInputType.number || keyboardType == TextInputType.phone) {
-      return [WhitelistingTextInputFormatter.digitsOnly];
+      return [FilteringTextInputFormatter.digitsOnly];
     }
     return null;
   }

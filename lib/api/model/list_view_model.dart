@@ -19,7 +19,7 @@ class ListViewModel extends ViewModel {
     this.cancelToken = cancelToken;
   }
 
-  Future<List> getData({type : 0, Map<String, dynamic>? params2}) async {
+  Future<List> getData({type = 0, Map<String, dynamic>? params2}) async {
     final List? data = await (VoidModel(cancelToken, view).data(type, params2) as Future<List<dynamic>?>);
     if (data != null) {
       return data;

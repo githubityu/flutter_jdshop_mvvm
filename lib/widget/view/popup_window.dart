@@ -19,7 +19,7 @@ Future<T?> showPopupWindow<T>({
   required BuildContext context,
   RelativeRect? position,
   required Widget child,
-  double elevation: 8.0,
+  double elevation = 8.0,
   String? semanticLabel,
   bool? fullWidth,
   bool isShowBg = false,
@@ -37,6 +37,10 @@ Future<T?> showPopupWindow<T>({
     case TargetPlatform.fuchsia:
       label = semanticLabel ?? MaterialLocalizations.of(context)?.popupMenuLabel;
 
+    case TargetPlatform.linux:
+      // TODO: Handle this case.
+    case TargetPlatform.windows:
+      // TODO: Handle this case.
   }
 
   return Navigator.push(context,
@@ -61,7 +65,7 @@ class _PopupWindowRoute<T> extends PopupRoute<T> {
     RouteSettings? settings,
     this.child,
     this.position,
-    this.elevation: 8.0,
+    this.elevation = 8.0,
     this.theme,
     this.barrierLabel,
     this.semanticLabel,
@@ -147,7 +151,7 @@ class _PopupWindow<T> extends StatelessWidget {
     Key? key,
     this.route,
     this.semanticLabel,
-    this.fullWidth: false,
+    this.fullWidth = false,
   }) : super(key: key);
 
   final _PopupWindowRoute<T>? route;

@@ -16,7 +16,7 @@ class BaseDialog extends StatelessWidget {
     Key? key,
     this.title,
     this.onPressed,
-    this.hiddenTitle : false,
+    this.hiddenTitle = false,
     required this.child
   }) : super(key : key);
 
@@ -64,14 +64,16 @@ class BaseDialog extends StatelessWidget {
                     Expanded(
                       child: SizedBox(
                         height: 48.0,
-                        child: FlatButton(
+                        child: TextButton(
+                          style: TextButton.styleFrom(
+                            foregroundColor: Colours.text_gray
+                          ),
                           child: const Text(
                             '取消',
                             style: TextStyle(
                                 fontSize: Dimens.font_sp18
                             ),
                           ),
-                          textColor: Colours.text_gray,
                           onPressed: () {
                             NavigatorUtils.goBack(context);
                           },
@@ -86,14 +88,16 @@ class BaseDialog extends StatelessWidget {
                     Expanded(
                       child: SizedBox(
                         height: 48.0,
-                        child: FlatButton(
+                        child: TextButton(
                           child: const Text(
                             '确定',
                             style: TextStyle(
                                 fontSize: Dimens.font_sp18
                             ),
                           ),
-                          textColor: Theme.of(context).primaryColor,
+                          style: TextButton.styleFrom(
+                              foregroundColor: Theme.of(context).colorScheme.primary
+                          ),
                           onPressed: () {
                             onPressed!();
                           },

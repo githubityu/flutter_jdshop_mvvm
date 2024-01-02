@@ -42,14 +42,14 @@ class _SearchPageState extends BasePageState<SearchPage> {
             title: Text("提示信息!"),
             content:Text("您确定要删除吗?") ,
             actions: <Widget>[
-              FlatButton(
+              TextButton(
                 child: Text("取消"),
                 onPressed: (){
                   print("取消");
                   Navigator.pop(context,'Cancle');
                 },
               ),
-              FlatButton(
+              TextButton(
                 child: Text("确定"),
                 onPressed: () async{            
                   //注意异步      
@@ -74,7 +74,7 @@ class _SearchPageState extends BasePageState<SearchPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            child: Text("历史记录", style: Theme.of(context).textTheme.title),
+            child: Text("历史记录", style: Theme.of(context).textTheme.titleLarge),
           ),
           Divider(),
           Column(
@@ -174,7 +174,7 @@ class _SearchPageState extends BasePageState<SearchPage> {
       child: ListView(
         children: <Widget>[
           Container(
-            child: Text("热搜", style: Theme.of(context).textTheme.title),
+            child: Text("热搜", style: Theme.of(context).textTheme.titleLarge),
           ),
           Divider(),
           Wrap(

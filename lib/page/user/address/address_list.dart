@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutterjdshop/api/model/list_view_model.dart';
@@ -24,10 +23,9 @@ class AddressList extends StatefulWidget {
   _AddressListState createState() => _AddressListState();
 }
 
-class _AddressListState extends BasePageState<AddressList> {
+class _AddressListState extends BasePageState<AddressList>{
   List addressList = [];
   LoadState _state = LoadState.State_Loading;
-  final SlidableController slidableController = SlidableController();
 
   @override
   Widget getAppBar(BuildContext context) {
@@ -132,21 +130,22 @@ class _AddressListState extends BasePageState<AddressList> {
                   itemCount: this.addressList.length,
                   itemBuilder: (context, index) {
                     return Slidable(
-                        controller: slidableController,
+                        endActionPane: ActionPane(
+                          extentRatio: 0.25,
+                          motion: const ScrollMotion(),
+                          children: <Widget>[
+                            SlidableAction(
+                              label: '移除',
+                              backgroundColor: Colors.red,
+                              icon: Icons.delete,
+                              onPressed: (BuildContext context) {
+                                _showDeleteDialog(
+                                    this.addressList[index]["_id"]);
+                              },
+                            ),
+                          ],
+                        ),
                         key: Key("$index"),
-                        actionPane: SlidableDrawerActionPane(),
-                        actionExtentRatio: 0.25,
-                        secondaryActions: <Widget>[
-                          IconSlideAction(
-                            caption: '移除',
-                            color: Colors.red,
-                            icon: Icons.delete,
-                            closeOnTap: true,
-                            onTap: () {
-                              _showDeleteDialog(this.addressList[index]["_id"]);
-                            },
-                          ),
-                        ],
                         child: ListTile(
                           trailing: IconButton(
                             icon: Icon(
@@ -180,7 +179,8 @@ class _AddressListState extends BasePageState<AddressList> {
                               ],
                             ),
                             onTap: () {
-                              _changeDefaultAddress(this.addressList[index]["_id"]);
+                              _changeDefaultAddress(
+                                  this.addressList[index]["_id"]);
                             },
                           ),
                         ));
@@ -188,15 +188,13 @@ class _AddressListState extends BasePageState<AddressList> {
             ),
             Positioned(
                 child: Builder(
-                  builder: (context){
-                   return MyButton(
+                  builder: (context) {
+                    return MyButton(
                       margin: EdgeInsets.all(10),
                       text: "增加收货地址",
                       onPressed: () {
-                        if(slidableController.activeState!=null){
-                          slidableController.activeState!.close();
-                        }
-                        NavigatorUtils.push(context, ShopRouter.ADDRESS_ADDOREDIT);
+                        NavigatorUtils.push(
+                            context, ShopRouter.ADDRESS_ADDOREDIT);
                       },
                     );
                   },

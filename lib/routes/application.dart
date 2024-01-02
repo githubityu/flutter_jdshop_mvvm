@@ -10,7 +10,7 @@ class Application {
   static late FluroRouter router;
   static GlobalKey<NavigatorState>? navKey;
   final dio = Dio()
-    ..options = BaseOptions(baseUrl: API.reqUrl, connectTimeout: 30, receiveTimeout: 30)
+    ..options = BaseOptions(baseUrl: API.reqUrl, connectTimeout: Duration(seconds: 30), receiveTimeout: Duration(seconds: 30))
     ..interceptors.add(AuthInterceptor())
     ..interceptors.add(LogInterceptor(responseBody: true, requestBody: true));
 }

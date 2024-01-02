@@ -6,7 +6,7 @@ import 'package:flutterjdshop/utils/theme_utils.dart';
 class MyButton extends StatelessWidget {
   const MyButton({
     Key? key,
-    this.text: '',
+    this.text = '',
     required this.onPressed,
     this.margin,
     this.color = Colours.app_main,
@@ -22,14 +22,14 @@ class MyButton extends StatelessWidget {
     bool isDark = ThemeUtils.isDark(context);
     return Container(
       margin: margin ?? EdgeInsets.all(20),
-      child: FlatButton(
+      child: TextButton(
+        style: TextButton.styleFrom(
+          foregroundColor: isDark ? Colours.dark_button_text : Colors.white,
+          backgroundColor: isDark ? Colours.dark_app_main : color,
+          disabledForegroundColor: isDark ? Colours.dark_text_disabled : Colours.text_disabled,
+          disabledBackgroundColor: isDark ? Colours.dark_button_disabled : Colours.button_disabled,
+        ),
         onPressed: onPressed,
-        textColor: isDark ? Colours.dark_button_text : Colors.white,
-        color: isDark ? Colours.dark_app_main : color,
-        disabledTextColor:
-            isDark ? Colours.dark_text_disabled : Colours.text_disabled,
-        disabledColor:
-            isDark ? Colours.dark_button_disabled : Colours.button_disabled,
         //shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
         child: Container(
           height: 48,

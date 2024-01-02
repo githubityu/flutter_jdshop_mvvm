@@ -53,7 +53,8 @@ class _GuidePageState extends State<GuidePage> {
   void _initSplash() {
     Future.delayed(Duration(milliseconds: 1500),(){
       SharedUtil.instance!.saveBoolean(Keys.keyGuide, false);
-      _initGuide();
+      // _initGuide();
+      _goLogin();
     });
   }
 
@@ -66,12 +67,16 @@ class _GuidePageState extends State<GuidePage> {
     return Material(
         color: ThemeUtils.getBackgroundColor(context),
         child: _status == 0
-            ? FractionallyAlignedSizedBox(
-                heightFactor: 0.3,
-                widthFactor: 0.33,
-                leftFactor: 0.33,
-                bottomFactor: 0,
-                child: const LoadAssetImage('banner',format: IMAGE_JPG,))
-            : Container(child: Text("替换")),);
+            ? Align(
+                alignment: FractionalOffset(
+                  0.33 / (1.0 - 0.33),
+                  0.3/(1-0.3)
+                ),
+              child: FractionallySizedBox (
+                  heightFactor: 0.3,
+                  widthFactor: 0.33,
+                  child: const LoadAssetImage('banner',format: IMAGE_JPG,)),
+            )
+            : Container(child: Text("替换"),alignment: Alignment.center,),);
   }
 }

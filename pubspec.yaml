@@ -14,7 +14,7 @@ description: A new Flutter application.
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: '>=3.1.2 <4.0.0'
 
 dependencies:
   flutter:
@@ -23,44 +23,50 @@ dependencies:
     sdk: flutter
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.3
-#  flutter_swiper: ^1.1.6
+  intl: any
+  cupertino_icons: ^1.0.6
+  #  flutter_swiper: ^1.1.6
 
   #需要申请权限(IOS)
-  image_picker: ^0.7.4
+  image_picker: ^1.0.5
 
-  path_provider: ^2.0.1
+  path_provider: ^2.1.1
   flutter_luban: ^0.1.13
-  flutter_screenutil: ^5.0.0
-  flutter_staggered_grid_view: ^0.4.0
-  fluro: ^2.0.3
-#  flutter_statusbarcolor: ^0.2.3
-  dio: ^4.0.0
-  flutter_easyrefresh: ^2.2.1
-  flutter_html: ^2.0.0-nullsafety.1
-  fluttertoast: ^8.0.6
-  shared_preferences: ^2.0.5
+  flutter_screenutil: ^5.9.0
+  flutter_staggered_grid_view: ^0.7.0
+  fluro: ^2.0.5
+  #  flutter_statusbarcolor: ^0.2.3
+  dio: ^5.4.0
+  flutter_easyrefresh: ^2.2.2
+  flutter_html: ^3.0.0-beta.2
+
+  fluttertoast: ^8.2.4
+  shared_preferences: ^2.2.2
   event_bus: ^2.0.0
-  common_utils: ^2.0.2
-  flutter_slidable: ^0.6.0
-  url_launcher: ^6.0.3
- # city_pickers: ^0.2.0
-  webview_flutter: ^2.0.4
-  cached_network_image: ^3.0.0 # 2.0.0左右flutter版本直接用这个
-#  intl: 0.16.1
-  open_file: ^3.2.0
-  connectivity: ^3.0.3
-  device_info: ^2.0.0
-  package_info: ^2.0.0
-  rxdart: ^0.26.0
-  sprintf: ^6.0.0
-  provider: ^5.0.0
-  barcode_scan2: ^4.1.3
-  path_drawing: ^0.5.1
+  common_utils: ^2.1.0
+  flutter_slidable: ^3.0.1
+  url_launcher: ^6.2.2
+  # city_pickers: ^0.2.0
+  webview_flutter: ^4.4.2
+  cached_network_image: ^3.3.1 # 2.0.0左右flutter版本直接用这个
+  #  intl: 0.16.1
+  open_file: ^3.3.2
+  connectivity: ^3.0.6
+  device_info: ^2.0.3
+  package_info: ^2.0.2
+  rxdart: ^0.27.7
+  sprintf: ^7.0.0
+  provider: ^6.1.1
+  barcode_scan2: ^4.3.0
+  path_drawing: ^1.0.1
+
+dependency_overrides:
+  platform: ^3.1.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  test: ^1.16.5
+  test: ^1.24.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -71,6 +77,7 @@ flutter:
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
+  generate: true
   uses-material-design: true
   assets:
     - assets/images/

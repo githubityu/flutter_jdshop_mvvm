@@ -57,7 +57,8 @@ class MyApp extends StatelessWidget {
         builder: (context, provider, child) {
           return ScreenUtilInit(
             designSize: Size(1334, 750),
-            builder:()=> MaterialApp(
+            builder:( BuildContext context,
+                Widget? child,)=> MaterialApp(
               //        debugShowCheckedModeBanner: false,
               home: home ?? SplashPage(),
               navigatorKey: Application.navKey,
@@ -77,7 +78,7 @@ class MyApp extends StatelessWidget {
               builder: (context, child) {
                 /// 保证文字大小不受手机系统设置影响 https://www.kikt.top/posts/flutter/layout/dynamic-text/
                 return MediaQuery(
-                  data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                  data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(1.0)),
                   // 或者 MediaQueryData.fromWindow(WidgetsBinding.instance.window).copyWith(textScaleFactor: 1.0),
                   child: child!,
                 );

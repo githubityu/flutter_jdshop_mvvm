@@ -2,7 +2,7 @@
 const String title = 'ncov-2019';
 
 ///连接超时时间为5秒
-const int connectTimeOut = 10 * 1000;
+const int connectTimeOut = 10 ;
 
 ///响应超时时间为7秒
-const int receiveTimeOut = 7 * 1000;
+const int receiveTimeOut = 7;
