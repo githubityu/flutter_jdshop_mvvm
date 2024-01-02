@@ -92,21 +92,21 @@ class _LoginPageState extends BasePageState<LoginPage> {
             key: Key("login"),
             onPressed: _isClick
                 ? () {
-                    VoidViewModel.get(this, getCancelToken())
-                        .getData(type: VoidModel.LOGIN, params2: {
-                      "username": _phoneController.text,
-                      "password": _pwdC.text,
-                    }).then((onValue) {
-                      var map =
-                          (onValue as Map<String, dynamic>)["userinfo"][0];
-                      UserInfoData.instance!.userInfo = map;
-                      Future.delayed(Duration(milliseconds: 200), () {
-                        eventBus.fire(MineChangeEvent());
-                        NavigatorUtils.pop(context);
-                        Log.e("销毁页面");
-                      });
-                    });
-                  }
+              VoidViewModel.get(this, getCancelToken())
+                  .getData(type: VoidModel.LOGIN, params2: {
+                "username": _phoneController.text,
+                "password": _pwdC.text,
+              }).then((onValue) {
+                var map =
+                (onValue as Map<String, dynamic>)["userinfo"][0];
+                UserInfoData.instance!.userInfo = map;
+                Future.delayed(Duration(milliseconds: 200), () {
+                  eventBus.fire(MineChangeEvent());
+                  NavigatorUtils.pop(context);
+                  Log.e("销毁页面");
+                });
+              });
+            }
                 : null,
           ),
         ],

@@ -75,14 +75,14 @@ class _MyTextFieldState extends State<MyTextField> {
   @override
   void dispose() {
     _subscription?.cancel();
-    widget.controller?.removeListener(() {});
-    widget.controller?.dispose();
+    widget.controller.removeListener(() {});
+    widget.controller.dispose();
     super.dispose();
   }
 
   Future _getVCode() async {
     bool isSuccess = await widget.getVCode!();
-    if (isSuccess != null && isSuccess) {
+    if (isSuccess) {
       setState(() {
         _currentSecond = _second;
         _isClick = false;
@@ -116,8 +116,8 @@ class _MyTextFieldState extends State<MyTextField> {
           // 数字、手机号限制格式为0到9(白名单)， 密码限制不包含汉字（黑名单）
           inputFormatters: (widget.keyboardType == TextInputType.number ||
                   widget.keyboardType == TextInputType.phone)
-              ? [FilteringTextInputFormatter(RegExp('[0-9]'), allow: true)]
-              : [FilteringTextInputFormatter(RegExp('[\u4e00-\u9fa5]'), allow: true)],
+              ? [FilteringTextInputFormatter.allow(RegExp('[0-9]'))]
+              : [FilteringTextInputFormatter.deny(RegExp('[\u4e00-\u9fa5]'))],
           decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(vertical: 16.0),
               hintText: widget.hintText,
